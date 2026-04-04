@@ -1,7 +1,0 @@
-{
-  "name": "content-blog-optimize",
-  "description": "Post-writing SEO validation and AI citation readiness audit for blog posts. Combines on-page SEO scoring and AI citation readiness into one pass/fail report with specific fixes.",
-  "version": "1.0.0",
-  "license": "MIT",
-  "keywords": ["blog", "seo", "on-page-seo", "ai-citations", "geo", "validation", "audit"]
-}

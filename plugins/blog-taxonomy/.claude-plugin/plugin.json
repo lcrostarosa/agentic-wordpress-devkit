@@ -1,0 +1,9 @@
+{
+  "name": "blog-taxonomy",
+  "description": "Extract, suggest, and sync tags and categories for blog posts. Supports WordPress, Shopify, Ghost, Strapi, and Sanity CMS.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["blog", "taxonomy", "tags", "categories", "cms", "wordpress", "shopify"],
+  "category": "content",
+  "tags": ["blog", "taxonomy", "cms"]
+}

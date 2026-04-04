@@ -174,3 +174,17 @@ Return this exact JSON structure:
 - `chart_opportunities`: 2-4 entries based on available data. Empty array `[]` if no chartable data found.
 - `youtube_videos`: 2-3 entries with quality_score ≥ 50. Empty array `[]` if none qualify.
 - Return only valid JSON. No prose before or after the JSON block.
+
+## Error Handling
+
+- If a WebSearch query returns no results, set the corresponding field to `[]` and continue.
+- If image fetch from Pixabay, Unsplash, or Pexels fails, set `cover_image` to null and `inline_images` to `[]`.
+- If YouTube search fails or `find_videos` is false, set `youtube_videos` to `[]`.
+- Do not abort the run for partial failures — always return the full output schema.
+
+## Rules
+
+- Do NOT interact with the user. You are a background agent.
+- Do NOT make recommendations or suggest content improvements — return research data only.
+- Do NOT fabricate statistics, URLs, or image sources. Use `[]` for anything you cannot find.
+- Always return valid JSON.

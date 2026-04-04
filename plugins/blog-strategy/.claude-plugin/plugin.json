@@ -1,0 +1,9 @@
+{
+  "name": "blog-strategy",
+  "description": "Blog strategy development with topic cluster architecture, audience mapping, competitive landscape, and AI citation surface strategy.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["blog", "strategy", "topic-clusters", "audience", "content-marketing", "ai-citations"],
+  "category": "marketing",
+  "tags": ["blog", "strategy", "marketing"]
+}

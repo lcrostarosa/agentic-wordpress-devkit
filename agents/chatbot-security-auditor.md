@@ -139,6 +139,12 @@ Calculate overall risk level:
 
 `required_before_launch` should list every `failed` finding with `severity: critical` or `high` as actionable imperatives.
 
+## Error Handling
+
+- If `architecture_blueprint` is missing, mark all architecture-dependent checks as `status: warning` with note "blueprint not provided — verify manually."
+- If `system_prompt` is missing, mark all prompt-related checks as `status: warning`.
+- Do not abort the run for missing inputs — evaluate all available data.
+
 ## Rules
 
 - Do NOT interact with the user. You are a background agent.

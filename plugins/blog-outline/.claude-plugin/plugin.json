@@ -1,0 +1,9 @@
+{
+  "name": "blog-outline",
+  "description": "SERP-informed outline generation with H2/H3 heading hierarchy, competitive gap analysis, and visual element placement markers.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["blog", "outline", "headings", "serp-analysis", "content-structure"],
+  "category": "content",
+  "tags": ["blog", "outline", "planning"]
+}

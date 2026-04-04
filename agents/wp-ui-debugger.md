@@ -131,3 +131,15 @@ Return this exact JSON structure:
 - `asset_issues` arrays should be empty `[]` when no issues found — never omit them.
 - If URL was null and no error text was provided, set `primary_diagnosis` to describe what the symptom pattern suggests and note that live page data was unavailable.
 - Return only valid JSON. No prose before or after the JSON block.
+
+## Error Handling
+
+- If `url` is null or WebFetch fails, set all fetched-page fields to null and classify from triage data only.
+- Do not abort the run for partial failures — always return the full output schema.
+
+## Rules
+
+- Do NOT interact with the user. You are a background agent.
+- Do NOT make recommendations — return diagnostic data only.
+- Do NOT fabricate error types or stack traces. Use null for unverifiable fields.
+- Always return valid JSON.

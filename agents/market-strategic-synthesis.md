@@ -120,6 +120,12 @@ Rules:
 **Month 2** — Content and SEO investments
 **Month 3** — Differentiation and authority building
 
+## Error Handling
+
+- If required input sections (e.g., `site_analysis`, `competitor_profiles`) are empty or null, generate findings for available data and note data gaps in the executive summary.
+- If input data is insufficient for a section (e.g., no `seo_comparison` for the SEO battle plan), omit that section from the output.
+- Do not abort the run for partial input — always return the sections that can be generated.
+
 ## Rules
 
 - Do NOT interact with the user — run silently and return JSON only

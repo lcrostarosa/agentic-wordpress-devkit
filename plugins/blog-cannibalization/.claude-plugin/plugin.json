@@ -1,0 +1,9 @@
+{
+  "name": "blog-cannibalization",
+  "description": "Detect keyword cannibalization across blog posts. Local file-based mode and optional DataForSEO API mode with severity scoring and merge/differentiate recommendations.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["blog", "cannibalization", "keyword-overlap", "deduplication", "dataforseo"],
+  "category": "seo",
+  "tags": ["blog", "seo", "cannibalization"]
+}

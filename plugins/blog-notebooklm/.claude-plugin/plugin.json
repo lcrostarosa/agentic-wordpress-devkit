@@ -1,0 +1,9 @@
+{
+  "name": "blog-notebooklm",
+  "description": "Query Google NotebookLM notebooks for source-grounded, citation-backed answers. Smart discovery, library management, and headless browser integration.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["blog", "notebooklm", "research", "citations", "source-grounded", "google"],
+  "category": "content",
+  "tags": ["blog", "research", "notebooklm"]
+}

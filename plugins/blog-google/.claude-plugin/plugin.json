@@ -1,0 +1,9 @@
+{
+  "name": "blog-google",
+  "description": "Google API integration for blog performance. PageSpeed Insights, CrUX, Search Console, GA4, YouTube search, NLP entity analysis, and Keyword Planner.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["blog", "google", "pagespeed", "crux", "search-console", "ga4", "youtube", "nlp"],
+  "category": "seo",
+  "tags": ["blog", "google-api", "seo"]
+}

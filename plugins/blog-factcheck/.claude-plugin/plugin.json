@@ -1,0 +1,9 @@
+{
+  "name": "blog-factcheck",
+  "description": "Verify statistics and claims in blog posts by fetching cited sources. Confidence scoring per claim with replacement source suggestions.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["blog", "factcheck", "verification", "statistics", "sources", "accuracy"],
+  "category": "content",
+  "tags": ["blog", "factcheck", "quality"]
+}

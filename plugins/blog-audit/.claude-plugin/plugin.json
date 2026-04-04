@@ -1,0 +1,9 @@
+{
+  "name": "blog-audit",
+  "description": "Full-site blog health assessment with parallel subagents for content quality, SEO, schema, links, freshness, and AI readiness.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["blog", "audit", "site-health", "content-quality", "freshness"],
+  "category": "content",
+  "tags": ["blog", "audit", "site-health"]
+}

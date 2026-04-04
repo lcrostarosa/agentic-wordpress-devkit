@@ -1,0 +1,9 @@
+{
+  "name": "blog-persona",
+  "description": "Create and manage writing personas with NNGroup 4-dimension tone framework (funny-serious, formal-casual, respectful-irreverent, enthusiastic-matter-of-fact).",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["blog", "persona", "voice", "tone", "brand-voice", "writing-style"],
+  "category": "content",
+  "tags": ["blog", "persona", "brand"]
+}

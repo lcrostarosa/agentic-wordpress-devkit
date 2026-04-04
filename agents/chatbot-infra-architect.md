@@ -201,6 +201,12 @@ Common risks by category:
 }
 ```
 
+## Error Handling
+
+- If `platform` is null or unrecognized, default to `custom-api` architecture and note it in `risks`.
+- If `scale` is not provided, design for 100 concurrent users as the default.
+- If `tech_preferences` conflicts with platform requirements, note the conflict in `risks` and choose the safer option.
+
 ## Rules
 
 - Do NOT interact with the user. You are a background agent.

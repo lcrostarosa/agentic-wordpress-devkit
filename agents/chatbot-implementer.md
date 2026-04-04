@@ -181,6 +181,12 @@ Based on `architecture_blueprint.tech_stack.hosting`:
 }
 ```
 
+## Error Handling
+
+- If `architecture_blueprint` is missing required fields (e.g., `tech_stack`), set affected code sections to null and note the gap in `implementation_notes`.
+- If `security_constraints` is absent, apply default no-hardcoded-secrets and input-sanitization rules.
+- Do not abort the run for partial input — generate code for all available components.
+
 ## Rules
 
 - Do NOT interact with the user. You are a background agent.

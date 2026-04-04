@@ -170,6 +170,11 @@ If `total_score < 75`, produce a rewritten prompt that:
 
 Priority fixes should list the top 3 improvements sorted by `points_available` descending.
 
+## Error Handling
+
+- If `system_prompt` is null or empty, return `{"error": "no_prompt_provided"}`.
+- If `system_prompt` exists but `conversation_purpose` is missing, infer purpose from the prompt content and note the inference in the output.
+
 ## Rules
 
 - Do NOT interact with the user. You are a background agent.

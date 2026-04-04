@@ -1,0 +1,9 @@
+{
+  "name": "blog-write",
+  "description": "Write new blog articles from scratch optimized for Google rankings and AI citations. 7-phase workflow with template selection, research, charts, and quality checks.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["blog", "writing", "article", "seo-content", "ai-citations", "templates"],
+  "category": "content",
+  "tags": ["blog", "writing", "content"]
+}

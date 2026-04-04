@@ -128,3 +128,16 @@ Return this exact JSON structure:
 - `suspected_causes`: List in descending confidence order. Include up to 3.
 - `primary_diagnosis`: Must cite a specific metric or signal — not generic performance advice.
 - Return only valid JSON. No prose before or after the JSON block.
+
+## Error Handling
+
+- If the PageSpeed Insights API fails and a URL is provided, fall back to WebFetch for HTML analysis. Set all `pagespeed` metric fields to null.
+- If no URL is provided, classify from triage signals only and set `pagespeed` to null.
+- Do not abort the run for partial failures — always return the full output schema.
+
+## Rules
+
+- Do NOT interact with the user. You are a background agent.
+- Do NOT make recommendations — return diagnostic data only.
+- Do NOT fabricate performance metrics. Use null for any metric that cannot be retrieved.
+- Always return valid JSON.

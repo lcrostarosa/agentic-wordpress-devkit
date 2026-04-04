@@ -1,0 +1,9 @@
+{
+  "name": "blog-seo-check",
+  "description": "Post-writing SEO validation with 11-point pass/fail checklist covering title, meta, headings, links, OG, schema, and URL.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["blog", "seo", "on-page", "validation", "title-tag", "meta-description", "headings"],
+  "category": "seo",
+  "tags": ["blog", "seo", "validation"]
+}

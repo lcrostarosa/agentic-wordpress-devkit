@@ -1,0 +1,9 @@
+{
+  "name": "blog-rewrite",
+  "description": "Rewrite and optimize existing blog posts for Google rankings and AI citations. 6-phase optimization with audit, research, and AI detection removal.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["blog", "rewrite", "optimize", "refresh", "ai-detection"],
+  "category": "content",
+  "tags": ["blog", "rewrite", "optimization"]
+}

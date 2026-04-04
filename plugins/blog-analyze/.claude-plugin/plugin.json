@@ -1,0 +1,9 @@
+{
+  "name": "blog-analyze",
+  "description": "Audit and score blog posts on a 5-category 100-point scoring system with AI content detection. Scores Content Quality, SEO, E-E-A-T, Technical, and AI Citation dimensions.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["blog", "analyze", "scoring", "quality", "ai-detection", "eeat"],
+  "category": "content",
+  "tags": ["blog", "analysis", "quality"]
+}

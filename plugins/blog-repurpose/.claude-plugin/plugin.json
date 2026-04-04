@@ -1,0 +1,9 @@
+{
+  "name": "blog-repurpose",
+  "description": "Repurpose blog posts for social media, email, YouTube, Reddit, and LinkedIn. Platform-specific formatting and tone adaptation.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["blog", "repurpose", "social-media", "email", "youtube", "linkedin", "reddit"],
+  "category": "marketing",
+  "tags": ["blog", "repurpose", "distribution"]
+}

@@ -1,0 +1,34 @@
+{
+  "extraKnownMarketplaces": {
+    "wordpress-design-skills": {
+      "source": {
+        "source": "github",
+        "repo": "lcrostarosa/agentic-wordpress-devkit"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "agents@wordpress-design-skills": true,
+    "wordpress-design@wordpress-design-skills": true,
+    "wordpress-security@wordpress-design-skills": true,
+    "wordpress-issue-debug@wordpress-design-skills": true,
+    "market-seo-audit@wordpress-design-skills": true,
+    "local-business-site-audit@wordpress-design-skills": true,
+    "market-seo-schema-markup@wordpress-design-skills": true,
+    "content-blog-optimize@wordpress-design-skills": true,
+    "marketing-copywriting@wordpress-design-skills": true,
+    "content-refine@wordpress-design-skills": true,
+    "marketing-page-cro@wordpress-design-skills": true,
+    "marketing-email-sequence@wordpress-design-skills": true,
+    "market-competitor-alternatives@wordpress-design-skills": true,
+    "marketing-lead-magnets@wordpress-design-skills": true,
+    "marketing-launch-strategy@wordpress-design-skills": true,
+    "marketing-experimentation@wordpress-design-skills": true,
+    "content-strategy@wordpress-design-skills": true,
+    "content-blog-write@wordpress-design-skills": true,
+    "market-customer-research@wordpress-design-skills": true,
+    "market-competitor-research@wordpress-design-skills": true,
+    "chatbot-creator@wordpress-design-skills": true,
+    "skill-builder@wordpress-design-skills": true
+  }
+}

@@ -83,6 +83,12 @@ Run 2-3 of the evaluation/problem-aware test queries and look for:
 
 This is a best-effort check. Note limitations — AI citation detection from WebSearch is indirect.
 
+## Error Handling
+
+- If WebSearch fails for a test query, set that query's visibility entries to null and continue with remaining queries.
+- If a `site:domain.com` content footprint check returns no results, set `indexed_pages` to null.
+- Do not abort the run for partial failures — return available data with null for failed checks.
+
 ## Rules
 
 - Do NOT interact with the user — run silently and return JSON only

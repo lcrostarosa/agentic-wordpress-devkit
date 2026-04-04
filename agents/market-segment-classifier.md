@@ -54,6 +54,12 @@ For every pair of entities, assess overlap across the three primary dimensions (
 - **Medium overlap**: Same on two dimensions — partial competitors
 - **Low overlap**: Same on one or zero — adjacent or different markets
 
+## Error Handling
+
+- If WebFetch fails for a URL's pricing or about page, mark that entity's affected dimensions as null with `confidence: "low"`.
+- If fewer than 2 URLs are provided, return a single entity classification with `overlap_matrix: []`.
+- Do not abort the run for partial failures — classify all entities for which data is available.
+
 ## Rules
 
 - Do NOT interact with the user — run silently and return JSON only

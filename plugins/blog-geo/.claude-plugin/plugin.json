@@ -1,0 +1,9 @@
+{
+  "name": "blog-geo",
+  "description": "AI citation optimization audit for ChatGPT, Perplexity, and Google AI Overviews. Passage-level citability scoring with citation capsule generation.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["blog", "geo", "aeo", "ai-citations", "perplexity", "chatgpt", "ai-overviews"],
+  "category": "seo",
+  "tags": ["blog", "geo", "ai-citations"]
+}

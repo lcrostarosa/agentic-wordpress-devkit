@@ -1,0 +1,9 @@
+{
+  "name": "blog-image",
+  "description": "AI image generation and editing for blog content powered by Gemini via nanobanana-mcp. Hero images, inline illustrations, and social preview cards.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["blog", "image", "ai-generation", "gemini", "hero-image", "og-image"],
+  "category": "content",
+  "tags": ["blog", "images", "ai-generation"]
+}

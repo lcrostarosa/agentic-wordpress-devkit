@@ -1,0 +1,9 @@
+{
+  "name": "blog-schema",
+  "description": "Generate complete JSON-LD schema markup for blog posts using @graph pattern. BlogPosting, Person, Organization, BreadcrumbList, FAQPage, and VideoObject.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["blog", "schema", "json-ld", "structured-data", "rich-results", "faq-schema"],
+  "category": "seo",
+  "tags": ["blog", "schema", "seo"]
+}

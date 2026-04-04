@@ -32,6 +32,10 @@
     "./agents/wp-security-scanner.md",
     "./agents/content-inventory.md",
     "./agents/market-trend-researcher.md",
-    "./agents/market-research-synthesizer.md"
+    "./agents/market-research-synthesizer.md",
+    "./agents/blog-researcher.md",
+    "./agents/blog-writer.md",
+    "./agents/blog-reviewer.md",
+    "./agents/blog-seo.md"
   ]
 }

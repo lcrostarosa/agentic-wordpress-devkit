@@ -2,7 +2,29 @@
 
 # WordPress Design & Marketing Skills for Claude Code
 
-A Claude Code plugin marketplace with 18 skills and a shared 12-agent library covering WordPress design, SEO, marketing, content creation, and local business consulting. Three-tier agent architecture (haiku → sonnet → opus) with 14 API integration tools.
+A Claude Code plugin marketplace with 21 skills and a shared 12-agent library covering WordPress design, SEO, marketing, content creation, and local business consulting. Three-tier agent architecture (haiku → sonnet → opus) with 14 API integration tools.
+
+## Table of Contents
+
+- [Skills](#skills)
+  - [WordPress & Site Building](#wordpress--site-building)
+  - [SEO & Technical](#seo--technical)
+  - [Marketing & Conversion](#marketing--conversion)
+  - [Content & Strategy](#content--strategy)
+  - [Developer Tools](#developer-tools)
+  - [Shared Agents](#shared-agents)
+  - [Marketing Integrations](#marketing-integrations)
+- [Installation](#installation)
+  - [Install all skills (recommended)](#install-all-skills-recommended)
+  - [Install individual skills](#install-individual-skills)
+  - [Manual install](#manual-install-copy-skills-directly)
+- [Usage](#usage)
+- [Setting Your Brand & Site Guidelines](#setting-your-brand--site-guidelines)
+- [Adding a New Skill](#adding-a-new-skill)
+- [Repository Structure](#repository-structure)
+- [Sources & Attribution](#sources--attribution)
+- [License](#license)
+- [Contact](#contact)
 
 ## Skills
 
@@ -11,26 +33,28 @@ A Claude Code plugin marketplace with 18 skills and a shared 12-agent library co
 |-------|-------------|
 | `wordpress-design` | Theme design across block themes (FSE), classic themes, and page builders. ACF content modeling, performance optimization, 9-section audit checklist. |
 | `wordpress-security` | Security audit — core/plugin/theme updates, authentication, file permissions, HTTP headers, information disclosure, malware detection. 80+ checks, 0-100 health score. |
+| `wordpress-issue-debug` | WordPress issue debugger. Diagnoses errors, broken layouts, white screen of death, 500/503 errors, plugin conflicts, PHP fatal errors, database errors, and redirect loops. Works with or without a live URL. |
+| `chatbot-creator` | End-to-end chatbot creation with 5 specialized agents: architecture design, implementation scaffolding, prompt quality review, security/guardrails audit, and conversation UX design. Supports WordPress widgets, Slack, Discord, WhatsApp, and custom APIs. |
 
 ### SEO & Technical
 | Skill | Description |
 |-------|-------------|
 | `market-seo-audit` | Multi-agent SEO diagnostic. Branches by site type: local triggers market-local-visibility-researcher, blogs trigger market-on-page-seo-scorer, competitors trigger market-seo-comparison. |
 | `local-business-site-audit` | Parallel audit via market-site-analyzer + market-local-visibility-researcher + market-competitor-profiler, synthesized by market-strategic-synthesis. Client-ready report for lead generation. |
-| `schema-markup` | JSON-LD structured data — Organization, Article, Product, FAQ, LocalBusiness, and more. |
+| `market-seo-schema-markup` | JSON-LD structured data — Organization, Article, Product, FAQ, LocalBusiness, and more. |
 | `content-blog-optimize` | Post-writing SEO + AI citation readiness. Delegates to market-on-page-seo-scorer (mode: ai-citation). Pass/fail table with specific fixes plus citation capsules. |
 
 ### Marketing & Conversion
 | Skill | Description |
 |-------|-------------|
-| `copywriting` | Marketing copy for any page — headlines, CTAs, value propositions, page structure. |
+| `marketing-copywriting` | Marketing copy for any page — headlines, CTAs, value propositions, page structure. |
 | `content-refine` | All-in-one content editing. Runs ai-writing-detector + copy-quality-scorer in parallel, then removes AI patterns, tightens prose, fixes passive voice, converts features to benefits. |
-| `page-cro` | Conversion optimization. Parallel market-site-analyzer + copy-quality-scorer then CRO judgment: value prop, CTAs, trust signals, friction audit, page speed impact. |
-| `email-sequence` | Email sequences — welcome, nurture, re-engagement, onboarding, lifecycle automation. |
+| `marketing-page-cro` | Conversion optimization. Parallel market-site-analyzer + copy-quality-scorer then CRO judgment: value prop, CTAs, trust signals, friction audit, page speed impact. |
+| `marketing-email-sequence` | Email sequences — welcome, nurture, re-engagement, onboarding, lifecycle automation. |
 | `market-competitor-alternatives` | Competitor comparison and alternative pages — vs pages, positioning, feature matrices. |
-| `lead-magnets` | Lead magnet strategy — checklists, templates, guides, gating, distribution. |
-| `launch-strategy` | Product launch planning — 5-phase approach, Product Hunt, post-launch marketing. |
-| `experimentation` | Full A/B testing lifecycle: hypothesis design (ICE scoring), tool selection, implementation, QA validation via ab-test-validator, result analysis, program management. |
+| `marketing-lead-magnets` | Lead magnet strategy — checklists, templates, guides, gating, distribution. |
+| `marketing-launch-strategy` | Product launch planning — 5-phase approach, Product Hunt, post-launch marketing. |
+| `marketing-experimentation` | Full A/B testing lifecycle: hypothesis design (ICE scoring), tool selection, implementation, QA validation via ab-test-validator, result analysis, program management. |
 
 ### Content & Strategy
 | Skill | Description |
@@ -39,6 +63,11 @@ A Claude Code plugin marketplace with 18 skills and a shared 12-agent library co
 | `content-blog-write` | Blog articles optimized for Google rankings and AI citations. 12 content templates. |
 | `market-customer-research` | Two modes: analyze existing assets (transcripts, surveys) OR mine online sources via market-review-miner + market-serp-researcher. VOC themes, customer language patterns, persona sketches. |
 | `market-competitor-research` | Multi-agent competitive intelligence: market-site-analyzer + market-competitor-profiler + market-segment-classifier → market-seo-comparison → market-strategic-synthesis. Threat assessment + 90-day action plan. |
+
+### Developer Tools
+| Skill | Description |
+|-------|-------------|
+| `skill-builder` | Interactive skill and agent builder. Walks through tier selection, naming conventions, and all required sections. Creates the agent file and registers it in the manifest. |
 
 ### Shared Agents
 
@@ -97,29 +126,29 @@ API integration guides and zero-dependency Node.js CLIs under `tools/`.
 
 - [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code/overview) installed and authenticated
 
-### Install via Marketplace (recommended)
+### Install all skills (recommended)
 
 ```bash
-# Add the marketplace
-/plugin marketplace add YOUR_ORG/wordpress-design-skills
+curl -fsSL https://raw.githubusercontent.com/lcrostarosa/agentic-wordpress-devkit/main/install.sh | bash
+```
+
+Installs to `--scope project` by default (writes to `.claude/settings.json`). Pass `user` or `local` to change scope:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/lcrostarosa/agentic-wordpress-devkit/main/install.sh | bash -s user
+```
+
+### Install individual skills
+
+```bash
+# Add the marketplace first
+/plugin marketplace add lcrostarosa/agentic-wordpress-devkit
 
 # Install shared agents (required for multi-agent skills)
 /plugin install agents@wordpress-design-skills
--OR-
-# Individual Skills
-/plugin install name-of-skill@wordpress-design-skills
 
-### Install from local clone
-
-```bash
-git clone https://github.com/lcrostarosa/agentic-wordpress-devkit
-cd agentic-wordpress-devkit
-
-# Add as a local marketplace
-/plugin marketplace add ./
-
-# Install individual plugins
-/plugin install copywriting@wordpress-design-skills
+# Install any skill by name
+/plugin install wordpress-design@wordpress-design-skills
 ```
 
 ### Manual install (copy skills directly)
@@ -161,7 +190,7 @@ your-project/
 
 ### What it does
 
-Every skill that asks questions (copywriting, market-seo-audit, content-strategy, content-blog-write, page-cro, email-sequence, and more) checks for this file first. If it exists, the skill skips any questions already answered and uses your context directly. One file, all skills.
+Every skill that asks questions (marketing-copywriting, market-seo-audit, content-strategy, content-blog-write, marketing-page-cro, marketing-email-sequence, and more) checks for this file first. If it exists, the skill skips any questions already answered and uses your context directly. One file, all skills.
 
 ### Get the template
 
@@ -192,7 +221,7 @@ Feel free to contribute, follow [contribution guide](CONTRIBUTING.md)
 
 ```
 .claude-plugin/
-  marketplace.json              # Plugin catalog (19 entries)
+  marketplace.json              # Plugin catalog (21 entries)
 agents/
   .claude-plugin/plugin.json   # Single manifest for all agents
   ...
@@ -211,8 +240,8 @@ tools/
 
 ## Sources & Attribution
 
-- **wordpress-design, wordpress-security, market-seo-audit, local-business-site-audit** — Original skills
-- **copywriting, content-refine, page-cro, content-strategy, email-sequence, schema-markup, market-competitor-alternatives, market-competitor-research, lead-magnets, market-customer-research, launch-strategy, experimentation** — Distilled from [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) (MIT)
+- **wordpress-design, wordpress-security, wordpress-issue-debug, market-seo-audit, local-business-site-audit, chatbot-creator** — Original skills
+- **marketing-copywriting, content-refine, marketing-page-cro, content-strategy, marketing-email-sequence, market-seo-schema-markup, market-competitor-alternatives, market-competitor-research, marketing-lead-magnets, market-customer-research, marketing-launch-strategy, marketing-experimentation** — Distilled from [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) (MIT)
 - **content-blog-write, content-blog-optimize** — Extracted from [claude-blog](https://github.com/agricidaniel/claude-blog) plugin (MIT)
 
 ## License

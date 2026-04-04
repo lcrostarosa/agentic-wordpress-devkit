@@ -1,0 +1,9 @@
+{
+  "name": "blog-calendar",
+  "description": "Generate editorial calendars with topic clusters, content decay detection, freshness scheduling, and cross-platform distribution.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["blog", "calendar", "editorial", "scheduling", "content-planning", "distribution"],
+  "category": "marketing",
+  "tags": ["blog", "calendar", "planning"]
+}
