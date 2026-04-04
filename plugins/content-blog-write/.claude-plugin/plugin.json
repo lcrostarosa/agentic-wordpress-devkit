@@ -1,0 +1,7 @@
+{
+  "name": "content-blog-write",
+  "description": "Write new blog articles from scratch optimized for Google rankings and AI citations. Generates full articles with answer-first formatting, sourced statistics, FAQ schema, and proper heading hierarchy.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["blog", "writing", "seo-content", "article", "ai-citations"]
+}

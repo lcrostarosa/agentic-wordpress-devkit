@@ -1,0 +1,7 @@
+{
+  "name": "market-seo-schema-markup",
+  "description": "Add, fix, or optimize schema.org structured data in JSON-LD format. Covers Organization, Article, Product, FAQ, LocalBusiness, and more.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["schema", "structured-data", "json-ld", "rich-results", "seo"]
+}

@@ -1,0 +1,75 @@
+{
+  "agent_name": "chatbot-infra-architect",
+  "evals": [
+    {
+      "id": 1,
+      "description": "WordPress widget at low scale — WP-native stack selected",
+      "input": {
+        "purpose": "Customer support FAQ bot for a plumbing company website",
+        "platform": "wordpress-widget",
+        "scale_estimate": "low",
+        "tech_stack_preference": null,
+        "existing_integrations": ["calendly"]
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "platform_recommendation object is present with platform, rationale, and alternative fields",
+        "platform_recommendation.platform is 'wordpress-widget'",
+        "tech_stack object is present with runtime, framework, ai_provider, ai_model, database, session_store, and hosting fields",
+        "tech_stack.ai_model is a specific Claude model ID (e.g., 'claude-haiku-4-5-20251001' or 'claude-sonnet-4-6')",
+        "tech_stack.session_store mentions WordPress transients or options table (WP-appropriate for low scale)",
+        "api_design object is present with endpoint, method, authentication, rate_limiting, and streaming fields",
+        "api_design.endpoint includes '/wp-json/' path pattern",
+        "api_design.authentication mentions WordPress nonce",
+        "state_management object is present with session_store, session_ttl_hours, context_turns_kept, and summarization_strategy fields",
+        "integration_map is an array — contains an entry for Calendly (was in existing_integrations)",
+        "integration_map entries have system, direction, protocol, data_exchanged, and latency_budget_ms fields",
+        "data_flow is a non-empty string describing numbered message lifecycle steps",
+        "environment_variables_needed is an array — includes ANTHROPIC_API_KEY",
+        "risks is a non-empty array — each risk has risk, severity, and mitigation fields",
+        "Output does not invent integrations not mentioned in existing_integrations"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Slack bot at medium scale — Node.js stack with Redis",
+      "input": {
+        "purpose": "Internal team assistant for answering HR policy questions",
+        "platform": "slack",
+        "scale_estimate": "medium",
+        "tech_stack_preference": "Node.js",
+        "existing_integrations": []
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "platform_recommendation.platform is 'slack'",
+        "tech_stack.runtime contains 'Node.js' or 'node'",
+        "tech_stack.session_store mentions Redis (appropriate for medium scale)",
+        "api_design.endpoint includes '/slack/events'",
+        "api_design.authentication mentions HMAC signature verification",
+        "rate_limiting reflects medium scale limits",
+        "integration_map is an empty array or contains only the AI provider (no extra integrations invented)",
+        "risks array includes at least one entry about prompt injection or PII exposure"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "High scale custom API — auto-scaling and Redis Cluster",
+      "input": {
+        "purpose": "Multi-channel customer support chatbot",
+        "platform": "custom-api",
+        "scale_estimate": "high",
+        "existing_integrations": ["hubspot", "segment"]
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "platform_recommendation.platform is 'custom-api'",
+        "tech_stack.session_store mentions Redis Cluster or equivalent high-scale session store",
+        "tech_stack.hosting mentions auto-scaling or horizontal scaling approach",
+        "api_design.rate_limiting reflects high scale limits (token bucket or 100+ req/min per user)",
+        "integration_map has entries for both HubSpot and Segment",
+        "risks array includes cost overrun risk (unbounded conversation length at high scale)"
+      ]
+    }
+  ]
+}

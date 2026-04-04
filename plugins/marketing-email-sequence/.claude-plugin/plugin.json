@@ -1,0 +1,7 @@
+{
+  "name": "marketing-email-sequence",
+  "description": "Create or optimize email sequences, drip campaigns, welcome series, nurture flows, and lifecycle email programs.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["email", "drip-campaign", "automation", "nurture", "lifecycle"]
+}

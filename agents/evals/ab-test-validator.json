@@ -1,0 +1,60 @@
+{
+  "agent_name": "ab-test-validator",
+  "evals": [
+    {
+      "id": 1,
+      "description": "PostHog test — verifies all validation checks run and status fields present",
+      "input": {
+        "url": "https://example.com/pricing",
+        "tool": "posthog",
+        "variant_identifiers": "feature flag: pricing-cta-test",
+        "expected_changes": "Primary CTA changes from 'Get Started' to 'Start Free Trial'",
+        "conversion_event": "signup_clicked"
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "url field matches the input url",
+        "tool field matches the input tool",
+        "checks object is present and contains tool_script_present, anti_flicker, caching, variant_assignment, and performance fields",
+        "Each check has a status field with value 'pass', 'warn', or 'fail'",
+        "Each check has a detail or note field explaining the finding",
+        "overall_status is one of 'pass', 'warn', or 'fail'",
+        "performance object includes pagespeed_score and cls fields",
+        "issues array lists any checks that are warn or fail with remediation steps",
+        "Output contains no editorial recommendations — issues describes what was found, not strategy"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Missing anti-flicker snippet — anti_flicker check fails",
+      "input": {
+        "url": "https://example.com/landing",
+        "tool": "optimizely",
+        "variant_identifiers": "cookie: ab_variant",
+        "expected_changes": "Hero headline changes",
+        "conversion_event": "form_submitted"
+      },
+      "assertions": [
+        "Returns valid JSON",
+        "checks.anti_flicker.status is 'fail' or 'warn' if anti-flicker snippet is not found in page HTML",
+        "overall_status is 'warn' or 'fail' when any check fails"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Page unreachable — returns structured error",
+      "input": {
+        "url": "https://this-does-not-exist-xyzabc.com/test",
+        "tool": "custom",
+        "variant_identifiers": "cookie: ab_test",
+        "expected_changes": "Button text changes",
+        "conversion_event": "button_click"
+      },
+      "assertions": [
+        "Returns JSON with an error field or with all checks set to null/fail",
+        "Does not crash or return empty response",
+        "overall_status is 'fail' when the page cannot be fetched"
+      ]
+    }
+  ]
+}

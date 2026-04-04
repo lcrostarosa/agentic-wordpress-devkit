@@ -1,0 +1,84 @@
+{
+  "agent_name": "market-research-synthesizer",
+  "evals": [
+    {
+      "id": 1,
+      "description": "Full synthesis from mixed sources — verifies themes, language patterns, and JTBD output",
+      "input": {
+        "data_points": [
+          { "text": "Setting up the integration took me three hours and I still had to contact support to finish it.", "source": "g2_review_001", "source_type": "review", "date": "2025-11-10", "segment": "SMB" },
+          { "text": "Onboarding is way too complicated. The docs don't match the current UI.", "source": "g2_review_002", "source_type": "review", "date": "2025-12-01", "segment": "SMB" },
+          { "text": "Customer keeps submitting tickets about the initial setup flow being confusing.", "source": "support_ticket_4821", "source_type": "support_ticket", "date": "2026-01-15", "segment": null },
+          { "text": "I was drowning in spreadsheets before I switched to this tool.", "source": "interview_sarah", "source_type": "interview", "date": "2026-02-10", "segment": "enterprise" },
+          { "text": "The setup complexity almost made us cancel in the first week.", "source": "support_ticket_5012", "source_type": "support_ticket", "date": "2026-01-20", "segment": null },
+          { "text": "Once it's set up it just works. I set it and forget it now.", "source": "g2_review_003", "source_type": "review", "date": "2025-10-05", "segment": "SMB" },
+          { "text": "Finally a tool where I can trust the numbers without reconciling everything manually.", "source": "interview_mark", "source_type": "interview", "date": "2026-02-20", "segment": "enterprise" },
+          { "text": "We were literally drowning in spreadsheets managing campaigns across clients.", "source": "survey_q14", "source_type": "survey", "date": "2026-01-01", "segment": "SMB" }
+        ],
+        "synthesis_goal": "all",
+        "min_theme_frequency": 2
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "synthesis_date is present in YYYY-MM-DD format",
+        "synthesis_goal is 'all'",
+        "total_data_points is 8",
+        "sources_analyzed object has keys for each source_type present in the data",
+        "themes is an array with at least 1 entry (minimum 2 data points per theme)",
+        "Each theme has id, name, summary, frequency, frequency_pct, intensity_score, confidence, confidence_reason, source_types_present, segment_skew, verbatim_quotes, and subclusters fields",
+        "themes[].confidence is one of 'High', 'Medium', or 'Low'",
+        "themes[].intensity_score is a number between 0 and 1",
+        "verbatim_quotes in each theme are copied exactly from input data — not paraphrased",
+        "language_patterns is present (synthesis_goal includes 'language_patterns')",
+        "language_patterns contains problem_language, success_language, trigger_language, and comparison_language arrays",
+        "Each language pattern entry has phrase, instances, and example fields",
+        "'drowning in spreadsheets' appears as a problem_language phrase (appears 2x in input)",
+        "jtbd is present (synthesis_goal includes 'jtbd')",
+        "jtbd entries have type, job, frequency, and evidence_quote fields",
+        "jtbd[].type is one of 'functional', 'emotional', or 'social'",
+        "sample_bias_flags is a non-empty array",
+        "summary object contains top_theme, themes_count, confidence_distribution, data_sufficiency, and data_sufficiency_note fields",
+        "Output contains no strategic recommendations — synthesized findings only"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "themes-only synthesis — language_patterns and jtbd are null",
+      "input": {
+        "data_points": [
+          { "text": "Great product, easy to use.", "source": "review_1", "source_type": "review" },
+          { "text": "Very easy to get started.", "source": "review_2", "source_type": "review" },
+          { "text": "Pricing is too high for what you get.", "source": "review_3", "source_type": "review" },
+          { "text": "The value for money is questionable at this price point.", "source": "review_4", "source_type": "review" },
+          { "text": "Setup was straightforward and fast.", "source": "review_5", "source_type": "review" }
+        ],
+        "synthesis_goal": "themes",
+        "min_theme_frequency": 2
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "synthesis_goal is 'themes'",
+        "themes array is present and non-empty",
+        "language_patterns is null (synthesis_goal excludes it)",
+        "jtbd is null (synthesis_goal excludes it)"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Fewer than 5 data points — returns structured error",
+      "input": {
+        "data_points": [
+          { "text": "Good product.", "source": "review_1", "source_type": "review" },
+          { "text": "Works well.", "source": "review_2", "source_type": "review" }
+        ],
+        "synthesis_goal": "all"
+      },
+      "assertions": [
+        "Returns JSON with an error field",
+        "error value is 'insufficient_data' or similar",
+        "data_points_received is 2",
+        "minimum_required field is present (5)"
+      ]
+    }
+  ]
+}

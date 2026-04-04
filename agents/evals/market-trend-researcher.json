@@ -1,0 +1,63 @@
+{
+  "agent_name": "market-trend-researcher",
+  "evals": [
+    {
+      "id": 1,
+      "description": "Established industry — verifies all output sections populated",
+      "input": {
+        "industry": "WordPress development",
+        "seed_topics": ["block editor", "performance", "AI tools for WordPress"],
+        "time_horizon": "short"
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "industry field matches the input",
+        "seed_topics array matches the input",
+        "time_horizon matches the input",
+        "research_date is present in YYYY-MM-DD format",
+        "trending_topics is an array — each entry has topic, momentum, evidence, representative_queries, content_opportunity, and source_urls fields",
+        "trending_topics[].momentum is one of 'rising', 'stable', or 'declining'",
+        "trending_topics[].content_opportunity is one of 'high', 'medium', or 'low'",
+        "market_signals is an array — each entry has signal, type, source_name, source_url, and date fields",
+        "emerging_terminology is an array (may be empty)",
+        "seasonal_patterns is an array (may be empty)",
+        "declining_topics is an array (may be empty)",
+        "key_sources is an array of up to 5 entries with name, url, coverage, and update_frequency fields",
+        "summary object contains highest_momentum_topic, time_sensitive_opportunities, declining_topics_count, data_confidence, and data_confidence_note fields",
+        "summary.data_confidence is one of 'high', 'medium', or 'low'",
+        "Output contains no content strategy recommendations — trend signals only"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Very niche industry — low data confidence flagged",
+      "input": {
+        "industry": "artisanal soap subscription boxes",
+        "seed_topics": ["natural soap trends"],
+        "time_horizon": "long"
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "If fewer than 2 trending topics found, summary.data_confidence is 'low'",
+        "summary.data_confidence_note explains why confidence is low",
+        "market_signals may be empty array — agent does not fabricate market size data",
+        "Does not crash or return empty response on sparse data"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Single seed topic — focused research output",
+      "input": {
+        "industry": "email marketing software",
+        "seed_topics": ["AI personalization"],
+        "time_horizon": "recent"
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "trending_topics array is present (may contain 0 or more entries)",
+        "All trending_topics entries have evidence field with non-null, non-empty string",
+        "Output does not fabricate statistics or trend signals — null or empty arrays used for unverifiable data"
+      ]
+    }
+  ]
+}

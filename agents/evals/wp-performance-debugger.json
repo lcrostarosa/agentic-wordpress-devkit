@@ -1,0 +1,80 @@
+{
+  "agent_name": "wp-performance-debugger",
+  "evals": [
+    {
+      "id": 1,
+      "description": "URL provided — PageSpeed data drives bottleneck classification",
+      "input": {
+        "triage": {
+          "issue_category": "performance",
+          "confidence": "high",
+          "reasoning": "User reports slow load times"
+        },
+        "url": "https://example.com",
+        "hosting_environment": "Shared hosting",
+        "symptom_description": "Site takes 6-7 seconds to load on mobile",
+        "already_tried": []
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "category is 'performance'",
+        "pagespeed object is present — either populated with real data or all null fields if API failed",
+        "If pagespeed data is present: score is a number 0-100, lcp is a string (e.g., '4.2 s'), cls is a string, tbt is a string, fcp is a string, ttfb is a string",
+        "bottleneck_type is one of 'server_ttfb', 'render_blocking', 'image_size', 'js_execution', 'database', 'caching', 'hosting', or 'other'",
+        "hosting_risk is 'high' (shared hosting input maps to high risk)",
+        "suspected_causes is an array with up to 3 entries in descending confidence order",
+        "Each suspected_cause has cause, confidence, and evidence fields",
+        "wp_cli_diagnostic_commands is an array (may be empty)",
+        "primary_diagnosis cites a specific metric or signal — not generic advice",
+        "secondary_diagnosis is a string or null",
+        "Output contains no fix steps — diagnosis only"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "No URL, managed hosting — symptom-based diagnosis with appropriate hosting_risk",
+      "input": {
+        "triage": {
+          "issue_category": "performance",
+          "confidence": "medium",
+          "reasoning": "Slow page load reported"
+        },
+        "url": null,
+        "hosting_environment": "WP Engine",
+        "symptom_description": "Admin pages load fine but the frontend is slow",
+        "already_tried": ["Cleared cache", "Disabled plugins"]
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "category is 'performance'",
+        "pagespeed is null (no URL provided)",
+        "hosting_risk is 'low' (WP Engine is a managed host)",
+        "Since 'Disabled plugins' was already tried, suspected_causes should not list 'plugin conflict' as high confidence",
+        "primary_diagnosis notes that live PageSpeed data was unavailable",
+        "wp_cli_diagnostic_commands is an array appropriate to the suspected bottleneck"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Already tried cache clear — caching ruled out from suspected causes",
+      "input": {
+        "triage": {
+          "issue_category": "performance",
+          "confidence": "medium",
+          "reasoning": "Slow site, cache clear didn't help"
+        },
+        "url": "https://example.com",
+        "hosting_environment": "VPS",
+        "symptom_description": "Site is slow even after clearing all caches",
+        "already_tried": ["Cleared cache", "Cleared browser cache"]
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "category is 'performance'",
+        "bottleneck_type is NOT 'caching' as the primary (cache was already ruled out by already_tried)",
+        "If caching appears in suspected_causes, it must have confidence 'low'",
+        "primary_diagnosis points to a non-caching bottleneck (server, render-blocking, JS, etc.)"
+      ]
+    }
+  ]
+}

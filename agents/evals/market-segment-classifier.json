@@ -1,0 +1,45 @@
+{
+  "agent_name": "market-segment-classifier",
+  "evals": [
+    {
+      "id": 1,
+      "description": "SaaS companies — verifies all classification dimensions populated",
+      "input": {
+        "entities": [
+          { "name": "Linear", "url": "https://linear.app" },
+          { "name": "Jira", "url": "https://atlassian.com/software/jira" },
+          { "name": "Asana", "url": "https://asana.com" }
+        ],
+        "industry": "project management software"
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "classifications array contains 3 entries — one per entity",
+        "Each classification has entity_name, url, industry_vertical, business_model, target_segment, pricing_model, value_proposition, claimed_differentiators, and confidence fields",
+        "confidence for each classification is one of 'high', 'medium', or 'low'",
+        "business_model is a descriptive string (not null) for entities with publicly visible pricing",
+        "pricing_model is one of 'subscription', 'usage_based', 'freemium', 'one_time', 'tiered', 'enterprise', or similar",
+        "segment_map object shows how the entities relate to each other in the market",
+        "Output contains no strategic recommendations — classifications are factual"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Local service businesses — verifies local B2C classification",
+      "input": {
+        "entities": [
+          { "name": "Example HVAC Co", "url": "https://example-hvac.com" },
+          { "name": "Best Plumbing LLC", "url": "https://example-plumbing.com" }
+        ],
+        "industry": "home services"
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "classifications array contains 2 entries",
+        "industry_vertical for each is in the home services / trades category",
+        "business_model reflects local service (e.g., 'local service provider', 'B2C services')",
+        "target_segment reflects homeowners or local residential customers"
+      ]
+    }
+  ]
+}

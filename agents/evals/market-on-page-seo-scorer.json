@@ -1,0 +1,64 @@
+{
+  "agent_name": "market-on-page-seo-scorer",
+  "evals": [
+    {
+      "id": 1,
+      "description": "blog-post mode — verifies all dimension fields populated",
+      "input": {
+        "content": "https://example.com/blog/wordpress-caching-plugins",
+        "mode": "blog-post",
+        "primary_keyword": "wordpress caching plugins",
+        "secondary_keywords": ["wp rocket", "w3 total cache", "page caching"]
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "url field is present",
+        "mode is 'blog-post'",
+        "primary_keyword matches the input",
+        "timestamp is present in ISO8601 format",
+        "total_score is a number between 0 and 100",
+        "score_band is one of 'excellent', 'good', 'needs_work', 'poor', or 'critical'",
+        "dimensions object contains title, meta_description, headings, internal_links, url, open_graph, and schema fields",
+        "Each dimension has score, max_score, issues array, and fix fields",
+        "dimensions.title.content is a string (the actual title tag found)",
+        "dimensions.headings.h1_count is a non-negative integer",
+        "dimensions.schema.detection_note mentions the JS-injection limitation",
+        "dimensions.ai_citation_readiness is null or not present in blog-post mode",
+        "priority_fixes is an array of up to 3 entries, each with dimension, issue, fix, and points_available",
+        "Output contains no rewritten content — analysis only"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "ai-citation mode — ai_citation_readiness dimension present and scored",
+      "input": {
+        "content": "https://example.com/blog/what-is-seo",
+        "mode": "ai-citation",
+        "primary_keyword": "what is seo"
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "mode is 'ai-citation'",
+        "dimensions.ai_citation_readiness is present (not null) in ai-citation mode",
+        "dimensions.ai_citation_readiness.score is a number between 0 and 20",
+        "dimensions.ai_citation_readiness.max_score is 20",
+        "dimensions.ai_citation_readiness contains answer_first_format, question_headings_pct, citation_capsules_present, faq_section, entity_consistency, sourced_statistics, and scannable_structure fields",
+        "total_score is normalized to 0-100"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Content unavailable — returns structured error",
+      "input": {
+        "content": "https://this-does-not-exist-xyzabc.com/page",
+        "mode": "landing-page",
+        "primary_keyword": "test"
+      },
+      "assertions": [
+        "Returns JSON with an error field",
+        "error value is 'content_unavailable' or similar",
+        "Does not crash or return empty response"
+      ]
+    }
+  ]
+}

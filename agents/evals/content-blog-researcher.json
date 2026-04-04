@@ -1,0 +1,66 @@
+{
+  "agent_name": "content-blog-researcher",
+  "evals": [
+    {
+      "id": 1,
+      "description": "Standard topic — verifies all output sections populated",
+      "input": {
+        "topic": "WordPress caching best practices",
+        "primary_keyword": "wordpress caching plugins",
+        "secondary_keywords": ["wp rocket", "w3 total cache", "page caching", "object caching"],
+        "target_stat_count": 8,
+        "find_images": true,
+        "find_videos": true
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "statistics array is present and contains entries with stat, source_name, source_url, date, tier, and methodology fields",
+        "statistics array has at least 5 entries (minimum when available)",
+        "Each statistic has a tier value of 1, 2, or 3",
+        "Each statistic has a non-null source_url",
+        "cover_image is either null or an object with url, platform, and alt_suggestion fields",
+        "inline_images is an array (may be empty if no quality sources found)",
+        "chart_opportunities is an array — each entry has data_points, suggested_chart_type, and title_suggestion",
+        "youtube_videos is an array — each entry has url, title, and quality_score fields",
+        "Any youtube video entry has quality_score >= 50",
+        "Output contains no prose — only JSON"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Images and videos disabled — only statistics and charts returned",
+      "input": {
+        "topic": "email marketing open rates",
+        "primary_keyword": "email open rate benchmarks",
+        "find_images": false,
+        "find_videos": false
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "statistics array is present and non-empty",
+        "cover_image is null (images disabled)",
+        "inline_images is an empty array [] (images disabled)",
+        "youtube_videos is an empty array [] (videos disabled)",
+        "chart_opportunities is present (may be empty array if no chartable data)"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Niche topic with few statistics — chart_opportunities may be empty",
+      "input": {
+        "topic": "WP-CLI command line interface tips",
+        "primary_keyword": "wp-cli commands",
+        "target_stat_count": 5,
+        "find_images": true,
+        "find_videos": true
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "statistics array is present (may have fewer than 5 entries for niche topics)",
+        "chart_opportunities is an array — empty array is valid when data does not support charts",
+        "Agent does not fabricate statistics — source_url must be present for each stat",
+        "Output contains no prose or recommendations"
+      ]
+    }
+  ]
+}

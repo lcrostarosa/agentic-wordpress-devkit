@@ -1,0 +1,63 @@
+{
+  "agent_name": "copy-quality-scorer",
+  "evals": [
+    {
+      "id": 1,
+      "description": "Strong homepage copy — total_score above 70, all dimensions scored",
+      "input": {
+        "copy": "Stop chasing invoices. Get paid 3x faster.\n\nFreshBooks automatically sends payment reminders, lets clients pay online in seconds, and gives you real-time cash flow visibility — so you spend less time on admin and more time doing the work you love.\n\nJoin 30 million small business owners who've already made accounting painless.\n\nStart Your Free 30-Day Trial\nNo credit card required. Cancel anytime.",
+        "copy_type": "homepage",
+        "product_description": "Accounting software for small businesses and freelancers",
+        "target_audience": "Small business owners and freelancers"
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "total_score is a number between 0 and 100",
+        "total_score is above 65 given the benefit-led, specific copy",
+        "score_band is one of 'strong', 'good', 'needs_work', 'weak', or 'poor'",
+        "copy_type is 'homepage'",
+        "word_count is a positive integer",
+        "timestamp is present in ISO8601 format",
+        "dimensions object contains value_proposition, headline, cta, passive_voice, readability, benefit_ratio, and filler_words fields",
+        "Each dimension has score, max_score, and issues array",
+        "dimensions.headline.primary_headline is a non-null string",
+        "dimensions.cta.primary_cta_text is a non-null string",
+        "dimensions.benefit_ratio.benefit_pct is a number between 0 and 1",
+        "dimensions.benefit_ratio.strongest_benefits is a non-empty array",
+        "dimensions.filler_words.top_offenders is an array",
+        "priority_fixes is an array of up to 3 entries sorted by points_available descending",
+        "Output contains no rewritten copy — analysis and fix directions only"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Weak copy with filler words and feature-focus — total_score below 50",
+      "input": {
+        "copy": "Our incredibly powerful and truly revolutionary platform leverages cutting-edge, state-of-the-art technology to seamlessly facilitate and streamline your workflow processes. The system is designed to be easily utilized by teams of any size. Features include real-time dashboard functionality, advanced reporting capabilities, and comprehensive integration support. Our world-class solution is absolutely the best choice for businesses looking to optimize their performance.",
+        "copy_type": "landing_page"
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "total_score is below 55 given the heavy filler word usage and feature-only copy",
+        "dimensions.filler_words.rate_per_100_words is greater than 2 (high filler density)",
+        "dimensions.filler_words.empty_superlatives is a non-empty array",
+        "dimensions.benefit_ratio.benefit_pct is below 0.4 (mostly feature statements)",
+        "dimensions.benefit_ratio.feature_statements_to_convert is a non-empty array",
+        "priority_fixes is a non-empty array"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Copy too short — returns structured error",
+      "input": {
+        "copy": "Great product.",
+        "copy_type": "generic"
+      },
+      "assertions": [
+        "Returns JSON with an error field",
+        "error value is 'copy_too_short' or similar",
+        "minimum_words field is present indicating the minimum requirement (30)"
+      ]
+    }
+  ]
+}

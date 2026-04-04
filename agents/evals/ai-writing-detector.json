@@ -1,0 +1,54 @@
+{
+  "agent_name": "ai-writing-detector",
+  "evals": [
+    {
+      "id": 1,
+      "description": "AI-heavy content — high em dash density, AI-tell phrases, low sentence variance",
+      "input": {
+        "text": "In today's digital landscape, it's important to note that leveraging AI-powered solutions can truly transform your workflow. By delving into the multifaceted aspects of content creation — which is increasingly crucial — organizations can streamline their processes and foster innovation. Needless to say, this is a game-changer for businesses looking to navigate the complexities of modern marketing. The robust framework we've developed is designed to facilitate seamless integration. It's worth noting that our cutting-edge approach empowers teams to optimize their output. Absolutely, this comprehensive solution will revolutionize how you work.",
+        "context": "blog post"
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "human_score is a number between 0 and 100",
+        "human_score is below 60 (content is highly AI-like)",
+        "checks object contains em_dashes, ai_tell_phrases, filler_intensifiers, sentence_variance, structural_uniformity, and overused_words fields",
+        "em_dashes.severity is 'high' or 'elevated' given the em dash density",
+        "ai_tell_phrases.count is greater than 0",
+        "ai_tell_phrases.instances array contains objects with phrase, context, and category fields",
+        "filler_intensifiers.count is greater than 0",
+        "summary.strongest_ai_signals is a non-empty array",
+        "Output contains no rewrites, edits, or suggestions — detection only"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Clean human-sounding content — should score high",
+      "input": {
+        "text": "Last week I broke production. Not intentionally, but here's what happened: I pushed a migration without testing the rollback path. Forty-five minutes later, our support queue had 200 tickets. We fixed it, but I learned more in that afternoon than in the previous six months of incident-free deploys. The lesson wasn't 'test more' — I already knew that. It was that I'd stopped treating rollback as a first-class concern.",
+        "context": "blog post"
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "human_score is a number between 0 and 100",
+        "human_score is above 70 (content reads as human-written)",
+        "em_dashes.severity is 'ok'",
+        "ai_tell_phrases.count is 0 or very low",
+        "summary.clean_areas is a non-empty array"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Text under 50 words — returns structured error",
+      "input": {
+        "text": "Short text.",
+        "context": "blog post"
+      },
+      "assertions": [
+        "Returns JSON with an error field",
+        "error value is 'text_too_short' or similar",
+        "Does not attempt scoring on insufficient input"
+      ]
+    }
+  ]
+}

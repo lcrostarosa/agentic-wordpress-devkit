@@ -1,0 +1,7 @@
+{
+  "name": "content-refine",
+  "description": "All-in-one content editing: AI pattern removal, prose tightening, tone fixing, passive voice reduction. Scores content before and after using ai-writing-detector and copy-quality-scorer agents.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["editing", "copy-editing", "ai-humanizer", "ai-detection", "prose", "tone", "rewrite", "tighten"]
+}

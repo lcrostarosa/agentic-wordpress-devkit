@@ -1,0 +1,7 @@
+{
+  "name": "chatbot-creator",
+  "description": "End-to-end chatbot creation. Five specialized agents cover architecture design, implementation scaffolding, prompt quality review, security and guardrails audit, and conversation UX design. Produces a complete build guide with code artifacts.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["chatbot", "ai-assistant", "bot", "wordpress-chatbot", "slack-bot", "discord-bot", "conversational-ai", "guardrails", "prompt-engineering"]
+}

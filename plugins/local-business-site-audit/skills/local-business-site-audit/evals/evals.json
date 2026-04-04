@@ -1,0 +1,122 @@
+{
+    "skill_name": "local-business-site-audit",
+    "evals": [
+      {
+        "id": 1,
+        "name": "underperforming-local-installer",
+        "prompt": "Run a full site audit on [TARGET_URL]. They are a Control4 smart home installer serving the south Denver metro area. Their close rate is around 70% but they rely entirely on referrals and passive website traffic. They feel like marketing has never worked for them. They need more qualified prospects finding them. Identify the top 3 competitors in their area and tell me exactly where the funnel is breaking down. I want a report I can hand directly to the business owner.",
+        "expected_output": "A complete audit report with findings from all 5 agents, prioritized quick wins, competitor comparison, and a recommended proof-of-concept engagement. The report should be written in plain language a non-technical business owner can understand.",
+        "assertions": [
+          {
+            "id": "a1",
+            "text": "Report contains at least 5 distinct actionable findings",
+            "type": "content_check"
+          },
+          {
+            "id": "a2",
+            "text": "Report includes a Quick Wins section with at least 2 items that could be completed in under a week",
+            "type": "content_check"
+          },
+          {
+            "id": "a3",
+            "text": "At least 4 local search queries were tested and results documented",
+            "type": "content_check"
+          },
+          {
+            "id": "a4",
+            "text": "At least 2 competitors were identified with specific comparison data (reviews, content depth, rankings)",
+            "type": "content_check"
+          },
+          {
+            "id": "a5",
+            "text": "Executive summary avoids unexplained jargon (no raw mentions of SERP, canonical, crawlability, schema without context)",
+            "type": "content_check"
+          },
+          {
+            "id": "a6",
+            "text": "Every recommendation includes an effort estimate (low/medium/high or time estimate)",
+            "type": "content_check"
+          },
+          {
+            "id": "a7",
+            "text": "Every finding cites specific evidence (actual search query results, specific HTML elements missing, specific competitor data points)",
+            "type": "content_check"
+          },
+          {
+            "id": "a8",
+            "text": "Report includes a clear next-step recommendation for a low-risk proof-of-concept engagement",
+            "type": "content_check"
+          },
+          {
+            "id": "a9",
+            "text": "A deliverable file (Markdown or PDF) was generated and saved",
+            "type": "file_check"
+          },
+          {
+            "id": "a10",
+            "text": "Report includes content/funnel gap analysis identifying missing buyer journey stages",
+            "type": "content_check"
+          }
+        ],
+        "files": []
+      },
+      {
+        "id": 2,
+        "name": "well-optimized-local-business",
+        "prompt": "Audit [WELL_OPTIMIZED_URL]. They are an established home theater and smart home company in a major metro area. I want to see if the audit correctly identifies strengths and does not generate false findings. Run the full workflow and give me the report.",
+        "expected_output": "An audit that accurately reflects a well-optimized site. Should still find opportunities but not fabricate problems. Strengths should be explicitly called out. The tone should be 'here is where you are strong and here is where you could go next' rather than a doom-and-gloom teardown.",
+        "assertions": [
+          {
+            "id": "b1",
+            "text": "Report identifies at least 2 specific strengths of the site",
+            "type": "content_check"
+          },
+          {
+            "id": "b2",
+            "text": "Findings do not include false negatives (claiming something is missing when it is present on the site)",
+            "type": "accuracy_check"
+          },
+          {
+            "id": "b3",
+            "text": "Tone is constructive rather than alarmist for a site that is performing reasonably well",
+            "type": "tone_check"
+          },
+          {
+            "id": "b4",
+            "text": "Report still identifies growth opportunities even for a strong site",
+            "type": "content_check"
+          }
+        ],
+        "files": []
+      },
+      {
+        "id": 3,
+        "name": "minimal-brochure-site",
+        "prompt": "Run the audit on [MINIMAL_URL]. This is a one-man shop doing AV installs. The site is basically a single page with a phone number and a few photos. No blog, no service pages, probably no meta tags. I need the report to be encouraging, not overwhelming. Show them the 3 most impactful things they could do without making them feel like their whole online presence is hopeless.",
+        "expected_output": "An audit that handles a sparse site gracefully. Should not produce empty sections or errors from missing data. The recommendations should be tightly scoped and achievable for someone with no marketing budget or technical skills. The report should feel like 'here are 3 things that will make a real difference' not 'here are 47 things wrong with your site.'",
+        "assertions": [
+          {
+            "id": "c1",
+            "text": "Report does not contain empty sections or placeholder text from missing data",
+            "type": "content_check"
+          },
+          {
+            "id": "c2",
+            "text": "Quick wins are scoped for a solo operator with no marketing budget",
+            "type": "content_check"
+          },
+          {
+            "id": "c3",
+            "text": "Report prioritizes no more than 5 total recommendations to avoid overwhelming the reader",
+            "type": "content_check"
+          },
+          {
+            "id": "c4",
+            "text": "Tone is encouraging and frames recommendations as opportunities rather than failures",
+            "type": "tone_check"
+          }
+        ],
+        "files": []
+      }
+    ]
+  }

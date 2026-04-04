@@ -1,0 +1,7 @@
+{
+  "name": "local-business-site-audit",
+  "description": "Multi-agent audit for local service businesses. Five parallel agents analyze site content, local search visibility, technical SEO, competitor gaps, and funnel strategy. Produces a client-ready report for business owners.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["local-seo", "audit", "local-business", "smart-home", "hvac", "contractor", "lead-generation"]
+}

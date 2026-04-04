@@ -1,0 +1,70 @@
+{
+  "agent_name": "wp-issue-triage",
+  "evals": [
+    {
+      "id": 1,
+      "description": "PHP fatal error with file path — backend classification, high confidence",
+      "input": {
+        "symptom": "White screen of death — admin and frontend both blank",
+        "when_started": "after plugin update",
+        "error_text": "Fatal error: Call to undefined function wc_get_product() in /var/www/html/wp-content/plugins/my-plugin/my-plugin.php on line 42",
+        "url": "https://example.com",
+        "hosting_environment": "VPS",
+        "already_tried": [],
+        "wp_version_hint": null,
+        "php_version_hint": null
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "issue_category is 'backend'",
+        "confidence is 'high' (error text is unambiguous PHP fatal error)",
+        "reasoning cites specific evidence — quotes the error text or names the plugin",
+        "ambiguous_candidates field is NOT present (only present when issue_category is 'ambiguous')",
+        "Output contains no fix steps or recommendations — classification only"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Broken layout after theme update — UI classification",
+      "input": {
+        "symptom": "Homepage layout is completely broken — sidebar is showing below the content instead of beside it, and the navigation menu is missing",
+        "when_started": "after theme update",
+        "error_text": null,
+        "url": "https://example.com",
+        "hosting_environment": "Shared hosting",
+        "already_tried": ["cleared cache"],
+        "wp_version_hint": null,
+        "php_version_hint": null
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "issue_category is 'ui'",
+        "confidence is 'high' or 'medium' — visual layout symptom is specific",
+        "reasoning cites the layout/navigation symptoms or the 'after theme update' timing",
+        "ambiguous_candidates field is NOT present"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Vague symptom with no error text — ambiguous classification",
+      "input": {
+        "symptom": "Something is wrong with my site",
+        "when_started": "unknown",
+        "error_text": null,
+        "url": null,
+        "hosting_environment": "unknown",
+        "already_tried": [],
+        "wp_version_hint": null,
+        "php_version_hint": null
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "issue_category is 'ambiguous'",
+        "confidence is 'low' (vague symptom, no error text)",
+        "ambiguous_candidates is an array containing exactly 2 category strings",
+        "Each candidate in ambiguous_candidates is one of 'ui', 'backend', or 'performance'",
+        "reasoning acknowledges lack of specific signals"
+      ]
+    }
+  ]
+}

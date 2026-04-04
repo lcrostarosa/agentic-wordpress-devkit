@@ -1,0 +1,183 @@
+{
+  "agent_name": "wp-fix-validator",
+  "evals": [
+    {
+      "id": 1,
+      "description": "Valid fix — all five gates pass",
+      "input": {
+        "triage": {
+          "issue_category": "backend",
+          "confidence": "high",
+          "reasoning": "PHP fatal error in plugin file"
+        },
+        "diagnostic": {
+          "category": "backend",
+          "error_classification": "php_fatal",
+          "php_error_details": {
+            "error_type": "Fatal error",
+            "file": "/wp-content/plugins/broken-plugin/broken-plugin.php",
+            "line": 42,
+            "message": "Call to undefined function some_deprecated_function()"
+          },
+          "suspected_causes": [
+            { "cause": "broken-plugin calling deprecated function", "confidence": "high", "evidence": "Error file path names the plugin directly" }
+          ],
+          "primary_diagnosis": "PHP fatal error in broken-plugin on line 42.",
+          "secondary_diagnosis": null
+        },
+        "fix": {
+          "fix_title": "Deactivate broken-plugin causing PHP fatal error",
+          "root_cause_summary": "PHP fatal error in /wp-content/plugins/broken-plugin/broken-plugin.php on line 42 — the plugin calls some_deprecated_function() which no longer exists.",
+          "fix_steps": [
+            {
+              "step_number": 1,
+              "action": "Go to Plugins → Installed Plugins and deactivate 'Broken Plugin'",
+              "method": "wp-admin",
+              "code_or_command": null,
+              "file_path": null,
+              "expected_result": "White screen resolves and admin loads",
+              "safe_to_do_on_live": true,
+              "rollback_instruction": null
+            },
+            {
+              "step_number": 2,
+              "action": "If wp-admin is inaccessible, run: wp plugin deactivate broken-plugin",
+              "method": "wp-cli",
+              "code_or_command": "wp plugin deactivate broken-plugin",
+              "file_path": null,
+              "expected_result": "Plugin deactivated, site loads normally",
+              "safe_to_do_on_live": true,
+              "rollback_instruction": null
+            }
+          ],
+          "verification_steps": [
+            "Clear browser cache and reload the homepage",
+            "Confirm the white screen is gone and the homepage renders correctly",
+            "Verify wp-admin loads without errors"
+          ],
+          "estimated_time_minutes": 5,
+          "if_this_does_not_work": "Enable WP_DEBUG by adding define('WP_DEBUG', true); define('WP_DEBUG_LOG', true); to wp-config.php, reload the page, and check the contents of wp-content/debug.log for additional errors"
+        },
+        "original_symptom": "White screen on all pages",
+        "original_error_text": "Fatal error: Call to undefined function some_deprecated_function() in /wp-content/plugins/broken-plugin/broken-plugin.php on line 42",
+        "iteration_number": 1
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "verdict is 'pass'",
+        "rejection_reasons is an empty array []",
+        "confidence_in_fix is one of 'high', 'medium', 'low', or 'cannot_assess'",
+        "confidence_in_fix is 'high' or 'medium' (error text is clear and fix is specific)",
+        "escalate_to_user is false"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Fix fails specificity gate — plugin name missing from action",
+      "input": {
+        "triage": {
+          "issue_category": "backend",
+          "confidence": "high",
+          "reasoning": "PHP fatal error"
+        },
+        "diagnostic": {
+          "category": "backend",
+          "error_classification": "php_fatal",
+          "php_error_details": {
+            "error_type": "Fatal error",
+            "file": "/wp-content/plugins/acf-pro/acf.php",
+            "line": 301,
+            "message": "Cannot redeclare acf_register_block_type()"
+          },
+          "suspected_causes": [
+            { "cause": "ACF Pro redeclaration conflict", "confidence": "high", "evidence": "Error file names ACF Pro directly" }
+          ],
+          "primary_diagnosis": "ACF Pro redeclaration error on line 301.",
+          "secondary_diagnosis": null
+        },
+        "fix": {
+          "fix_title": "Fix plugin conflict",
+          "root_cause_summary": "Plugin conflict causing fatal error.",
+          "fix_steps": [
+            {
+              "step_number": 1,
+              "action": "Deactivate the conflicting plugin",
+              "method": "wp-admin",
+              "code_or_command": null,
+              "file_path": null,
+              "expected_result": "Issue resolves",
+              "safe_to_do_on_live": true,
+              "rollback_instruction": null
+            }
+          ],
+          "verification_steps": ["Reload the page", "Check if site works"],
+          "estimated_time_minutes": 5,
+          "if_this_does_not_work": "Try another plugin"
+        },
+        "original_symptom": "Site shows fatal error",
+        "original_error_text": "Fatal error: Cannot redeclare acf_register_block_type() in /wp-content/plugins/acf-pro/acf.php on line 301",
+        "iteration_number": 1
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "verdict is 'fail'",
+        "rejection_reasons is a non-empty array",
+        "At least one rejection reason has gate: 'specificity'",
+        "The specificity rejection reason cites Step 1 or the action field lacking a plugin name",
+        "The suggestion in the rejection tells the generator to name 'ACF Pro' specifically",
+        "confidence_in_fix is one of 'high', 'medium', 'low', or 'cannot_assess'"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Fix fails safety gate — wp-config.php edit marked safe_to_do_on_live true with no rollback",
+      "input": {
+        "triage": {
+          "issue_category": "backend",
+          "confidence": "medium",
+          "reasoning": "Redirect loop diagnosed"
+        },
+        "diagnostic": {
+          "category": "backend",
+          "error_classification": "redirect_loop",
+          "php_error_details": null,
+          "suspected_causes": [
+            { "cause": "HTTPS redirect loop in wp-config.php", "confidence": "medium", "evidence": "Redirect loop after migration to HTTPS" }
+          ],
+          "primary_diagnosis": "Redirect loop likely caused by force_ssl_admin setting.",
+          "secondary_diagnosis": null
+        },
+        "fix": {
+          "fix_title": "Fix redirect loop by editing wp-config.php",
+          "root_cause_summary": "HTTPS force redirect in wp-config.php causing loop.",
+          "fix_steps": [
+            {
+              "step_number": 1,
+              "action": "Edit wp-config.php and remove the line: define('FORCE_SSL_ADMIN', true);",
+              "method": "code",
+              "code_or_command": "// Remove: define('FORCE_SSL_ADMIN', true);",
+              "file_path": "/var/www/html/wp-config.php",
+              "expected_result": "Redirect loop stops",
+              "safe_to_do_on_live": true,
+              "rollback_instruction": null
+            }
+          ],
+          "verification_steps": ["Reload the page"],
+          "estimated_time_minutes": 10,
+          "if_this_does_not_work": "Contact your hosting provider"
+        },
+        "original_symptom": "ERR_TOO_MANY_REDIRECTS on every page",
+        "original_error_text": null,
+        "iteration_number": 1
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "verdict is 'fail'",
+        "rejection_reasons is a non-empty array",
+        "At least one rejection reason has gate: 'safety'",
+        "The safety rejection cites Step 1 editing wp-config.php being marked safe_to_do_on_live: true without a rollback_instruction",
+        "The completeness gate may also fail — 'Contact your hosting provider' is too generic for if_this_does_not_work"
+      ]
+    }
+  ]
+}

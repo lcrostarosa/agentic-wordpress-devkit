@@ -1,0 +1,63 @@
+{
+  "agent_name": "market-local-visibility-researcher",
+  "evals": [
+    {
+      "id": 1,
+      "description": "Local business with brand affiliations — verifies queries include brand-specific terms",
+      "input": {
+        "business_name": "Denver Smart Home Pro",
+        "business_url": "https://example-smarthome.com",
+        "business_type": "smart home installer",
+        "service_area": "Denver, CO",
+        "brand_affiliations": ["Control4", "Lutron"]
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "queries_tested array contains at least 6 queries",
+        "At least one query in queries_tested includes 'Denver' or 'CO'",
+        "At least one query in queries_tested includes 'Control4' or 'Lutron'",
+        "Each query result has query, target_position (number or null), local_pack_present (boolean), target_in_local_pack (boolean), and top_competitors fields",
+        "visibility_rate is a number between 0 and 1",
+        "local_pack_appearances is a non-negative integer",
+        "directory_presence object contains google_business_profile, yelp, houzz, homeadvisor, and angi fields — each with found (boolean) and any available review data",
+        "nap_consistency object is present with issues array",
+        "top_competitors array contains competitor names found in search results",
+        "summary object with critical_gaps, quick_wins, and visibility_score fields is present",
+        "Output contains no recommendations — critical_gaps and quick_wins describe data findings only"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Business with no brand affiliations — brand-specific queries omitted",
+      "input": {
+        "business_name": "Chicago Plumbing Services",
+        "business_url": "https://example-plumbing.com",
+        "business_type": "plumber",
+        "service_area": "Chicago, IL"
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "queries_tested array contains at least 6 queries",
+        "All queries in queries_tested relate to plumbing or Chicago",
+        "visibility_rate, directory_presence, and nap_consistency fields are present",
+        "No brand-specific queries are present (since brand_affiliations was not provided)"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Business not found in any directories — all directory fields null or false",
+      "input": {
+        "business_name": "New Startup Electrical",
+        "business_url": "https://example-new-electrical.com",
+        "business_type": "electrician",
+        "service_area": "Austin, TX"
+      },
+      "assertions": [
+        "Returns valid JSON — does not error when directory profiles are missing",
+        "directory_presence fields may have found: false for all platforms",
+        "visibility_rate may be 0 if business does not appear in any tested queries",
+        "critical_gaps is a non-empty array when visibility is zero"
+      ]
+    }
+  ]
+}

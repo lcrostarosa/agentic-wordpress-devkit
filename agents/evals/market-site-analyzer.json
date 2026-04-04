@@ -1,0 +1,57 @@
+{
+  "agent_name": "market-site-analyzer",
+  "evals": [
+    {
+      "id": 1,
+      "description": "Full site scope — verifies all sections present and schema detection note included",
+      "input": {
+        "url": "https://wordpress.org",
+        "scope": "site"
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "url field matches the input url",
+        "scope field is 'site'",
+        "meta object contains title, description, robots, canonical, viewport, og, and twitter fields",
+        "headings object contains h1, h2, h3, h4 arrays and an issues array",
+        "links object contains internal_count, external_count, broken_candidates, and sample_anchors",
+        "images object contains total, missing_alt, missing_dimensions, and formats fields",
+        "schema object contains types_found array and detection_note string mentioning JS-injected schema limitation",
+        "ai_crawler_accessibility contains gptbot, claudebot, perplexitybot, and google_extended fields, each with value 'allowed', 'disallowed', or 'not_specified'",
+        "content_structure contains answer_first_paragraphs, faq_section_present, question_headings_count, and question_headings_pct fields",
+        "performance object is present (score may be null if API unavailable)",
+        "security object contains https (boolean) and mixed_content (boolean)",
+        "summary object contains critical_issues, warnings, and passed arrays",
+        "robots_txt and sitemap objects are present for site scope",
+        "Output contains no prose, recommendations, or editorial content outside the JSON structure"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Page scope only — sitemap and multi-page fields not required",
+      "input": {
+        "url": "https://example.com/blog/some-post",
+        "scope": "page"
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "scope field is 'page'",
+        "meta, headings, links, images, schema, ai_crawler_accessibility, content_structure, security, and summary fields all present",
+        "sitemap field is present (may be null for page scope)"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Unreachable URL returns structured error",
+      "input": {
+        "url": "https://this-site-does-not-exist-xyzabc999.com",
+        "scope": "page"
+      },
+      "assertions": [
+        "Returns JSON with a top-level error field",
+        "Error object includes the url field matching the input",
+        "Does not return empty JSON or throw an unhandled exception"
+      ]
+    }
+  ]
+}

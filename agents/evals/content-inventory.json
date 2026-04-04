@@ -1,0 +1,61 @@
+{
+  "agent_name": "content-inventory",
+  "evals": [
+    {
+      "id": 1,
+      "description": "Standard blog crawl with fetch_posts false — archive-level data only",
+      "input": {
+        "url": "https://wpbeginner.com",
+        "max_posts": 30,
+        "fetch_posts": false
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "site_url matches the input url",
+        "archive_url is the discovered blog section URL",
+        "inventory_date is present in YYYY-MM-DD format",
+        "total_posts_found is a non-negative integer",
+        "posts_inventoried is a non-negative integer <= max_posts (30)",
+        "fetch_posts_used is false",
+        "posts array contains entries, each with title, url, publish_date, estimated_word_count, word_count_source, excerpt, categories, and tags fields",
+        "word_count_source for each post is 'estimated_from_excerpt' or 'unavailable' when fetch_posts is false",
+        "h2_headings and internal_link_count are null for all posts when fetch_posts is false",
+        "summary object contains posting_frequency_per_month, date_range, top_categories, top_tags, content_depth_distribution, avg_estimated_word_count, and freshness_pct fields",
+        "content_depth_distribution has under_500, short, medium, long, and unknown keys",
+        "Output contains no content strategy recommendations"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "With fetch_posts true — headings and internal link counts populated",
+      "input": {
+        "url": "https://example.com/blog",
+        "max_posts": 5,
+        "fetch_posts": true
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "fetch_posts_used is true",
+        "posts_inventoried is <= 5 (max_posts cap enforced)",
+        "For posts that were successfully fetched, h2_headings is an array (not null)",
+        "For posts that were successfully fetched, internal_link_count is a non-negative integer (not null)",
+        "For posts that could not be fetched individually, h2_headings and internal_link_count are null (not a failure)"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Site with no detectable content archive — returns structured error",
+      "input": {
+        "url": "https://example-landing-page-only.com",
+        "max_posts": 50,
+        "fetch_posts": false
+      },
+      "assertions": [
+        "If no content archive is found, returns JSON with an error field",
+        "error value is 'no_content_archive_found' or 'fetch_failed'",
+        "url field is present in the error response",
+        "Does not fabricate post listings when none exist"
+      ]
+    }
+  ]
+}

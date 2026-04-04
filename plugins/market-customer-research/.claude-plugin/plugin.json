@@ -1,0 +1,7 @@
+{
+  "name": "market-customer-research",
+  "description": "Conduct, analyze, or synthesize customer research. Covers interview analysis, review mining, persona generation, and voice-of-customer extraction.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["market-customer-research", "personas", "voice-of-customer", "jtbd", "user-research"]
+}

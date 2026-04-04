@@ -1,0 +1,15 @@
+{
+  "name": "wordpress-issue-debug",
+  "description": "Iterative WordPress issue debugger. Triages issues as UI, backend/PHP, or performance, then spawns specialized diagnostic agents, generates a fix, and validates it in a loop until the fix passes all quality gates.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["wordpress", "debug", "troubleshoot", "php-errors", "performance", "white-screen", "500-error", "plugin-conflict", "wsod"],
+  "agents": [
+    "./agents/wp-issue-triage.md",
+    "./agents/wp-ui-debugger.md",
+    "./agents/wp-backend-debugger.md",
+    "./agents/wp-performance-debugger.md",
+    "./agents/wp-fix-generator.md",
+    "./agents/wp-fix-validator.md"
+  ]
+}

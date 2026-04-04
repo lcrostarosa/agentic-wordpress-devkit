@@ -1,0 +1,7 @@
+{
+  "name": "marketing-page-cro",
+  "description": "Conversion rate optimization for any marketing page. Analyzes value proposition clarity, CTA effectiveness, trust signals, objection handling, and friction points.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["cro", "conversion-rate", "landing-page", "optimization", "ux"]
+}

@@ -1,0 +1,93 @@
+{
+  "agent_name": "market-strategic-synthesis",
+  "evals": [
+    {
+      "id": 1,
+      "description": "Deep dive with competitor data — verifies all sections populated",
+      "input": {
+        "context": {
+          "subject_name": "LocalPlumber Pro",
+          "subject_url": "https://localplumberpro.com",
+          "industry": "local plumbing services",
+          "research_goal": "Understand competitive positioning and identify growth opportunities",
+          "depth": "deep_dive"
+        },
+        "site_analysis": {
+          "pagespeed_mobile": 62,
+          "schema_types": ["LocalBusiness"],
+          "title_tag": "Emergency Plumber | LocalPlumber Pro",
+          "meta_description": "24/7 emergency plumbing services. Licensed and insured."
+        },
+        "competitor_profiles": {
+          "AcePlumbing": {
+            "review_count": 312,
+            "avg_rating": 4.8,
+            "blog_post_count": 45,
+            "has_schema": true
+          },
+          "FastFlow Plumbing": {
+            "review_count": 89,
+            "avg_rating": 4.2,
+            "blog_post_count": 3,
+            "has_schema": false
+          }
+        },
+        "seo_comparison": {
+          "queries_tested": ["emergency plumber", "plumber near me", "drain cleaning service"],
+          "subject_visibility": 1,
+          "competitor_visibility": { "AcePlumbing": 3, "FastFlow Plumbing": 2 }
+        }
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "timestamp is present in ISO8601 format",
+        "depth is 'deep_dive'",
+        "executive_summary is a non-empty string (3-5 sentences)",
+        "executive_summary contains at least one specific number or data point",
+        "competitive_positioning is present with axis_x, axis_y, positions, and white_space fields",
+        "competitive_positioning.positions contains one entry per entity (subject + competitors)",
+        "Each position has name, role, x_score, y_score, and quadrant_label",
+        "x_score and y_score are numbers between 1 and 5",
+        "threat_assessment is an array with one entry per competitor",
+        "Each threat entry has name, threat_level, threat_score, why_dangerous, and vulnerabilities",
+        "threat_level is one of 'high', 'medium', or 'low'",
+        "threat_score is a number between 0 and 100",
+        "gap_analysis contains table_stakes, differentiation_opportunities, and emerging_trends arrays",
+        "recommendations is an array of 5-7 entries for deep_dive",
+        "Each recommendation has rank, title, what, why, expected_impact, effort, and timeline fields",
+        "At least one recommendation has effort: 'low' and expected_impact: 'high' (quick win)",
+        "Every recommendation's why field cites specific evidence — not generic best-practice advice",
+        "seo_battle_plan is present (seo_comparison data was provided) with defend, attack, and uncontested arrays",
+        "ninety_day_plan contains month_1, month_2, and month_3 with theme and actions",
+        "Output contains no fabricated metrics not present in the input data"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Quick scan depth — only sections 1, 3, and 5 populated",
+      "input": {
+        "context": {
+          "subject_name": "TestSaaS",
+          "subject_url": "https://testsaas.com",
+          "industry": "project management software",
+          "research_goal": "Quick competitive snapshot",
+          "depth": "quick_scan"
+        },
+        "competitor_profiles": {
+          "CompetitorA": { "review_count": 500, "avg_rating": 4.5 }
+        }
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "depth is 'quick_scan'",
+        "executive_summary is present and non-empty",
+        "threat_assessment is present",
+        "recommendations is present and contains 3 entries (quick scan limit)",
+        "competitive_positioning is null or absent (quick_scan skips section 2)",
+        "gap_analysis is null or absent (quick_scan skips section 4)",
+        "seo_battle_plan is null or absent (quick_scan skips section 6)",
+        "ninety_day_plan is null or absent (quick_scan skips section 7)"
+      ]
+    }
+  ]
+}

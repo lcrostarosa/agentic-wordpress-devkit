@@ -1,0 +1,60 @@
+{
+  "agent_name": "content-blog-quality-checker",
+  "evals": [
+    {
+      "id": 1,
+      "description": "Well-structured article — most checks pass, structural_score above 70",
+      "input": {
+        "content": "---\ntitle: How to Speed Up WordPress in 2026\ndescription: Discover 7 proven ways to speed up WordPress in 2026 — 53% of users leave slow sites. Includes caching, image optimization, and CDN setup.\ncoverImage: https://cdn.pixabay.com/photo/example.jpg\nogImage: https://cdn.pixabay.com/photo/example.jpg\n---\n\n# How to Speed Up WordPress in 2026\n\n> **Key Takeaways**\n> - 53% of mobile users abandon sites that load in over 3 seconds (Google, 2025)\n> - Caching alone reduces TTFB by up to 80%\n> - 3 plugins handle 90% of WordPress performance issues\n> - Most optimizations take under 30 minutes\n\n## Why WordPress Gets Slow\n\nWordPress performance degrades as sites grow. According to a 2025 Google study, 53% of mobile users abandon sites that take over 3 seconds to load ([Google](https://thinkwithgoogle.com/example)). The main culprits are unoptimized images, render-blocking scripts, and the lack of server-side caching. [INTERNAL-LINK: wordpress-performance-guide]\n\n[ORIGINAL DATA]\n\nWe tested 50 WordPress sites and found that 78% had no object caching configured.\n\n## Caching: The Fastest Win\n\nServer-side caching cuts TTFB dramatically. According to Kinsta's 2025 benchmarks, WP Rocket reduces TTFB by an average of 74% on shared hosting ([Kinsta](https://kinsta.com/example)). Install WP Rocket, enable page caching, and your site speeds up before you optimize anything else. [INTERNAL-LINK: wp-rocket-tutorial]\n\n[CHART: bar — Page Load Time by Caching Plugin]\n[CHART: line — TTFB Before and After Caching]\n[CHART: donut — Distribution of WP Performance Issues]\n\n![WordPress caching dashboard showing performance metrics](https://cdn.pixabay.com/photo/cache-dashboard.jpg)\n![Server response time comparison chart](https://cdn.pixabay.com/photo/server-chart.jpg)\n![WordPress admin performance settings panel](https://cdn.pixabay.com/photo/wp-admin-panel.jpg)\n![CDN distribution map illustration](https://cdn.pixabay.com/photo/cdn-map.jpg)\n\n## Image Optimization\n\nImages are often the largest assets on a page. A 2026 WebPageTest study of 10,000 WordPress sites found that 67% had at least one image over 500KB ([WebPageTest](https://webpagetest.org/example)). Use WebP format and lazy loading to cut image payload by 60%. [INTERNAL-LINK: image-optimization-wordpress]\n\n## Database Optimization\n\nDatabase queries slow down high-traffic sites. According to Cloudways, uncached database queries account for 35% of WordPress performance issues on shared hosting ([Cloudways](https://cloudways.com/blog/example)). Install a query monitor plugin to identify slow queries. [INTERNAL-LINK: database-optimization]\n\n## Frequently Asked Questions\n\n### How often should I clear my WordPress cache?\nClear your cache whenever you publish new content or update plugins. Automated cache clearing is included in all major caching plugins. [INTERNAL-LINK: cache-clearing-tutorial]\n\n### Does caching work with WooCommerce?\nYes, but cart and checkout pages must be excluded from page caching. Configure exclusions in your caching plugin settings.\n\n### What is TTFB in WordPress?\nTime to First Byte (TTFB) measures how long the server takes to respond. Under 200ms is excellent; above 600ms indicates a server-side bottleneck.\n\n### Is a CDN necessary for WordPress?\nA CDN is highly recommended for sites with international visitors or media-heavy content. Cloudflare's free plan covers most small business needs.\n",
+        "primary_keyword": "speed up wordpress"
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "structural_score is a number between 0 and 100",
+        "structural_score is above 70 given the well-structured content",
+        "word_count is a positive integer",
+        "checks object contains all 13 check keys: answer_first_h2, paragraph_length, statistics_with_sources, chart_count_and_diversity, inline_images_with_alt, cover_image_frontmatter, faq_section, heading_hierarchy, meta_description, key_takeaways_box, information_gain_markers, citation_capsules, internal_linking_zones",
+        "Each check has a status field with value 'pass', 'warn', or 'fail'",
+        "Each check has an evidence field explaining the finding",
+        "faq_section.status is 'pass' (FAQ section present with 4 Q&A pairs)",
+        "cover_image_frontmatter.status is 'pass' (both coverImage and ogImage present)",
+        "key_takeaways_box.status is 'pass' (Key Takeaways blockquote present)",
+        "summary object contains failed, warned, and passed arrays",
+        "Output contains no rewrites or editorial suggestions"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Article missing structural elements — several checks fail",
+      "input": {
+        "content": "# WordPress Speed Tips\n\nWordPress can be slow. Here are some tips.\n\n## Use a caching plugin\n\nCaching plugins help. There are many to choose from. You should really consider using one because it makes things faster and better and more efficient.\n\n## Optimize images\n\nImages should be optimized. Very large images can slow down your site incredibly. You might want to think about compressing them. Optimization is truly important for site performance. Make sure to do this step first.\n\n## Use a CDN\n\nA CDN can help distribute content globally. This is a good idea for many sites. Content delivery networks are useful tools that can significantly reduce load times for your visitors around the world.\n",
+        "primary_keyword": "wordpress speed tips"
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "structural_score is a number between 0 and 100",
+        "structural_score is below 50 given the missing structural elements",
+        "faq_section.status is 'fail' (no FAQ section)",
+        "key_takeaways_box.status is 'fail' (no TL;DR box)",
+        "statistics_with_sources.status is 'fail' (no sourced statistics)",
+        "cover_image_frontmatter.status is 'fail' (no frontmatter)",
+        "information_gain_markers.status is 'fail' (no [ORIGINAL DATA] markers)",
+        "internal_linking_zones.status is 'fail' (no [INTERNAL-LINK:] markers)",
+        "summary.failed is a non-empty array"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Content too short — returns structured error",
+      "input": {
+        "content": "Short post.",
+        "primary_keyword": "wordpress"
+      },
+      "assertions": [
+        "Returns JSON with an error field",
+        "error value is 'content_too_short' or similar",
+        "Does not attempt to run checks on content under 300 words"
+      ]
+    }
+  ]
+}

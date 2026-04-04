@@ -1,0 +1,85 @@
+{
+  "skill_name": "market-competitor-research",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Research my top 3 competitors: https://monday.com, https://asana.com, https://clickup.com. I'm building a project management SaaS targeting SMBs. My site is https://example-pm.com. I want to know where I stand and what to prioritize for the next quarter.",
+      "expected_output": "Full multi-agent pipeline producing a competitive intelligence report. Market classifications for all 4 entities. SEO comparison with keyword visibility across 5-8 queries. Strategic recommendations with a 90-day action plan.",
+      "assertions": [
+        "All 5 agent phases produced output (site profiling, competitor profiling, market classification, SEO comparison, strategic synthesis)",
+        "Market segment assigned to each competitor and the user's site",
+        "At least 5 keyword queries tested in SEO comparison",
+        "Comparison table includes user's site and all 3 competitors",
+        "At least 5 strategic recommendations with impact and effort ratings",
+        "90-day action plan included with month-by-month breakdown",
+        "Executive summary is 3-5 sentences without unexplained jargon",
+        "Every recommendation cites specific evidence from agent data",
+        "Threat assessment ranks all 3 competitors",
+        "Gap analysis categorizes findings into table-stakes, opportunities, and trends"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I'm a smart home installer in Austin, TX. My competitors are https://example-smarthome-a.com and https://example-smarthome-b.com. My site is https://example-smarthome.com. How do I stack up and what should I do differently?",
+      "expected_output": "Competitive intelligence report tailored for a local service business. SEO comparison includes local search queries with city name. Review counts compared. Recommendations scoped for a small local business.",
+      "assertions": [
+        "Local search queries tested (at least 3 include 'Austin' or geographic qualifier)",
+        "Review counts and ratings compared across competitors",
+        "Google Business Profile presence checked",
+        "Recommendations are actionable for a small business owner (no enterprise-scale suggestions)",
+        "Effort estimates realistic for a 1-5 person company",
+        "Comparison table includes local-relevant metrics (reviews, service area, local pack presence)",
+        "Market segment correctly identifies local services / construction-trades vertical",
+        "PageSpeed scores compared across all sites"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I sell email marketing software for e-commerce brands. I don't know who my competitors are. Help me figure out the competitive landscape. My site is https://example-email.com.",
+      "expected_output": "Skill discovers 3-5 competitors via WebSearch before profiling. Identifies both direct competitors (email tools for e-commerce) and adjacent competitors (general email tools, marketing suites). Full pipeline runs after discovery.",
+      "assertions": [
+        "At least 3 competitors identified via WebSearch before profiling begins",
+        "Both direct and adjacent competitors included in the analysis",
+        "Competitor URLs presented to user for confirmation before deep analysis",
+        "Market classification completed for all discovered competitors",
+        "Does not require competitor URLs upfront",
+        "Identified competitors are relevant to email marketing for e-commerce"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Quick competitive scan of https://example-competitor.com vs my site https://example-mine.com. Just the highlights.",
+      "expected_output": "Abbreviated workflow that still runs all agents but produces a shorter output. Executive summary, comparison table, and top 3 recommendations. No 90-day plan. No appendix.",
+      "assertions": [
+        "Output is concise (under 1500 words excluding any raw data)",
+        "Still includes comparison data in table format",
+        "Still includes at least 3 actionable recommendations",
+        "Does not produce 90-day action plan for a quick scan request",
+        "Executive summary present and concise",
+        "All agent phases still execute (data quality not sacrificed)"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Run competitor research against https://example-a.com, https://example-b.com, https://example-c.com. My site is https://example-user.com.",
+      "expected_output": "Reads product-marketing-context.md first, does not re-ask intake questions already answered in that file, proceeds directly to agent invocations with context from the file.",
+      "assertions": [
+        "Checks for .agents/product-marketing-context.md or .claude/product-marketing-context.md",
+        "Does not re-ask questions answered in the context file (industry, target audience, etc.)",
+        "Uses context from the file for industry and business type classification",
+        "Proceeds to agent execution without unnecessary intake questions",
+        "Full pipeline still runs with all 5 agent phases"
+      ],
+      "files": [
+        {
+          "path": ".agents/product-marketing-context.md",
+          "content": "# Product Marketing Context\n\n## Business\n- Name: ExampleCorp\n- URL: https://example-user.com\n- Industry: SaaS / Developer Tools\n- Business model: B2B\n- Target: Mid-market engineering teams (50-500 devs)\n\n## Product\n- Category: CI/CD platform\n- Primary value prop: 10x faster builds with zero configuration\n- Pricing: Usage-based, starts at $29/mo\n\n## Audience\n- Primary: Engineering managers at mid-size companies\n- Secondary: DevOps engineers evaluating build tools\n- Key pain: Slow CI pipelines blocking developer productivity"
+        }
+      ]
+    }
+  ]
+}

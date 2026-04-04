@@ -1,0 +1,7 @@
+{
+  "name": "marketing-experimentation",
+  "description": "Full A/B testing lifecycle — hypothesis design, tool selection, technical implementation, QA validation, program management, statistical analysis, and ship/iterate/kill decisions.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["ab-testing", "experimentation", "posthog", "optimizely", "vwo", "nelio", "split-testing", "ice-scoring", "statistical-analysis", "cro"]
+}

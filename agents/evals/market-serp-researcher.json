@@ -1,0 +1,50 @@
+{
+  "agent_name": "market-serp-researcher",
+  "evals": [
+    {
+      "id": 1,
+      "description": "Standard query list with target domain tracking",
+      "input": {
+        "queries": ["wordpress caching plugins", "best wordpress caching", "how to speed up wordpress", "wordpress performance optimization"],
+        "target_domain": "wpbeginner.com",
+        "context": "WordPress performance"
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "results array contains one entry per input query (4 entries)",
+        "Each result has query, target_position (number or null), top_5_results, and serp_features fields",
+        "top_5_results contains up to 5 entries, each with domain, title_snippet, and is_ai_position fields",
+        "serp_features contains local_pack_present, featured_snippet_present, knowledge_panel_present, ai_overview_present, and people_also_ask_present booleans",
+        "summary object contains target_domain_visibility_rate, queries_with_ai_overview, and top_competitor_domains fields",
+        "target_domain_visibility_rate is a number between 0 and 1",
+        "Output contains no recommendations or editorial analysis"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Queries without target domain — target_position fields are null",
+      "input": {
+        "queries": ["email marketing software", "best email marketing tools 2026"],
+        "context": "Email marketing SaaS"
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "results array contains 2 entries",
+        "target_position in each result is null (no target domain provided)",
+        "serp_features fields are still populated for each query"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Query list exceeding 15 — agent processes up to 15",
+      "input": {
+        "queries": ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "q9", "q10", "q11", "q12", "q13", "q14", "q15", "q16", "q17"],
+        "context": "test"
+      },
+      "assertions": [
+        "Returns valid JSON",
+        "results array contains no more than 15 entries (input cap enforced)"
+      ]
+    }
+  ]
+}

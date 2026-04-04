@@ -1,0 +1,57 @@
+{
+  "agent_name": "market-seo-comparison",
+  "evals": [
+    {
+      "id": 1,
+      "description": "Three competitors in same industry — verifies all comparison sections populated",
+      "input": {
+        "entities": [
+          { "name": "Kinsta", "url": "https://kinsta.com", "role": "user" },
+          { "name": "WP Engine", "url": "https://wpengine.com", "role": "competitor" },
+          { "name": "Flywheel", "url": "https://getflywheel.com", "role": "competitor" }
+        ],
+        "site_analysis_results": {},
+        "competitor_profiles": {},
+        "market_classifications": {},
+        "industry": "managed WordPress hosting"
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "timestamp is present in ISO8601 format",
+        "keyword_visibility object is present with queries_tested and visibility_summary arrays",
+        "queries_tested contains 5-8 entries (query selection range)",
+        "Each query entry has query, intent, and results fields",
+        "Each result entry has name, position, in_local_pack, and featured_snippet fields",
+        "position is a number or null (not a string like 'page 1')",
+        "intent is one of 'informational', 'commercial', 'transactional', or 'navigational'",
+        "visibility_summary contains one entry per entity with queries_visible, avg_position, best_position, and featured_snippets",
+        "content_footprint is an array with one entry per entity — each has estimated_indexed_pages, blog_exists, blog_post_count, most_recent_post, and content_types_detected",
+        "technical_comparison is an array with one entry per entity — each has pagespeed_score, lcp_seconds, cls, schema_types, https, mobile_viewport, title_tag_quality, meta_description_quality, and heading_structure_quality",
+        "authority_signals is an array with one entry per entity",
+        "ai_citation_presence is an array with one entry per entity",
+        "Output contains no strategic recommendations — comparison data only"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "No target domain — position data uses null appropriately",
+      "input": {
+        "entities": [
+          { "name": "Elementor", "url": "https://elementor.com", "role": "competitor" },
+          { "name": "Divi", "url": "https://elegantthemes.com/gallery/divi", "role": "competitor" }
+        ],
+        "site_analysis_results": {},
+        "competitor_profiles": {},
+        "market_classifications": {},
+        "industry": "WordPress page builders",
+        "primary_keywords": ["wordpress page builder", "elementor alternative", "best page builder for wordpress"]
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "queries_tested aligns with the provided primary_keywords",
+        "null is used for position when an entity is not found in top 20 — not a fabricated number",
+        "All entities are represented in visibility_summary, content_footprint, technical_comparison, authority_signals, and ai_citation_presence"
+      ]
+    }
+  ]
+}

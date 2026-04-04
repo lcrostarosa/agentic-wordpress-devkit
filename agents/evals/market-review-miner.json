@@ -1,0 +1,59 @@
+{
+  "agent_name": "market-review-miner",
+  "evals": [
+    {
+      "id": 1,
+      "description": "B2B SaaS target — mines G2, Capterra, and Reddit",
+      "input": {
+        "target": { "name": "Notion", "url": "https://notion.so" },
+        "platforms": ["g2", "capterra", "reddit"],
+        "industry": "productivity software",
+        "focus_themes": ["pain_points", "switching_reasons", "language_patterns"]
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "platforms_mined array lists the platforms that were checked",
+        "reviews array contains entries with text, source, sentiment, and theme_tags fields",
+        "Each review has verbatim text — not paraphrased summaries",
+        "Each review has sentiment as one of 'positive', 'negative', 'neutral', or 'mixed'",
+        "theme_tags is a non-empty array of strings for each review",
+        "themes_summary object contains top themes ranked by frequency with representative quotes",
+        "language_patterns array contains exact phrases customers use (if focus_themes includes language_patterns)",
+        "total_reviews_found is a non-negative integer",
+        "Output contains no recommendations — themes describe what was found, not what to do about it"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "With competitor comparison — returns separate target and competitor data",
+      "input": {
+        "target": { "name": "HubSpot", "url": "https://hubspot.com" },
+        "platforms": ["g2", "capterra"],
+        "industry": "CRM",
+        "competitor": "Salesforce",
+        "focus_themes": ["switching_reasons", "pain_points"]
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "target_reviews and competitor_reviews arrays are both present",
+        "competitor_comparison object is present with at least avg_rating and top_praise and top_complaint fields for each",
+        "switching_reasons array captures reasons people switch between the two products (if found)"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Fewer than 10 reviews found — still returns valid structure with limitation noted",
+      "input": {
+        "target": { "name": "Obscure Niche SaaS Tool" },
+        "platforms": ["g2"],
+        "industry": "niche software"
+      },
+      "assertions": [
+        "Returns valid JSON — does not fail when review count is low",
+        "total_reviews_found accurately reflects how many reviews were actually found",
+        "reviews array may be empty or have fewer than 10 entries",
+        "Output does not fabricate reviews or inflate counts"
+      ]
+    }
+  ]
+}

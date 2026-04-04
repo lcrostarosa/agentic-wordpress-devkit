@@ -1,0 +1,84 @@
+{
+  "agent_name": "wp-ui-debugger",
+  "evals": [
+    {
+      "id": 1,
+      "description": "URL provided after plugin update — suspected_causes populated from page analysis",
+      "input": {
+        "triage": {
+          "issue_category": "ui",
+          "confidence": "high",
+          "reasoning": "Layout broken after plugin update — visual symptom"
+        },
+        "url": "https://example.com",
+        "error_text": null,
+        "symptom_description": "Homepage layout is broken — sidebar moved below content, all CSS looks wrong",
+        "when_started": "after plugin update",
+        "already_tried": []
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "category is 'ui'",
+        "suspected_causes is an array with up to 3 entries",
+        "Each suspected_cause has cause, confidence, and evidence fields",
+        "confidence in each suspected_cause is one of 'high', 'medium', or 'low'",
+        "suspected_causes are in descending confidence order",
+        "asset_issues object is present with css_errors, js_errors, and missing_resources arrays (never omitted, even if empty)",
+        "theme_signals object is present with builder, child_theme, and child_theme_confidence fields",
+        "theme_signals.builder is one of 'block', 'classic', 'elementor', 'divi', 'beaver', 'other', or 'unknown'",
+        "wp_cli_diagnostic_commands is an array (may be empty)",
+        "primary_diagnosis is a non-empty string citing specific evidence",
+        "secondary_diagnosis is a string or null",
+        "Output contains no fix steps — diagnosis only"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "No URL but JS error text present — symptom-based diagnosis",
+      "input": {
+        "triage": {
+          "issue_category": "ui",
+          "confidence": "high",
+          "reasoning": "JavaScript error in error text"
+        },
+        "url": null,
+        "error_text": "Uncaught TypeError: Cannot read properties of null (reading 'addEventListener') at elementor-frontend.min.js:1:42381",
+        "symptom_description": "Page builder elements not loading on the frontend",
+        "when_started": "after WP core update",
+        "already_tried": ["cleared cache"]
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "category is 'ui'",
+        "suspected_causes is a non-empty array",
+        "primary_diagnosis references the Elementor JS error or the 'after WP core update' timing",
+        "asset_issues.js_errors is a non-empty array (JS error was present in error_text)",
+        "wp_cli_diagnostic_commands is an array with relevant plugin/theme commands"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "No URL and no error text — symptom-only analysis, notes data unavailability",
+      "input": {
+        "triage": {
+          "issue_category": "ui",
+          "confidence": "medium",
+          "reasoning": "Visual symptom but no error text"
+        },
+        "url": null,
+        "error_text": null,
+        "symptom_description": "Menu is not showing on mobile devices",
+        "when_started": "suddenly",
+        "already_tried": ["cleared cache", "switching themes"]
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "category is 'ui'",
+        "primary_diagnosis notes that live page data was unavailable (URL was null)",
+        "asset_issues.css_errors and asset_issues.js_errors are empty arrays (no page to analyze)",
+        "wp_cli_diagnostic_commands is an array (may suggest theme-related commands given symptom)",
+        "Since 'switching themes' was already tried, primary_diagnosis should not suggest a theme-only cause"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "skill-builder",
+  "description": "Interactive agent builder that walks through the three-tier agent authoring guide, produces a complete agent file with all required sections, and registers it in the manifest.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["agent-builder", "skill-builder", "scaffolding", "developer-tools"]
+}

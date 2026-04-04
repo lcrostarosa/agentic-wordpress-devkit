@@ -1,0 +1,58 @@
+{
+  "agent_name": "market-competitor-profiler",
+  "evals": [
+    {
+      "id": 1,
+      "description": "Single competitor — verifies full profile structure and assessment fields",
+      "input": {
+        "competitors": ["https://automattic.com"],
+        "industry": "WordPress hosting and services",
+        "target_business": "Example Hosting Co"
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "competitors array contains exactly 1 profile",
+        "Each profile has name, url, homepage, content, ai_citation_readiness, technical, reviews, social, and assessment fields",
+        "homepage contains headline, value_prop_clear, primary_cta, phone_visible, clicks_to_contact, and trust_signals",
+        "content contains service_pages, blog, portfolio, and about_team objects",
+        "ai_citation_readiness.score is one of 'high', 'medium', or 'low'",
+        "ai_citation_readiness.signals_found is an array",
+        "assessment contains strengths (array of 3), weaknesses (array of 2), and differentiators",
+        "comparison_matrix and key_gaps_vs_target fields are present",
+        "Output contains no strategic recommendations — assessment.strengths and assessment.weaknesses are factual, evidence-based statements only"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Multiple competitors — verifies all profiles returned",
+      "input": {
+        "competitors": ["https://wix.com", "https://squarespace.com", "https://weebly.com"],
+        "industry": "Website builders",
+        "target_business": "My Site Builder"
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "competitors array contains exactly 3 profiles",
+        "Each profile has the full schema including homepage, content, reviews, social, and assessment",
+        "comparison_matrix.dimensions is a non-empty array",
+        "comparison_matrix.data array contains one entry per competitor",
+        "key_gaps_vs_target is a non-empty array of strings"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "One unreachable competitor — partial profile with error, others complete",
+      "input": {
+        "competitors": ["https://this-competitor-is-gone-xyzabc.com", "https://wordpress.com"],
+        "industry": "CMS platforms"
+      },
+      "assertions": [
+        "Returns valid JSON — does not fail the entire run because one fetch failed",
+        "competitors array contains 2 profiles",
+        "The failed competitor's profile contains an error field and null sections",
+        "The successful competitor's profile is fully populated",
+        "All competitors in the input are represented in the output array"
+      ]
+    }
+  ]
+}

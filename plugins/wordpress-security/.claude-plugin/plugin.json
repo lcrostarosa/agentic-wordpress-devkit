@@ -1,0 +1,7 @@
+{
+  "name": "wordpress-security",
+  "description": "WordPress security audit — core/plugin/theme updates, authentication hardening, file permissions, HTTP headers, information disclosure, malware detection, and backup verification. 80+ checks with 0-100 health score.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["wordpress", "security", "audit", "hardening", "vulnerability", "updates", "headers", "malware"]
+}

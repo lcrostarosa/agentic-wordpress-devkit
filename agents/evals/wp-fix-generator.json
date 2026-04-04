@@ -1,0 +1,158 @@
+{
+  "agent_name": "wp-fix-generator",
+  "evals": [
+    {
+      "id": 1,
+      "description": "PHP fatal error fix — iteration 1, verifies output schema and specificity",
+      "input": {
+        "triage": {
+          "issue_category": "backend",
+          "confidence": "high",
+          "reasoning": "Error text contains PHP Fatal error in WooCommerce plugin file"
+        },
+        "diagnostic": {
+          "category": "backend",
+          "error_classification": "php_fatal",
+          "php_error_details": {
+            "error_type": "Fatal error",
+            "file": "/wp-content/plugins/woocommerce/includes/class-wc-product.php",
+            "line": 247,
+            "message": "Call to undefined function wc_get_price_including_tax()"
+          },
+          "suspected_causes": [
+            {
+              "cause": "WooCommerce plugin file references deprecated function removed in WC 8.0",
+              "confidence": "high",
+              "evidence": "Error in WooCommerce core file on function deprecated in version 8.0"
+            }
+          ],
+          "wp_cli_diagnostic_commands": ["wp plugin list --status=active --format=table", "wp --info"],
+          "primary_diagnosis": "WooCommerce 8.x fatal error on deprecated function wc_get_price_including_tax() likely triggered by a third-party plugin still calling the removed function.",
+          "secondary_diagnosis": null
+        },
+        "original_symptom": "White screen on all pages including admin",
+        "original_error_text": "Fatal error: Call to undefined function wc_get_price_including_tax() in /wp-content/plugins/woocommerce/includes/class-wc-product.php on line 247",
+        "iteration_number": 1,
+        "previous_fix_attempt": null,
+        "validator_rejection_reasons": null
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "fix_title is a non-empty string describing the fix",
+        "root_cause_summary is a non-empty string citing specific evidence (plugin name, file path, or error message)",
+        "fix_steps is an array of 2-6 entries",
+        "Each fix step has step_number, action, method, code_or_command, file_path, expected_result, safe_to_do_on_live, and rollback_instruction fields",
+        "method in each step is one of 'wp-admin', 'wp-cli', 'ftp', 'code', 'hosting-panel', or 'database'",
+        "action field in every step names a specific plugin, file path, menu location, or command — not a vague instruction",
+        "Any step with safe_to_do_on_live: false has a non-null rollback_instruction",
+        "verification_steps is an array with at least 2 entries describing observable outcomes",
+        "estimated_time_minutes is a positive integer",
+        "if_this_does_not_work is a non-null string naming a specific next diagnostic action",
+        "Output contains no prose outside the JSON structure"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Iteration 2 with validator rejection — revised fix addresses rejection reasons",
+      "input": {
+        "triage": {
+          "issue_category": "backend",
+          "confidence": "high",
+          "reasoning": "PHP fatal error in plugin file"
+        },
+        "diagnostic": {
+          "category": "backend",
+          "error_classification": "plugin_conflict",
+          "php_error_details": null,
+          "suspected_causes": [
+            {
+              "cause": "Plugin conflict between Advanced Custom Fields Pro and the theme's custom blocks",
+              "confidence": "medium",
+              "evidence": "Error triggered after ACF Pro update"
+            }
+          ],
+          "wp_cli_diagnostic_commands": ["wp plugin list --status=active --format=table"],
+          "primary_diagnosis": "ACF Pro update likely broke compatibility with theme's custom block registration.",
+          "secondary_diagnosis": null
+        },
+        "original_symptom": "Block editor crashes when trying to edit any page",
+        "original_error_text": null,
+        "iteration_number": 2,
+        "previous_fix_attempt": {
+          "fix_title": "Deactivate conflicting plugin",
+          "fix_steps": [
+            {
+              "step_number": 1,
+              "action": "Deactivate the conflicting plugin",
+              "method": "wp-admin",
+              "code_or_command": null,
+              "file_path": null,
+              "expected_result": "Issue resolves",
+              "safe_to_do_on_live": true,
+              "rollback_instruction": null
+            }
+          ]
+        },
+        "validator_rejection_reasons": [
+          {
+            "gate": "specificity",
+            "reason": "Step 1 action says 'Deactivate the conflicting plugin' without naming the plugin",
+            "suggestion": "Name the specific plugin: 'Go to Plugins → Installed Plugins and deactivate Advanced Custom Fields Pro'"
+          }
+        ]
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "The revised fix addresses the specificity rejection — action in step 1 names 'Advanced Custom Fields Pro' or the specific plugin identified in the diagnostic",
+        "Does not repeat the generic 'Deactivate the conflicting plugin' action that was rejected",
+        "fix_steps[0].action contains a specific plugin name or specific menu path"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Performance issue fix — bottleneck-specific steps generated",
+      "input": {
+        "triage": {
+          "issue_category": "performance",
+          "confidence": "high",
+          "reasoning": "User reports slow load times, TTFB over 2 seconds"
+        },
+        "diagnostic": {
+          "category": "performance",
+          "pagespeed": {
+            "score": 38,
+            "lcp": "5.2 s",
+            "cls": "0.08",
+            "tbt": "420 ms",
+            "fcp": "3.1 s",
+            "ttfb": "2.4 s"
+          },
+          "bottleneck_type": "server_ttfb",
+          "hosting_risk": "high",
+          "suspected_causes": [
+            {
+              "cause": "High TTFB (2.4s) on shared hosting with no server-side caching detected",
+              "confidence": "high",
+              "evidence": "PageSpeed TTFB 2.4s; no caching plugin signature found in HTML"
+            }
+          ],
+          "wp_cli_diagnostic_commands": ["wp eval 'echo ini_get(\"memory_limit\");'", "wp --info"],
+          "primary_diagnosis": "Server TTFB of 2.4s on shared hosting with no caching plugin — install a page caching plugin to reduce server response time.",
+          "secondary_diagnosis": null
+        },
+        "original_symptom": "Site takes over 5 seconds to load on mobile",
+        "original_error_text": null,
+        "iteration_number": 1,
+        "previous_fix_attempt": null,
+        "validator_rejection_reasons": null
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "root_cause_summary cites the TTFB metric (2.4s) or missing caching plugin from the diagnostic",
+        "fix_steps address the server_ttfb bottleneck — likely involves installing a caching plugin",
+        "verification_steps include a step to clear cache before testing",
+        "estimated_time_minutes is a positive integer"
+      ]
+    }
+  ]
+}

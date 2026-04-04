@@ -1,0 +1,86 @@
+{
+  "agent_name": "wp-backend-debugger",
+  "evals": [
+    {
+      "id": 1,
+      "description": "PHP fatal error with plugin file path — high confidence plugin diagnosis",
+      "input": {
+        "triage": {
+          "issue_category": "backend",
+          "confidence": "high",
+          "reasoning": "PHP fatal error in error text"
+        },
+        "error_text": "PHP Fatal error: Call to undefined function wc_get_product() in /var/www/html/wp-content/plugins/my-custom-plugin/includes/class-product-handler.php on line 87",
+        "symptom_description": "White screen on all pages",
+        "url": "https://example.com",
+        "hosting_environment": "VPS",
+        "already_tried": []
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "category is 'backend'",
+        "error_classification is 'php_fatal'",
+        "php_error_details is present and non-null",
+        "php_error_details.error_type is 'Fatal error' or 'PHP Fatal error'",
+        "php_error_details.file is '/var/www/html/wp-content/plugins/my-custom-plugin/includes/class-product-handler.php'",
+        "php_error_details.line is 87",
+        "php_error_details.message is 'Call to undefined function wc_get_product()'",
+        "suspected_causes is a non-empty array",
+        "The primary suspected cause references 'my-custom-plugin' (extracted from file path)",
+        "The primary suspected cause has confidence 'high'",
+        "wp_cli_diagnostic_commands is a non-empty array with php_fatal-appropriate commands",
+        "primary_diagnosis cites the specific file path and function name",
+        "Output contains no fix steps — diagnosis only"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Database connection error — db_connection classification",
+      "input": {
+        "triage": {
+          "issue_category": "backend",
+          "confidence": "high",
+          "reasoning": "Database error in symptom"
+        },
+        "error_text": "Error establishing a database connection",
+        "symptom_description": "Error establishing a database connection on every page",
+        "url": "https://example.com",
+        "hosting_environment": "Shared hosting",
+        "already_tried": ["Cleared cache"]
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "category is 'backend'",
+        "error_classification is 'db_connection'",
+        "php_error_details is null (this is not a PHP fatal/parse error)",
+        "suspected_causes is a non-empty array mentioning database credentials or connection",
+        "wp_cli_diagnostic_commands includes 'wp db check' or similar database diagnostic commands",
+        "primary_diagnosis references the database connection error"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Redirect loop with no error text — symptom-based classification",
+      "input": {
+        "triage": {
+          "issue_category": "backend",
+          "confidence": "medium",
+          "reasoning": "Redirect loop symptoms"
+        },
+        "error_text": null,
+        "symptom_description": "Site shows ERR_TOO_MANY_REDIRECTS on every page",
+        "url": "https://example.com",
+        "hosting_environment": "WP Engine",
+        "already_tried": []
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "category is 'backend'",
+        "error_classification is 'redirect_loop'",
+        "php_error_details is null",
+        "wp_cli_diagnostic_commands includes commands to check siteurl and home options",
+        "primary_diagnosis references redirect loop or siteurl/home option mismatch"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,458 @@
+{
+  "name": "wordpress-design-skills",
+  "owner": {
+    "name": "wordpress-design-skills"
+  },
+  "metadata": {
+    "description": "Claude Code skills for WordPress design, SEO, marketing, and local business consulting. Three-tier agent architecture: haiku for data collection, sonnet for analysis, opus for strategy.",
+    "version": "3.0.0",
+    "pluginRoot": "./plugins",
+    "agentsRoot": "./agents"
+  },
+  "plugins": [
+    {
+      "name": "agents",
+      "source": "./agents",
+      "description": "Shared agent library. 12 agents across 3 tiers: Tier 1 (haiku) for data collection, Tier 2 (sonnet) for analysis, Tier 3 (opus) for strategic synthesis.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": [
+        "agents",
+        "market-site-analyzer",
+        "market-competitor-profiler",
+        "market-serp-researcher",
+        "market-review-miner",
+        "seo-scorer",
+        "market-strategic-synthesis"
+      ],
+      "category": "agents",
+      "tags": [
+        "agents",
+        "infrastructure"
+      ]
+    },
+    {
+      "name": "wordpress-design",
+      "source": "./plugins/wordpress-design",
+      "description": "WordPress theme design guidance across block themes (FSE), classic themes, and page builders. Includes ACF content modeling, performance optimization, and a 9-section site audit checklist.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": [
+        "wordpress",
+        "theme",
+        "design",
+        "elementor",
+        "bricks",
+        "acf",
+        "gutenberg",
+        "block-theme"
+      ],
+      "category": "web-development",
+      "tags": [
+        "wordpress",
+        "web-design",
+        "cms"
+      ]
+    },
+    {
+      "name": "wordpress-security",
+      "source": "./plugins/wordpress-security",
+      "description": "WordPress security audit covering core/plugin/theme updates, authentication hardening, file permissions, HTTP security headers, information disclosure, malware detection, and backup verification. 80+ checks with 0-100 health score.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": [
+        "wordpress",
+        "security",
+        "audit",
+        "hardening",
+        "vulnerability",
+        "updates",
+        "headers"
+      ],
+      "category": "web-development",
+      "tags": [
+        "wordpress",
+        "security",
+        "audit"
+      ]
+    },
+    {
+      "name": "market-seo-audit",
+      "source": "./plugins/market-seo-audit",
+      "description": "Multi-agent SEO diagnostic. Phase 1 collects technical data via market-site-analyzer. Phase 2 branches adaptively: local businesses trigger market-local-visibility-researcher, blogs trigger market-on-page-seo-scorer, competitors trigger market-seo-comparison. Synthesizes into a prioritized action plan.",
+      "version": "2.0.0",
+      "license": "MIT",
+      "keywords": [
+        "seo",
+        "audit",
+        "technical-seo",
+        "on-page",
+        "core-web-vitals",
+        "e-e-a-t",
+        "local-seo"
+      ],
+      "category": "seo",
+      "tags": [
+        "seo",
+        "audit",
+        "marketing"
+      ]
+    },
+    {
+      "name": "local-business-site-audit",
+      "source": "./plugins/local-business-site-audit",
+      "description": "Multi-agent audit for local service businesses. Three parallel agents (market-site-analyzer, market-local-visibility-researcher, market-competitor-profiler) feed market-strategic-synthesis for a client-ready report focused on lead generation.",
+      "version": "2.0.0",
+      "license": "MIT",
+      "keywords": [
+        "local-seo",
+        "audit",
+        "local-business",
+        "smart-home",
+        "hvac",
+        "contractor",
+        "lead-generation"
+      ],
+      "category": "seo",
+      "tags": [
+        "local-seo",
+        "business-audit",
+        "marketing"
+      ]
+    },
+    {
+      "name": "market-seo-schema-markup",
+      "source": "./plugins/market-seo-schema-markup",
+      "description": "Add, fix, or optimize schema.org structured data in JSON-LD format. Covers Organization, Article, Product, FAQ, LocalBusiness, and more.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": [
+        "schema",
+        "structured-data",
+        "json-ld",
+        "rich-results",
+        "seo"
+      ],
+      "category": "seo",
+      "tags": [
+        "schema",
+        "structured-data",
+        "seo"
+      ]
+    },
+    {
+      "name": "content-blog-write",
+      "source": "./plugins/content-blog-write",
+      "description": "Write new blog articles from scratch optimized for Google rankings and AI citations. Generates full articles with answer-first formatting, sourced statistics, FAQ schema, and proper heading hierarchy.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": [
+        "blog",
+        "writing",
+        "seo-content",
+        "article",
+        "ai-citations"
+      ],
+      "category": "content",
+      "tags": [
+        "blog",
+        "writing",
+        "seo"
+      ]
+    },
+    {
+      "name": "content-blog-optimize",
+      "source": "./plugins/content-blog-optimize",
+      "description": "Post-writing SEO validation and AI citation readiness audit. Delegates scoring to market-on-page-seo-scorer agent (mode: ai-citation) and produces a pass/fail table with specific fixes plus citation capsules.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": [
+        "blog",
+        "seo",
+        "on-page-seo",
+        "ai-citations",
+        "geo",
+        "validation",
+        "audit"
+      ],
+      "category": "seo",
+      "tags": [
+        "blog",
+        "seo",
+        "validation"
+      ]
+    },
+    {
+      "name": "content-strategy",
+      "source": "./plugins/content-strategy",
+      "description": "Multi-agent content strategy. Parallel research: market-competitor-profiler, market-serp-researcher, market-review-miner. Optional market-strategic-synthesis for positioning. Produces pillar architecture, cluster plans, AI citation strategy, and 90-day roadmap. Absorbs blog-strategy.",
+      "version": "2.0.0",
+      "license": "MIT",
+      "keywords": [
+        "content-strategy",
+        "topic-clusters",
+        "editorial-calendar",
+        "content-marketing",
+        "blog-strategy",
+        "geo",
+        "ai-citations"
+      ],
+      "category": "marketing",
+      "tags": [
+        "content",
+        "strategy",
+        "marketing"
+      ]
+    },
+    {
+      "name": "marketing-copywriting",
+      "source": "./plugins/marketing-copywriting",
+      "description": "Write, rewrite, or improve marketing copy for any page \u2014 homepage, landing pages, pricing pages, feature pages. Covers headlines, CTAs, value propositions, and page structure.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": [
+        "copywriting",
+        "marketing-copy",
+        "landing-page",
+        "headlines",
+        "cta",
+        "conversion"
+      ],
+      "category": "marketing",
+      "tags": [
+        "copy",
+        "conversion",
+        "marketing"
+      ]
+    },
+    {
+      "name": "content-refine",
+      "source": "./plugins/content-refine",
+      "description": "All-in-one content editing. Runs ai-writing-detector and copy-quality-scorer in parallel, then removes AI patterns, tightens prose, fixes passive voice, and converts features to benefits. Before/after scores.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": [
+        "editing",
+        "copy-editing",
+        "ai-humanizer",
+        "ai-detection",
+        "prose",
+        "tone",
+        "rewrite"
+      ],
+      "category": "marketing",
+      "tags": [
+        "copy",
+        "editing",
+        "ai-detection"
+      ]
+    },
+    {
+      "name": "marketing-page-cro",
+      "source": "./plugins/marketing-page-cro",
+      "description": "Conversion rate optimization. Runs market-site-analyzer and copy-quality-scorer in parallel, then applies CRO judgment for value proposition clarity, CTA effectiveness, trust signals, friction audit, and page speed impact.",
+      "version": "2.0.0",
+      "license": "MIT",
+      "keywords": [
+        "cro",
+        "conversion-rate",
+        "landing-page",
+        "optimization",
+        "ux"
+      ],
+      "category": "marketing",
+      "tags": [
+        "cro",
+        "conversion",
+        "marketing"
+      ]
+    },
+    {
+      "name": "market-customer-research",
+      "source": "./plugins/market-customer-research",
+      "description": "Customer research in two modes: analyze existing assets (transcripts, surveys, tickets) OR gather fresh intel via market-review-miner and market-serp-researcher agents. Produces VOC themes, customer language patterns, and persona sketches.",
+      "version": "2.0.0",
+      "license": "MIT",
+      "keywords": [
+        "market-customer-research",
+        "personas",
+        "voice-of-customer",
+        "jtbd",
+        "user-research",
+        "review-mining"
+      ],
+      "category": "marketing",
+      "tags": [
+        "research",
+        "personas",
+        "marketing"
+      ]
+    },
+    {
+      "name": "marketing-email-sequence",
+      "source": "./plugins/marketing-email-sequence",
+      "description": "Create or optimize email sequences, drip campaigns, welcome series, nurture flows, and lifecycle email programs.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": [
+        "email",
+        "drip-campaign",
+        "automation",
+        "nurture",
+        "lifecycle"
+      ],
+      "category": "marketing",
+      "tags": [
+        "email",
+        "automation",
+        "marketing"
+      ]
+    },
+    {
+      "name": "marketing-lead-magnets",
+      "source": "./plugins/marketing-lead-magnets",
+      "description": "Plan and create lead magnets for email capture and lead generation. Covers checklists, templates, guides, quizzes, and gating strategy.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": [
+        "lead-magnet",
+        "lead-generation",
+        "gated-content",
+        "email-capture"
+      ],
+      "category": "marketing",
+      "tags": [
+        "lead-gen",
+        "conversion",
+        "marketing"
+      ]
+    },
+    {
+      "name": "market-competitor-alternatives",
+      "source": "./plugins/market-competitor-alternatives",
+      "description": "Create competitor comparison and alternative pages for SEO and sales enablement. Covers vs pages, alternative pages, and competitive positioning.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": [
+        "competitor",
+        "comparison",
+        "alternatives",
+        "vs-page",
+        "positioning"
+      ],
+      "category": "marketing",
+      "tags": [
+        "competitor",
+        "positioning",
+        "marketing"
+      ]
+    },
+    {
+      "name": "market-competitor-research",
+      "source": "./plugins/market-competitor-research",
+      "description": "Multi-agent competitive intelligence. Phase 1: market-site-analyzer + market-competitor-profiler + market-segment-classifier in parallel. Phase 2: market-seo-comparison. Phase 3: market-strategic-synthesis (opus). Produces threat assessment, gap analysis, and 90-day action plan.",
+      "version": "2.0.0",
+      "license": "MIT",
+      "keywords": [
+        "market-competitor-research",
+        "competitive-analysis",
+        "market-research",
+        "market-seo-comparison",
+        "strategy"
+      ],
+      "category": "marketing",
+      "tags": [
+        "competitor",
+        "research",
+        "strategy"
+      ]
+    },
+    {
+      "name": "marketing-launch-strategy",
+      "source": "./plugins/marketing-launch-strategy",
+      "description": "Plan product launches, feature announcements, and go-to-market strategies. Covers the 5-phase launch approach, Product Hunt, and post-launch marketing.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": [
+        "launch",
+        "go-to-market",
+        "product-hunt",
+        "release",
+        "gtm"
+      ],
+      "category": "marketing",
+      "tags": [
+        "launch",
+        "gtm",
+        "marketing"
+      ]
+    },
+    {
+      "name": "marketing-experimentation",
+      "source": "./plugins/marketing-experimentation",
+      "description": "Full A/B testing lifecycle. Hypothesis design with ICE scoring, tool selection, implementation patterns (PostHog, Optimizely, VWO, Nelio), QA validation via ab-test-validator agent, result analysis, and experimentation program management.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": [
+        "ab-testing",
+        "experimentation",
+        "posthog",
+        "optimizely",
+        "vwo",
+        "nelio",
+        "split-testing",
+        "ice-scoring"
+      ],
+      "category": "marketing",
+      "tags": [
+        "ab-testing",
+        "experimentation",
+        "cro"
+      ]
+    },
+    {
+      "name": "chatbot-creator",
+      "source": "./plugins/chatbot-creator",
+      "description": "End-to-end chatbot creation. Five specialized agents cover architecture design (opus), implementation scaffolding, prompt quality review, security and guardrails audit, and conversation UX design. Supports WordPress widgets, Slack, Discord, WhatsApp, and custom APIs.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": [
+        "chatbot",
+        "ai-assistant",
+        "bot",
+        "wordpress-chatbot",
+        "slack-bot",
+        "discord-bot",
+        "conversational-ai",
+        "guardrails",
+        "prompt-engineering",
+        "ux"
+      ],
+      "category": "web-development",
+      "tags": [
+        "chatbot",
+        "ai",
+        "web-development"
+      ]
+    },
+    {
+      "name": "skill-builder",
+      "source": "./plugins/skill-builder",
+      "description": "Interactive agent builder. Walks through tier selection, naming conventions, and all required sections (identity, input, steps, output, error handling, rules). Creates the agent file and registers it in the manifest. Use when adding a new shared agent to the library.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": [
+        "agent-builder",
+        "scaffolding",
+        "developer-tools",
+        "agent-authoring"
+      ],
+      "category": "developer-tools",
+      "tags": [
+        "developer-tools",
+        "scaffolding",
+        "agents"
+      ]
+    }
+  ]
+}

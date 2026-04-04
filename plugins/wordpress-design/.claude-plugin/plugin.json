@@ -1,0 +1,7 @@
+{
+  "name": "wordpress-design",
+  "description": "WordPress theme design guidance across block themes (FSE), classic themes, and page builders. Includes ACF content modeling, performance optimization, and a 9-section site audit checklist.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["wordpress", "theme", "design", "elementor", "bricks", "acf", "gutenberg", "block-theme"]
+}

@@ -1,0 +1,58 @@
+{
+  "agent_name": "wp-security-scanner",
+  "evals": [
+    {
+      "id": 1,
+      "description": "Scan a site — verifies all output sections populated with correct schema",
+      "input": {
+        "url": "https://example.com",
+        "include_ssl": true
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "url field matches the input url",
+        "timestamp is present in ISO8601 format",
+        "version_exposure object contains html_generator_tag, readme_html, rss_generator, and asset_version_hints fields",
+        "Each version_exposure field has found or accessible, version, and severity sub-fields",
+        "endpoint_exposure object contains wp_login, xmlrpc, rest_api_root, user_enumeration, and wp_admin_redirect fields",
+        "Each endpoint_exposure field has an accessible (or redirects_to_login) field and a severity field",
+        "security_headers object contains strict_transport_security, content_security_policy, x_content_type_options, x_frame_options, referrer_policy, permissions_policy, and x_xss_protection fields",
+        "Each security header has present, value (or null), and status fields",
+        "status in each security header is one of 'pass', 'fail', or 'warn'",
+        "ssl object contains https_in_use, http_redirects_to_https, mixed_content_detected, and hsts_preload_eligible fields",
+        "summary object contains critical, high, medium, low, info, and passed arrays",
+        "Output contains no recommendations or prose — findings only"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Site with exposed endpoints — xmlrpc accessible and user enumeration possible",
+      "input": {
+        "url": "https://example-exposed.com",
+        "include_ssl": true
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "If xmlrpc.php is accessible (HTTP 200 with XML body), endpoint_exposure.xmlrpc.accessible is true and severity is 'high'",
+        "If /wp-json/wp/v2/users returns HTTP 200 with array body, user_enumeration.accessible is true and usernames_found is a non-empty array",
+        "If readme.html returns HTTP 200, version_exposure.readme_html.accessible is true",
+        "High severity findings appear in summary.high array",
+        "Output does not include remediation recommendations — summary arrays contain factual findings only"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Site unreachable — returns structured error",
+      "input": {
+        "url": "https://this-does-not-exist-xyzabc123.com",
+        "include_ssl": true
+      },
+      "assertions": [
+        "Returns JSON with an error field",
+        "error value is 'site_unreachable' or similar",
+        "url field is present in the error response",
+        "Does not crash or return empty response"
+      ]
+    }
+  ]
+}

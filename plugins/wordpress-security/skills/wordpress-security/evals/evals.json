@@ -1,0 +1,110 @@
+{
+  "skill_name": "wordpress-security",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Can you do a full security audit of our WooCommerce site? We're running WordPress 6.4.2 with about 30 plugins. URL: https://example.com",
+      "expected_output": "Should check for product-marketing-context.md first. Should ask about hosting environment, WP-CLI access, and existing security plugins. Should systematically cover all 10 audit categories: core/dependency updates, authentication, file system, database, HTTP headers, SSL, information disclosure, plugin/theme security, backup, and malware/integrity. Should check publicly accessible indicators via web_fetch (headers, version exposure, REST API enumeration, xmlrpc.php). Should produce a health score (0-100), findings with Issue/Severity/Impact/Evidence/Fix/Priority, a dependency report table, and a prioritized action plan.",
+      "assertions": [
+        "Checks for product-marketing-context.md",
+        "Asks about hosting environment and WP-CLI access",
+        "Checks HTTP response headers for security headers and version disclosure",
+        "Checks for WordPress version exposure (meta generator, readme.html, RSS feed)",
+        "Checks REST API user enumeration endpoint",
+        "Checks xmlrpc.php accessibility",
+        "Covers dependency updates (core, plugins, themes, PHP version)",
+        "Covers authentication checks (admin username, 2FA, brute force protection)",
+        "Covers file system security (permissions, debug mode, file editor)",
+        "Covers HTTP security headers (HSTS, CSP, X-Content-Type-Options, X-Frame-Options)",
+        "Covers SSL/HTTPS configuration",
+        "Produces a health score between 0 and 100",
+        "Each finding has Issue, Severity, Impact, Evidence, Fix, and Priority fields",
+        "Output includes a dependency report table",
+        "Output includes a prioritized action plan grouped by severity"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I think my WordPress site has been hacked. I'm seeing weird redirects to spam sites and there are some PHP files I don't recognize. URL: https://example.com",
+      "expected_output": "Should recognize this as an active incident and skip normal intake. Should prioritize malware and integrity checks first: core file verification, suspicious PHP files, recently modified files, hidden admin accounts, unauthorized cron jobs, .htaccess redirect rules, base64/eval patterns in theme files. Should recommend immediate containment steps (change passwords, revoke sessions, take site offline if needed). Should then proceed with a broader audit to identify the attack vector.",
+      "assertions": [
+        "Recognizes this as an active security incident",
+        "Prioritizes malware and integrity checks before other audit categories",
+        "Recommends running wp core verify-checksums or equivalent",
+        "Checks for suspicious PHP files in web root and uploads",
+        "Checks for base64-encoded or obfuscated code",
+        "Checks for unauthorized admin accounts",
+        "Checks for unauthorized cron jobs",
+        "Checks .htaccess for suspicious redirect rules",
+        "Recommends immediate containment steps (password changes, session revocation)",
+        "After containment, investigates the attack vector"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Can you check if any of my WordPress plugins need updating? I have about 20 plugins installed.",
+      "expected_output": "Should recognize this as a narrow-scope request focused on dependency updates. Should not force a full security audit. Should ask for WP-CLI access or the site URL. Should check plugin versions against latest available, flag abandoned plugins (2+ years since last update), check for known vulnerabilities in installed versions, and produce a dependency report table. May suggest a broader security audit as a follow-up but should not insist.",
+      "assertions": [
+        "Focuses on dependency audit without forcing a full security audit",
+        "Asks about WP-CLI access or requests plugin list",
+        "Checks plugin versions against latest available",
+        "Flags plugins that are outdated",
+        "Flags plugins that appear abandoned (2+ years since last update)",
+        "Mentions checking for known vulnerabilities in installed versions",
+        "Produces a dependency report table",
+        "Does not require the user to answer questions about all 10 audit categories"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "I just set up a fresh WordPress install on my VPS. What should I do to secure it before launch?",
+      "expected_output": "Should recognize this as a proactive hardening request for a new installation. Should cover wp-config.php constants to set (DISALLOW_FILE_EDIT, FORCE_SSL_ADMIN, WP_DEBUG false, etc.), file permissions, security headers, authentication hardening (change admin username, enable 2FA, install security plugin), database prefix, XML-RPC disabling, directory listing, PHP execution in uploads, and backup setup. Should reference wp-hardening.md and security-headers.md. Should not check for malware or compromised files since it's a fresh install.",
+      "assertions": [
+        "Recognizes this is a new install hardening request",
+        "Covers wp-config.php security constants to set",
+        "Covers file permission recommendations",
+        "Covers HTTP security headers to add",
+        "Recommends changing default admin username",
+        "Recommends enabling two-factor authentication",
+        "Recommends installing a security plugin",
+        "Recommends disabling XML-RPC if not needed",
+        "Recommends blocking PHP execution in uploads directory",
+        "Recommends setting up automated backups",
+        "Does not check for malware on a fresh install"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Can you check the security headers on my WordPress site? URL: https://example.com",
+      "expected_output": "Should recognize this as a narrow-scope request focused on HTTP security headers. Should fetch response headers via curl or web_fetch. Should check all 7 security headers (HSTS, CSP, X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy, X-XSS-Protection) against recommended values. Should also check for information-leaking headers (X-Powered-By, Server version). Should provide specific fix instructions with code for the user's server type (Apache/Nginx) or as a PHP mu-plugin. Should reference security-headers.md.",
+      "assertions": [
+        "Focuses on headers without forcing a full security audit",
+        "Fetches HTTP response headers from the provided URL",
+        "Checks for Strict-Transport-Security header",
+        "Checks for Content-Security-Policy header",
+        "Checks for X-Content-Type-Options header",
+        "Checks for X-Frame-Options header",
+        "Checks for Referrer-Policy header",
+        "Checks for Permissions-Policy header",
+        "Checks for X-Powered-By and Server version disclosure",
+        "Provides specific implementation code for missing headers"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "My WordPress site isn't ranking well on Google. Can you help with SEO?",
+      "expected_output": "Should recognize this is an SEO question, not a security question. Should recommend the market-seo-audit skill instead. May briefly mention that security issues (like missing HTTPS or slow performance from security plugins) can affect SEO, but should not conduct a security audit.",
+      "assertions": [
+        "Recognizes this is an SEO question, not a security question",
+        "Recommends or defers to the market-seo-audit skill",
+        "Does not conduct a security audit for an SEO question"
+      ],
+      "files": []
+    }
+  ]
+}

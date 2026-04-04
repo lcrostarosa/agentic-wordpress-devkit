@@ -1,0 +1,72 @@
+{
+  "agent_name": "chatbot-ux-reviewer",
+  "evals": [
+    {
+      "id": 1,
+      "description": "New chatbot design from scratch — flows generated, not reviewed",
+      "input": {
+        "purpose": "Lead generation bot for a home services company — qualifies leads for plumbing, HVAC, and electrical services",
+        "platform": "wordpress-widget",
+        "tone": "friendly and professional",
+        "target_audience": "Homeowners looking for emergency or scheduled home services"
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "purpose matches the input",
+        "platform matches the input",
+        "ux_score is a number between 0 and 100",
+        "score_band is one of 'excellent', 'good', 'needs_work', or 'poor'",
+        "onboarding_sequence is present with recommended_variant, greeting_message, quick_actions, and rationale fields",
+        "onboarding_sequence.recommended_variant is one of 'concise', 'feature-forward', or 'question-led'",
+        "onboarding_sequence.greeting_message is under 40 words (wordpress-widget platform constraint)",
+        "onboarding_sequence.quick_actions is an array of 2-3 strings",
+        "flows is an array containing at minimum: happy-path, off-topic, error, and escalation flows",
+        "Each flow has name, trigger, steps, fallback, and ux_notes fields",
+        "Each step in a flow has actor ('user' or 'bot') and message fields",
+        "Steps use realistic example messages — not generic placeholders like '{{message}}'",
+        "Lead-gen specific flows are included (e.g., qualification questions, booking request)",
+        "dimensions object contains onboarding, flow_coverage, error_handling, platform_fit, and tone_consistency",
+        "Each dimension has score, issues array, and fix fields",
+        "priority_fixes is an array of up to 3 entries with dimension, issue, fix, and impact fields",
+        "impact in each priority fix is one of 'high', 'medium', or 'low'"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Review existing flows with UX issues — issues detected and flagged",
+      "input": {
+        "purpose": "FAQ bot for a software company",
+        "platform": "slack",
+        "tone": "formal",
+        "target_audience": "B2B SaaS trial users",
+        "conversation_flows": [
+          {
+            "name": "help-request",
+            "steps": [
+              { "actor": "user", "message": "How do I integrate with Salesforce?" },
+              { "actor": "bot", "message": "I don't understand. Please rephrase." },
+              { "actor": "user", "message": "Salesforce integration" },
+              { "actor": "bot", "message": "I don't understand. Please rephrase." }
+            ]
+          },
+          {
+            "name": "off-topic",
+            "steps": [
+              { "actor": "user", "message": "What's the weather like?" },
+              { "actor": "bot", "message": "I can't help with that." }
+            ]
+          }
+        ]
+      },
+      "assertions": [
+        "Returns valid JSON without a top-level error field",
+        "dimensions.error_handling.dead_ends_found is a non-empty array — the help-request loop where bot repeats 'I don't understand' is a dead end",
+        "dimensions.flow_coverage.missing_flows is a non-empty array — at minimum escalation flow is missing",
+        "The off-topic flow where bot says 'I can't help with that' with no redirect should be flagged as bad UX",
+        "ux_score reflects the detected issues — should be below 75 given the dead-end loops",
+        "priority_fixes is a non-empty array",
+        "flows array in output includes at minimum the reviewed flows plus any generated missing flows (happy-path, escalation)"
+      ]
+    }
+  ]
+}
