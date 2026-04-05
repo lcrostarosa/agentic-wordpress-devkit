@@ -43,6 +43,30 @@ install_plugin market-competitor-research
 install_plugin chatbot-creator
 install_plugin skill-builder
 
+echo "Installing blog skills..."
+install_plugin blog
+install_plugin blog-analyze
+install_plugin blog-audio
+install_plugin blog-audit
+install_plugin blog-brief
+install_plugin blog-calendar
+install_plugin blog-cannibalization
+install_plugin blog-chart
+install_plugin blog-factcheck
+install_plugin blog-geo
+install_plugin blog-google
+install_plugin blog-image
+install_plugin blog-notebooklm
+install_plugin blog-outline
+install_plugin blog-persona
+install_plugin blog-repurpose
+install_plugin blog-rewrite
+install_plugin blog-schema
+install_plugin blog-seo-check
+install_plugin blog-strategy
+install_plugin blog-taxonomy
+install_plugin blog-write
+
 echo ""
 if [ "$FAILED" -eq 0 ]; then
   echo "Done. All $INSTALLED plugins installed (scope: $SCOPE)."
