@@ -7,6 +7,8 @@ description: >
   Generates citation capsules and a 0-100 AI Citation Readiness score. Use when
   user says "geo", "ai citation", "ai optimization", "citation audit", "aeo",
   "perplexity optimization", "chatgpt citation".
+metadata:
+  version: 1.0.0
 ---
 
 # Blog GEO -- AI Citation Optimization Audit
@@ -256,3 +258,11 @@ If blog-google credentials include Tier 1 (GSC) and the post has a published URL
 3. Check indexation: `python3 skills/blog-google/scripts/run.py gsc_inspect <url> --json`
 4. Report indexation status, canonical selection, mobile usability.
 5. Falls back silently if not configured.
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize findings into clear, actionable prose.
+- Always present the 0-100 AI Citation Readiness score with the per-category breakdown — never report a score without the breakdown table.
+- Include platform-specific recommendations for ChatGPT, Perplexity, and Google AI Overviews separately — each platform has distinct citation preferences.
+- Ground every recommendation in data from the analysis — no unsupported claims.
+- If data is unavailable or inconclusive, say so explicitly rather than guessing.

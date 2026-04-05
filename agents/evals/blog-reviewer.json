@@ -1,0 +1,51 @@
+{
+  "agent_name": "blog-reviewer",
+  "evals": [
+    {
+      "id": 1,
+      "description": "Full quality score — returns 5-category 100-point score with severity breakdown",
+      "input": {
+        "task": "score_blog_post",
+        "file_path": "path/to/article.md"
+      },
+      "assertions": [
+        "Output includes an overall score out of 100",
+        "Output includes scores for all 5 categories: Content Quality, SEO Optimization, E-E-A-T Signals, Technical Elements, AI Citation Readiness",
+        "Each category score is a number between 0 and 100",
+        "Output includes a prioritized issue list with severity labels (Critical/High/Medium/Low)",
+        "Each issue includes a specific fix recommendation"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "AI detection check — identifies AI-detectable phrases and patterns",
+      "input": {
+        "task": "ai_detection",
+        "content": "In today's fast-paced digital landscape, it's crucial to delve into the multifaceted world of content marketing. This comprehensive guide will explore the key takeaways and actionable insights."
+      },
+      "assertions": [
+        "Output identifies AI-detectable phrases present in the content",
+        "Output includes burstiness score or pattern assessment",
+        "Flagged phrases include generic openers like 'In today's fast-paced' or similar AI tells",
+        "Output includes suggested human rewrites or alternatives for flagged phrases"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Source tier validation — classifies source quality",
+      "input": {
+        "task": "validate_sources",
+        "sources": [
+          {"url": "https://developers.google.com/search/docs", "claim": "Google uses E-E-A-T signals"},
+          {"url": "https://example-seo-blog.com/study", "claim": "88% of marketers use content marketing"}
+        ]
+      },
+      "assertions": [
+        "Each source is classified into a tier (Tier 1, 2, 3, or Reject)",
+        "Google developers.google.com is classified as Tier 1",
+        "Sources without named methodology or from content mills are flagged for rejection",
+        "Output includes a reason for each classification"
+      ]
+    }
+  ]
+}

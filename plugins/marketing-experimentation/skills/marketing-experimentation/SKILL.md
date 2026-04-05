@@ -272,3 +272,12 @@ If running fewer than 2 tests/month: focus on reducing implementation complexity
 - **False discovery rate**: Running 20 tests, 1 wins at 95% CI — that's likely a false positive. Require 97.5% CI for high-stakes decisions.
 - **Novelty effect**: Users change behavior temporarily when they see something new. Run tests for at least 2 weeks to let novelty fade.
 - **Interaction effects**: Two simultaneous tests on the same page can contaminate results — segment users so they only see one test at a time.
+
+---
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize into structured experiment plans and reports.
+- Every hypothesis needs a measurable metric — no vague goals like "improve the page."
+- Call out minimum sample size and significance threshold for every test recommendation.
+- If data is unavailable, say so explicitly rather than guessing.

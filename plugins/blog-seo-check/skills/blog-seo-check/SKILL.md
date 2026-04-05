@@ -9,6 +9,8 @@ description: >
   prioritized fix list with specific recommendations. Use when user says "seo check",
   "check seo", "validate seo", "blog seo", "seo validation", "on-page seo",
   "title tag check", "meta description check", "heading check", "link audit".
+metadata:
+  version: 1.0.0
 ---
 
 # Blog SEO Check -- Post-Writing Validation
@@ -203,3 +205,11 @@ If the post has a published URL and blog-google credentials are available:
    - CWV field data (LCP, INP, CLS) with traffic-light ratings
    - Top 3 opportunities with estimated savings
 4. Falls back silently if credentials unavailable or URL not published.
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize findings into clear, actionable prose.
+- Present results as a structured pass/fail checklist with specific fix instructions for each failure — never report issues without actionable remediation steps.
+- Prioritize fixes by SEO impact so the user knows what to address first.
+- Ground every recommendation in data from the analysis — no unsupported claims.
+- If data is unavailable or inconclusive, say so explicitly rather than guessing.

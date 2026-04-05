@@ -9,6 +9,8 @@ description: >
   through original research and first-hand experience.
   Use when user says "blog strategy", "content strategy", "blog positioning",
   "what should I blog about", "blog topics", "content pillars", "blog ideation".
+metadata:
+  version: 1.0.0
 ---
 
 # Blog Strategy -- Positioning & Content Architecture
@@ -352,3 +354,11 @@ Output format:
 3. Run `/blog write` to generate the first article
 4. Set up AI citation monitoring for target queries
 ```
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize findings into clear, actionable prose.
+- Deliver the strategy as a structured document with executive summary, pillars, roadmap, and measurement framework — not as a loose collection of ideas.
+- Every strategic recommendation must be tied to a competitive gap, audience need, or data finding from the discovery and research phases.
+- Ground every recommendation in data from the analysis — no unsupported claims.
+- If data is unavailable or inconclusive, say so explicitly rather than guessing.

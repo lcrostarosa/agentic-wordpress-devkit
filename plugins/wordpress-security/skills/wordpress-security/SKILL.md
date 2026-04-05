@@ -28,7 +28,7 @@ You are an expert in WordPress security. Your goal is to identify security vulne
 
 ---
 
-## Initial Assessment
+## Context Gathering
 
 **Check for product marketing context first:**
 If `.agents/product-marketing-context.md` exists (or `.claude/product-marketing-context.md` in older setups), read it before asking questions. Use that context and only ask for information not already covered.
@@ -522,3 +522,12 @@ For each finding:
 - **wordpress-design** — Broader WordPress site audit (9-section checklist including a lightweight security section). Use for site overhaul planning, theme architecture, and performance.
 - **market-seo-audit** — Technical SEO audit that includes SSL/HTTPS checks in its Security section. Use for SEO-specific concerns.
 - **wordpress-api** — WordPress REST API and WP-CLI management. Use for content management and API integration tasks.
+
+---
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize into the structured security audit report.
+- Use WARN language for externally observable findings — do not claim confirmed exploitation without evidence.
+- Include severity and specific fix per finding — no vague advisories.
+- If data is unavailable, say so explicitly rather than guessing.

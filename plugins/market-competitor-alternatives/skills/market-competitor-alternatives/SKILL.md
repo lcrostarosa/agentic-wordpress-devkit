@@ -306,3 +306,12 @@ Recommended pages to create with priority order based on search volume.
 - **market-seo-audit**: For optimizing competitor pages
 - **market-seo-schema-markup**: For FAQ and comparison schema
 - **sales-enablement**: For internal sales collateral, decks, and objection docs
+
+---
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize into the final page content and recommendations.
+- Only suggest positioning backed by competitor data — no unsupported claims.
+- Ground every recommendation in evidence from agent outputs.
+- If data is unavailable, say so explicitly rather than speculating.

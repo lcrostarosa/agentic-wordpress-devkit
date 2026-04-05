@@ -10,6 +10,8 @@ description: >
   markdown, HTML, URL). Use when user says "analyze blog", "audit blog",
   "blog score", "check blog quality", "blog review", "rate this blog",
   "blog health check".
+metadata:
+  version: 1.0.0
 ---
 
 # Blog Analyzer -- Quality Audit & Scoring
@@ -284,3 +286,11 @@ summary table. Use `--sort score` to order by score (ascending by default).
 
 Run `/blog rewrite <file>` on each, starting from lowest score.
 ```
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize findings into clear, actionable prose.
+- Always present the score breakdown table and rating band — never report a score without context.
+- Flag AI content detection results only when confidence exceeds the defined thresholds — avoid false alarms.
+- Ground every recommendation in data from the analysis — no unsupported claims.
+- If data is unavailable or inconclusive, say so explicitly rather than guessing.

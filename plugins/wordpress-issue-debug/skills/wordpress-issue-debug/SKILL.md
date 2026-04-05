@@ -273,3 +273,13 @@ Then restart from Step 3 with the additional context, treating this as a new ite
 - **market-seo-audit** — technical SEO, crawlability, on-page issues
 - **market-seo-schema-markup** — structured data implementation and debugging
 - **marketing-page-cro** — conversion issues, UX problems, landing page analysis
+
+---
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize into the structured fix report.
+- Always include cause and fix for every issue found — no diagnosis without remediation.
+- Use ⚠️ for warnings, not errors — reserve error language for confirmed failures.
+- Report validator failures with manual fallback steps so the user is never stuck.
+- If data is unavailable, say so explicitly rather than guessing.

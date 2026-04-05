@@ -245,3 +245,11 @@ All data stored inside the skill directory:
 Load on-demand -- do NOT load all at startup:
 - `references/commands.md` -- Full CLI commands, parameters, and workflow patterns
 - `references/troubleshooting.md` -- Error solutions, recovery procedures, debugging
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize findings into clear, actionable prose.
+- Always attribute notebook query responses to the specific notebook and source documents they came from.
+- When called internally by blog-write or blog-researcher, return structured data silently — never prompt the user or display status messages.
+- Ground every recommendation in data from the analysis — no unsupported claims.
+- If data is unavailable or inconclusive, say so explicitly rather than guessing.

@@ -74,6 +74,50 @@ See [`guides/agent-authoring.md`](guides/agent-authoring.md) — covers tier sel
 
 See [`guides/skill-authoring.md`](guides/skill-authoring.md) — covers file location and registration, required frontmatter, all skill sections in order (title, context gathering, phases, output rules), intake conventions, branching patterns, agent invocation, synthesis rules, naming conventions, and when to create vs. extend a skill.
 
+## Blog Skill Suite (claude-blog)
+
+22 blog skills integrated from the [claude-blog](https://github.com/AgriciDaniel/claude-blog) plugin (v1.6.5). Uses 4 dedicated blog agents plus shared references and 12 content templates.
+
+### Blog Agents (in `agents/`)
+
+| Agent | Tier | Purpose |
+|---|---|---|
+| `blog-researcher` | Tier 1 (haiku) | Find statistics, images, competitive data |
+| `blog-writer` | Tier 2 (sonnet) | Content generation with dual optimization |
+| `blog-seo` | Tier 2 (sonnet) | On-page SEO validation |
+| `blog-reviewer` | Tier 2 (sonnet) | Quality scoring and AI content detection |
+
+### Blog Skills (in `plugins/blog-*/`)
+
+| Skill | Category | Purpose |
+|---|---|---|
+| `blog` | content | Main orchestrator — routes to sub-skills |
+| `blog-write` | content | New article generation (7 phases) |
+| `blog-rewrite` | content | Optimize existing posts |
+| `blog-analyze` | content | 5-category 100-point scoring |
+| `blog-audit` | content | Full-site health assessment |
+| `blog-brief` | content | Content brief generation |
+| `blog-outline` | content | SERP-informed outline |
+| `blog-strategy` | marketing | Topic cluster architecture |
+| `blog-calendar` | marketing | Editorial calendar |
+| `blog-seo-check` | seo | 11-point on-page SEO validation |
+| `blog-schema` | seo | JSON-LD schema generation |
+| `blog-chart` | content | SVG chart generation (internal) |
+| `blog-image` | content | AI image generation (Gemini) |
+| `blog-audio` | content | Audio narration (Gemini TTS) |
+| `blog-geo` | seo | AI citation optimization audit |
+| `blog-factcheck` | content | Source verification |
+| `blog-cannibalization` | seo | Keyword overlap detection |
+| `blog-repurpose` | marketing | Cross-platform content adaptation |
+| `blog-persona` | content | Writing voice management |
+| `blog-taxonomy` | content | Tag/category CMS sync |
+| `blog-notebooklm` | content | NotebookLM research integration |
+| `blog-google` | seo | Google API integration (PSI, CrUX, GSC, GA4) |
+
+### Blog References (in `references/blog/`)
+
+14 shared reference docs covering content rules, templates, quality scoring, E-E-A-T signals, SEO optimization, visual media, distribution, and AI citations. Also duplicated inside `plugins/blog/skills/blog/references/` for skill-local access.
+
 ## Key Conventions
 
 - **Agents return JSON only** — no prose, no recommendations, no user interaction. Skills synthesize.

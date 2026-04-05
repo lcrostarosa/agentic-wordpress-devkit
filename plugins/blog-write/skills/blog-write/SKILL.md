@@ -9,6 +9,8 @@ description: >
   and HTML output.
   Use when user says "write blog", "new blog post", "create article",
   "write about", "draft blog", "generate blog post".
+metadata:
+  version: 1.0.0
 ---
 
 # Blog Writer -- New Article Generation
@@ -479,3 +481,11 @@ Present the completed article with a summary:
 - Generate VideoObject schema: `/blog schema <file>` (includes video markup)
 - Generate audio narration: `/blog audio generate <file>` (optional)
 ```
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize findings into clear, actionable prose.
+- Present the outline for user approval before writing the full article — never skip the approval step.
+- Every statistic in the final article must have a named source with URL and year — no fabricated or unsourced data.
+- Ground every recommendation in data from the analysis — no unsupported claims.
+- If data is unavailable or inconclusive, say so explicitly rather than guessing.

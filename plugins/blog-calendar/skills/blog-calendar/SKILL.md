@@ -8,6 +8,8 @@ description: >
   authority and AI citation freshness requirements (30-day update cycles).
   Use when user says "editorial calendar", "content calendar", "blog calendar",
   "publishing schedule", "blog plan", "content plan", "what should I write".
+metadata:
+  version: 1.0.0
 ---
 
 # Blog Calendar -- Editorial Planning
@@ -287,3 +289,11 @@ Save the calendar and suggest:
 4. Re-run `/blog calendar` next month/quarter for the next plan
 5. Review the Content Decay Report weekly and address Critical items first
 6. Track Topic Cluster Progress monthly to ensure clusters reach completion
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize findings into clear, actionable prose.
+- Always apply the 60/30/10 content mix formula (new / refresh / repurposed) when generating calendars.
+- Include content decay detection results for existing posts — never plan new content without assessing staleness first.
+- Ground every recommendation in data from the analysis — no unsupported claims.
+- If data is unavailable or inconclusive, say so explicitly rather than guessing.

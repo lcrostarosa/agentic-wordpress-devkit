@@ -1,0 +1,59 @@
+{
+  "agent_name": "blog-writer",
+  "evals": [
+    {
+      "id": 1,
+      "description": "New article — answer-first structure with H2/H3 hierarchy and sourced statistics",
+      "input": {
+        "task": "write_article",
+        "title": "WordPress Security Best Practices for 2025",
+        "target_keyword": "WordPress security best practices",
+        "word_count_target": 2000,
+        "outline": ["Introduction", "Keep WordPress Updated", "Use Strong Passwords", "Install a Security Plugin", "FAQ"]
+      },
+      "assertions": [
+        "Article opens with an answer-first paragraph that directly addresses the topic",
+        "H2 headings follow the provided outline structure",
+        "Article includes at least 2 statistics with source attribution",
+        "Statistics are from named, credible sources (not generic claims)",
+        "Article includes an FAQ section with at least 3 questions",
+        "Headings do not start with 'In this article' or similar meta commentary",
+        "Article avoids generic AI phrases like 'in today's digital landscape' or 'it's crucial to'"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Section rewrite — rewrites a single section with improved readability",
+      "input": {
+        "task": "rewrite_section",
+        "section_heading": "Why WordPress Security Matters",
+        "current_content": "Security is very important for WordPress sites. Many sites get hacked every day. You should protect your site. There are many ways to do this.",
+        "target_keyword": "WordPress security"
+      },
+      "assertions": [
+        "Rewritten section is more specific and concrete than the original",
+        "Rewritten section includes at least one specific statistic or factual claim",
+        "Passive voice is reduced compared to the original",
+        "Section maintains the target keyword naturally without keyword stuffing",
+        "Rewritten version is longer and more substantive than the original"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Introduction only — writes a strong hook that passes AI detection",
+      "input": {
+        "task": "write_introduction",
+        "title": "How to Speed Up WordPress: A 2025 Performance Guide",
+        "target_keyword": "how to speed up WordPress",
+        "word_count": 150
+      },
+      "assertions": [
+        "Introduction does not start with 'In today's' or other AI-tell openers",
+        "Introduction states the core answer or value proposition within the first 2 sentences",
+        "Introduction includes a specific hook (statistic, surprising fact, or direct question)",
+        "Word count is approximately 150 words",
+        "Target keyword appears naturally in the first paragraph"
+      ]
+    }
+  ]
+}

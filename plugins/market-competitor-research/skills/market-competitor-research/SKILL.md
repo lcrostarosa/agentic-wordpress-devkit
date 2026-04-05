@@ -142,3 +142,12 @@ Full report with all sections from market-strategic-synthesis plus:
 - Acknowledge where competitors are genuinely strong — honest analysis is more useful than flattery
 - Every recommendation: what to do, why (with evidence), expected impact, effort, timeline
 - Do not show agent JSON to the user — only the synthesized report
+
+---
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize into the structured report.
+- Only list competitors with evidence — no speculation on internal metrics.
+- Ground every recommendation in data from agent outputs.
+- If data is unavailable, say so explicitly rather than guessing.

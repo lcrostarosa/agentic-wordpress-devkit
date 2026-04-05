@@ -1,0 +1,52 @@
+{
+  "agent_name": "blog-seo",
+  "evals": [
+    {
+      "id": 1,
+      "description": "Full SEO validation — 11-point pass/fail checklist for a complete post",
+      "input": {
+        "task": "validate_seo",
+        "file_path": "path/to/article.md",
+        "target_keyword": "WordPress security best practices"
+      },
+      "assertions": [
+        "Output includes a pass/fail checklist with at least 11 SEO checkpoints",
+        "Checkpoints include: title tag, meta description, H1, heading hierarchy, internal links, external links, canonical URL, OG title, OG description, Twitter Card, URL structure",
+        "Each checkpoint has a Pass or Fail status",
+        "Failed checkpoints include a specific fix (not vague advice like 'improve your title')",
+        "Output includes an overall pass/fail summary"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Title tag optimization — validates keyword placement and length",
+      "input": {
+        "task": "check_title",
+        "title": "WordPress Security: The Ultimate Guide to Protecting Your Site in 2025",
+        "target_keyword": "WordPress security",
+        "character_count": 68
+      },
+      "assertions": [
+        "Output confirms whether the target keyword appears in the title",
+        "Output flags if title exceeds 60 characters (this title is 68 chars)",
+        "Output includes a suggested shorter title if the current one is too long",
+        "Keyword placement assessment notes whether the keyword is near the beginning"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Missing meta description — flags absence and provides a template",
+      "input": {
+        "task": "check_meta_description",
+        "meta_description": null,
+        "target_keyword": "WordPress security"
+      },
+      "assertions": [
+        "Output flags the missing meta description as a Fail",
+        "Output provides a template or example meta description (150-160 characters)",
+        "Suggested meta description includes the target keyword",
+        "Suggested meta description is compelling and includes a call to action or value prop"
+      ]
+    }
+  ]
+}

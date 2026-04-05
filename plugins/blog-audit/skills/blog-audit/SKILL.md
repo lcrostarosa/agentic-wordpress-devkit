@@ -6,6 +6,8 @@ description: >
   Spawns parallel subagents for comprehensive analysis. Produces per-post scores
   and a prioritized action queue. Use when user says "audit blog", "blog audit",
   "site audit", "blog health", "audit all posts", "check all blogs".
+metadata:
+  version: 1.0.0
 ---
 
 # Blog Audit -- Full-Site Health Assessment
@@ -205,3 +207,11 @@ After saving, inform the user:
 - Summary of findings (total posts, average score, critical issues count)
 - Suggest running `/blog analyze <file>` on the lowest-scoring post first
 - Suggest running `/blog geo <file>` for AI citation optimization on key posts
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize findings into clear, actionable prose.
+- Always save the full report to `blog-audit-report.md` and confirm the file path to the user.
+- Present the prioritized action queue sorted by score (lowest first) so the user knows where to start.
+- Ground every recommendation in data from the analysis — no unsupported claims.
+- If data is unavailable or inconclusive, say so explicitly rather than guessing.

@@ -299,3 +299,11 @@ Load on-demand - do NOT load all at startup:
 - `references/prompt-engineering-blog.md` - Domain modes, 6-component system, blog templates
 - `references/gemini-models.md` - Model specs, rate limits, aspect ratios, pricing
 - `references/mcp-tools.md` - MCP tool parameters and response formats
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize findings into clear, actionable prose.
+- Always provide descriptive alt text (10-125 characters) with every generated image — never deliver an image without alt text.
+- When MCP is unavailable during an internal call (from blog-write/blog-rewrite), return silently — never block the writing workflow.
+- Ground every recommendation in data from the analysis — no unsupported claims.
+- If data is unavailable or inconclusive, say so explicitly rather than guessing.

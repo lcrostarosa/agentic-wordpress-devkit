@@ -6,6 +6,8 @@ description: >
   discussion posts, email newsletter excerpts. Adapts tone for each platform.
   Use when user says "repurpose", "blog repurpose", "share blog", "social media",
   "twitter thread", "linkedin post", "youtube script", "reddit post".
+metadata:
+  version: 1.0.0
 ---
 
 # Blog Repurpose -- Cross-Platform Content Adaptation
@@ -232,3 +234,11 @@ Present a summary after saving:
 - For LinkedIn: post Tuesday-Thursday for highest engagement
 - For Reddit: post during US morning hours (8-10am EST)
 ```
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize findings into clear, actionable prose.
+- Adapt tone, format, and length to match each platform's conventions — never produce generic cross-platform copy.
+- Every repurposed piece must be self-contained and deliver value without requiring the reader to click through to the original post.
+- Ground every recommendation in data from the analysis — no unsupported claims.
+- If data is unavailable or inconclusive, say so explicitly rather than guessing.

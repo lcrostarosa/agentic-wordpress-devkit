@@ -9,6 +9,8 @@ description: >
   Briefs are optimized for Google rankings and AI citations (GEO/AEO). Use
   when user says "content brief", "blog brief", "write brief", "outline blog",
   "plan blog post", "blog outline", "content outline".
+metadata:
+  version: 1.0.0
 ---
 
 # Blog Brief Generator -- Content Planning
@@ -255,3 +257,11 @@ claim that can stand alone when quoted.
 
 Save to the user's project as `briefs/[slug]-brief.md` or to a location
 they specify. Confirm the brief is ready for `/blog write`.
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize findings into clear, actionable prose.
+- Every brief must include a template recommendation with rationale — never omit the template selection step.
+- Include at least 8 statistics with named sources and URLs — briefs without data are incomplete.
+- Ground every recommendation in data from the analysis — no unsupported claims.
+- If data is unavailable or inconclusive, say so explicitly rather than guessing.

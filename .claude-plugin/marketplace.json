@@ -436,37 +436,17 @@
     {
       "name": "blog",
       "source": "./plugins/blog",
-      "description": "Full-lifecycle blog engine with 21 commands, 12 content templates, 5-category 100-point scoring, and 4 specialized agents. Routes to sub-skills for writing, rewriting, analysis, audits, strategy, and more.",
-      "version": "1.0.0",
+      "description": "Full-lifecycle blog engine with 21 commands, 12 content templates, 5-category 100-point scoring, and 4 specialized agents. Main orchestrator that routes to sub-skills based on command.",
+      "version": "1.6.5",
       "license": "MIT",
       "keywords": ["blog", "orchestrator", "writing", "seo-content", "ai-citations", "geo", "eeat"],
       "category": "content",
       "tags": ["blog", "content", "orchestrator"]
     },
     {
-      "name": "blog-write",
-      "source": "./plugins/blog-write",
-      "description": "Write new blog articles from scratch optimized for Google rankings and AI citations. 7-phase workflow with template selection, research, SVG charts, quality checks, and answer-first formatting.",
-      "version": "1.0.0",
-      "license": "MIT",
-      "keywords": ["blog", "writing", "article", "seo-content", "ai-citations", "templates"],
-      "category": "content",
-      "tags": ["blog", "writing", "content"]
-    },
-    {
-      "name": "blog-rewrite",
-      "source": "./plugins/blog-rewrite",
-      "description": "Rewrite and optimize existing blog posts for Google rankings and AI citations. 6-phase optimization with audit scoring, research, chart generation, AI detection removal, and verification.",
-      "version": "1.0.0",
-      "license": "MIT",
-      "keywords": ["blog", "rewrite", "optimize", "refresh", "ai-detection"],
-      "category": "content",
-      "tags": ["blog", "rewrite", "optimization"]
-    },
-    {
       "name": "blog-analyze",
       "source": "./plugins/blog-analyze",
-      "description": "Audit and score blog posts on a 5-category 100-point scoring system with AI content detection. Covers Content Quality (30), SEO (25), E-E-A-T (15), Technical (15), AI Citation (15).",
+      "description": "Audit and score blog posts on a 5-category 100-point scoring system with AI content detection. Scores Content Quality, SEO, E-E-A-T, Technical, and AI Citation dimensions.",
       "version": "1.0.0",
       "license": "MIT",
       "keywords": ["blog", "analyze", "scoring", "quality", "ai-detection", "eeat"],
@@ -474,9 +454,19 @@
       "tags": ["blog", "analysis", "quality"]
     },
     {
+      "name": "blog-audio",
+      "source": "./plugins/blog-audio",
+      "description": "Generate audio narration of blog posts using Google Gemini TTS. Summary, full article, and dialogue podcast modes with 30 voice options.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": ["blog", "audio", "tts", "narration", "podcast", "gemini"],
+      "category": "content",
+      "tags": ["blog", "audio", "accessibility"]
+    },
+    {
       "name": "blog-audit",
       "source": "./plugins/blog-audit",
-      "description": "Full-site blog health assessment with parallel subagents for content quality, SEO, schema, link health, freshness detection, and AI citation readiness.",
+      "description": "Full-site blog health assessment with parallel subagents for content quality, SEO, schema, links, freshness, and AI readiness.",
       "version": "1.0.0",
       "license": "MIT",
       "keywords": ["blog", "audit", "site-health", "content-quality", "freshness"],
@@ -486,7 +476,7 @@
     {
       "name": "blog-brief",
       "source": "./plugins/blog-brief",
-      "description": "Generate detailed content briefs with keyword research, competitive SERP analysis, statistics sourcing, template recommendation, and multi-channel distribution planning.",
+      "description": "Generate detailed content briefs with keyword research, competitive analysis, statistics, and distribution planning.",
       "version": "1.0.0",
       "license": "MIT",
       "keywords": ["blog", "brief", "keyword-research", "competitive-analysis", "content-planning"],
@@ -494,29 +484,9 @@
       "tags": ["blog", "brief", "planning"]
     },
     {
-      "name": "blog-outline",
-      "source": "./plugins/blog-outline",
-      "description": "SERP-informed outline generation with H2/H3 heading hierarchy, competitive content gap analysis, and visual element placement markers.",
-      "version": "1.0.0",
-      "license": "MIT",
-      "keywords": ["blog", "outline", "headings", "serp-analysis", "content-structure"],
-      "category": "content",
-      "tags": ["blog", "outline", "planning"]
-    },
-    {
-      "name": "blog-strategy",
-      "source": "./plugins/blog-strategy",
-      "description": "Blog strategy development with topic cluster architecture, audience segmentation, competitive landscape analysis, AI citation surface strategy, and 90-day roadmap.",
-      "version": "1.0.0",
-      "license": "MIT",
-      "keywords": ["blog", "strategy", "topic-clusters", "audience", "content-marketing", "ai-citations"],
-      "category": "marketing",
-      "tags": ["blog", "strategy", "marketing"]
-    },
-    {
       "name": "blog-calendar",
       "source": "./plugins/blog-calendar",
-      "description": "Generate editorial calendars with topic clusters, content decay detection, freshness update scheduling, seasonal hooks, and cross-platform distribution planning.",
+      "description": "Generate editorial calendars with topic clusters, content decay detection, freshness scheduling, and cross-platform distribution.",
       "version": "1.0.0",
       "license": "MIT",
       "keywords": ["blog", "calendar", "editorial", "scheduling", "content-planning", "distribution"],
@@ -524,79 +494,9 @@
       "tags": ["blog", "calendar", "planning"]
     },
     {
-      "name": "blog-seo-check",
-      "source": "./plugins/blog-seo-check",
-      "description": "Post-writing SEO validation with 11-point pass/fail checklist covering title tag, meta description, heading hierarchy, internal/external links, OG tags, schema, and URL structure.",
-      "version": "1.0.0",
-      "license": "MIT",
-      "keywords": ["blog", "seo", "on-page", "validation", "title-tag", "meta-description", "headings"],
-      "category": "seo",
-      "tags": ["blog", "seo", "validation"]
-    },
-    {
-      "name": "blog-schema",
-      "source": "./plugins/blog-schema",
-      "description": "Generate complete JSON-LD schema markup for blog posts using @graph pattern. BlogPosting, Person, Organization, BreadcrumbList, FAQPage, ImageObject, VideoObject.",
-      "version": "1.0.0",
-      "license": "MIT",
-      "keywords": ["blog", "schema", "json-ld", "structured-data", "rich-results", "faq-schema"],
-      "category": "seo",
-      "tags": ["blog", "schema", "seo"]
-    },
-    {
-      "name": "blog-chart",
-      "source": "./plugins/blog-chart",
-      "description": "Generate dark-mode-compatible inline SVG data visualization charts. 7 types: horizontal bar, grouped bar, donut, line, lollipop, area, radar. Internal sub-skill for blog-write and blog-rewrite.",
-      "version": "1.0.0",
-      "license": "MIT",
-      "keywords": ["blog", "chart", "svg", "data-visualization", "dark-mode"],
-      "category": "content",
-      "tags": ["blog", "charts", "visual"]
-    },
-    {
-      "name": "blog-image",
-      "source": "./plugins/blog-image",
-      "description": "AI image generation and editing for blog content powered by Gemini via nanobanana-mcp. Hero images, inline illustrations, social preview cards, and OG images with 6 domain modes.",
-      "version": "1.0.0",
-      "license": "MIT",
-      "keywords": ["blog", "image", "ai-generation", "gemini", "hero-image", "og-image"],
-      "category": "content",
-      "tags": ["blog", "images", "ai-generation"]
-    },
-    {
-      "name": "blog-audio",
-      "source": "./plugins/blog-audio",
-      "description": "Generate audio narration of blog posts using Google Gemini TTS. Summary, full article, and two-person podcast dialogue modes with 30 voice options.",
-      "version": "1.0.0",
-      "license": "MIT",
-      "keywords": ["blog", "audio", "tts", "narration", "podcast", "gemini"],
-      "category": "content",
-      "tags": ["blog", "audio", "accessibility"]
-    },
-    {
-      "name": "blog-geo",
-      "source": "./plugins/blog-geo",
-      "description": "AI citation optimization audit for ChatGPT, Perplexity, and Google AI Overviews. Passage-level citability scoring with citation capsule generation and platform-specific recommendations.",
-      "version": "1.0.0",
-      "license": "MIT",
-      "keywords": ["blog", "geo", "aeo", "ai-citations", "perplexity", "chatgpt", "ai-overviews"],
-      "category": "seo",
-      "tags": ["blog", "geo", "ai-citations"]
-    },
-    {
-      "name": "blog-factcheck",
-      "source": "./plugins/blog-factcheck",
-      "description": "Verify statistics and claims in blog posts by fetching cited source URLs. Confidence scoring per claim with fabrication detection and replacement source suggestions.",
-      "version": "1.0.0",
-      "license": "MIT",
-      "keywords": ["blog", "factcheck", "verification", "statistics", "sources", "accuracy"],
-      "category": "content",
-      "tags": ["blog", "factcheck", "quality"]
-    },
-    {
       "name": "blog-cannibalization",
       "source": "./plugins/blog-cannibalization",
-      "description": "Detect keyword cannibalization across blog posts with local file-based or DataForSEO API modes. Severity scoring with merge, differentiate, or canonical recommendations.",
+      "description": "Detect keyword cannibalization across blog posts. Local file-based mode and optional DataForSEO API mode with severity scoring and merge/differentiate recommendations.",
       "version": "1.0.0",
       "license": "MIT",
       "keywords": ["blog", "cannibalization", "keyword-overlap", "deduplication", "dataforseo"],
@@ -604,39 +504,59 @@
       "tags": ["blog", "seo", "cannibalization"]
     },
     {
-      "name": "blog-repurpose",
-      "source": "./plugins/blog-repurpose",
-      "description": "Repurpose blog posts for Twitter/X threads, LinkedIn articles, YouTube scripts, Reddit posts, and email newsletters with platform-specific formatting and tone adaptation.",
+      "name": "blog-chart",
+      "source": "./plugins/blog-chart",
+      "description": "Generate dark-mode-compatible inline SVG data visualization charts. 7 chart types: horizontal bar, grouped bar, donut, line, lollipop, area, and radar.",
       "version": "1.0.0",
       "license": "MIT",
-      "keywords": ["blog", "repurpose", "social-media", "email", "youtube", "linkedin", "reddit"],
-      "category": "marketing",
-      "tags": ["blog", "repurpose", "distribution"]
+      "keywords": ["blog", "chart", "svg", "data-visualization", "dark-mode"],
+      "category": "content",
+      "tags": ["blog", "charts", "visual"]
     },
     {
-      "name": "blog-persona",
-      "source": "./plugins/blog-persona",
-      "description": "Create and manage writing personas with NNGroup 4-dimension tone framework. Enforces brand voice during blog-write and blog-rewrite workflows.",
+      "name": "blog-factcheck",
+      "source": "./plugins/blog-factcheck",
+      "description": "Verify statistics and claims in blog posts by fetching cited sources. Confidence scoring per claim with replacement source suggestions.",
       "version": "1.0.0",
       "license": "MIT",
-      "keywords": ["blog", "persona", "voice", "tone", "brand-voice", "writing-style"],
+      "keywords": ["blog", "factcheck", "verification", "statistics", "sources", "accuracy"],
       "category": "content",
-      "tags": ["blog", "persona", "brand"]
+      "tags": ["blog", "factcheck", "quality"]
     },
     {
-      "name": "blog-taxonomy",
-      "source": "./plugins/blog-taxonomy",
-      "description": "Extract, suggest, and sync tags and categories for blog posts. Supports WordPress REST, Shopify GraphQL, Ghost Admin, Strapi, and Sanity CMS platforms.",
+      "name": "blog-geo",
+      "source": "./plugins/blog-geo",
+      "description": "AI citation optimization audit for ChatGPT, Perplexity, and Google AI Overviews. Passage-level citability scoring with citation capsule generation.",
       "version": "1.0.0",
       "license": "MIT",
-      "keywords": ["blog", "taxonomy", "tags", "categories", "cms", "wordpress", "shopify"],
+      "keywords": ["blog", "geo", "aeo", "ai-citations", "perplexity", "chatgpt", "ai-overviews"],
+      "category": "seo",
+      "tags": ["blog", "geo", "ai-citations"]
+    },
+    {
+      "name": "blog-google",
+      "source": "./plugins/blog-google",
+      "description": "Google API integration for blog performance. PageSpeed Insights, CrUX, Search Console, GA4, YouTube search, NLP entity analysis, and Keyword Planner.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": ["blog", "google", "pagespeed", "crux", "search-console", "ga4", "youtube", "nlp"],
+      "category": "seo",
+      "tags": ["blog", "google-api", "seo"]
+    },
+    {
+      "name": "blog-image",
+      "source": "./plugins/blog-image",
+      "description": "AI image generation and editing for blog content powered by Gemini via nanobanana-mcp. Hero images, inline illustrations, and social preview cards.",
+      "version": "1.4.0",
+      "license": "MIT",
+      "keywords": ["blog", "image", "ai-generation", "gemini", "hero-image", "og-image"],
       "category": "content",
-      "tags": ["blog", "taxonomy", "cms"]
+      "tags": ["blog", "images", "ai-generation"]
     },
     {
       "name": "blog-notebooklm",
       "source": "./plugins/blog-notebooklm",
-      "description": "Query Google NotebookLM notebooks for source-grounded, citation-backed research. Smart discovery, library management, and headless browser integration.",
+      "description": "Query Google NotebookLM notebooks for source-grounded, citation-backed answers. Smart discovery, library management, and headless browser integration.",
       "version": "1.0.0",
       "license": "MIT",
       "keywords": ["blog", "notebooklm", "research", "citations", "source-grounded", "google"],
@@ -644,14 +564,94 @@
       "tags": ["blog", "research", "notebooklm"]
     },
     {
-      "name": "blog-google",
-      "source": "./plugins/blog-google",
-      "description": "Google API integration for blog performance. PageSpeed Insights, CrUX field data, Search Console queries, GA4 organic traffic, YouTube video search, NLP entity analysis, and Keyword Planner.",
+      "name": "blog-outline",
+      "source": "./plugins/blog-outline",
+      "description": "SERP-informed outline generation with H2/H3 heading hierarchy, competitive gap analysis, and visual element placement markers.",
       "version": "1.0.0",
       "license": "MIT",
-      "keywords": ["blog", "google", "pagespeed", "crux", "search-console", "ga4", "youtube", "nlp"],
+      "keywords": ["blog", "outline", "headings", "serp-analysis", "content-structure"],
+      "category": "content",
+      "tags": ["blog", "outline", "planning"]
+    },
+    {
+      "name": "blog-persona",
+      "source": "./plugins/blog-persona",
+      "description": "Create and manage writing personas with NNGroup 4-dimension tone framework (funny-serious, formal-casual, respectful-irreverent, enthusiastic-matter-of-fact).",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": ["blog", "persona", "voice", "tone", "brand-voice", "writing-style"],
+      "category": "content",
+      "tags": ["blog", "persona", "brand"]
+    },
+    {
+      "name": "blog-repurpose",
+      "source": "./plugins/blog-repurpose",
+      "description": "Repurpose blog posts for social media, email, YouTube, Reddit, and LinkedIn. Platform-specific formatting and tone adaptation.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": ["blog", "repurpose", "social-media", "email", "youtube", "linkedin", "reddit"],
+      "category": "marketing",
+      "tags": ["blog", "repurpose", "distribution"]
+    },
+    {
+      "name": "blog-rewrite",
+      "source": "./plugins/blog-rewrite",
+      "description": "Rewrite and optimize existing blog posts for Google rankings and AI citations. 6-phase optimization with audit, research, and AI detection removal.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": ["blog", "rewrite", "optimize", "refresh", "ai-detection"],
+      "category": "content",
+      "tags": ["blog", "rewrite", "optimization"]
+    },
+    {
+      "name": "blog-schema",
+      "source": "./plugins/blog-schema",
+      "description": "Generate complete JSON-LD schema markup for blog posts using @graph pattern. BlogPosting, Person, Organization, BreadcrumbList, FAQPage, and VideoObject.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": ["blog", "schema", "json-ld", "structured-data", "rich-results", "faq-schema"],
       "category": "seo",
-      "tags": ["blog", "google-api", "seo"]
+      "tags": ["blog", "schema", "seo"]
+    },
+    {
+      "name": "blog-seo-check",
+      "source": "./plugins/blog-seo-check",
+      "description": "Post-writing SEO validation with 11-point pass/fail checklist covering title, meta, headings, links, OG, schema, and URL.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": ["blog", "seo", "on-page", "validation", "title-tag", "meta-description", "headings"],
+      "category": "seo",
+      "tags": ["blog", "seo", "validation"]
+    },
+    {
+      "name": "blog-strategy",
+      "source": "./plugins/blog-strategy",
+      "description": "Blog strategy development with topic cluster architecture, audience mapping, competitive landscape, and AI citation surface strategy.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": ["blog", "strategy", "topic-clusters", "audience", "content-marketing", "ai-citations"],
+      "category": "marketing",
+      "tags": ["blog", "strategy", "marketing"]
+    },
+    {
+      "name": "blog-taxonomy",
+      "source": "./plugins/blog-taxonomy",
+      "description": "Extract, suggest, and sync tags and categories for blog posts. Supports WordPress, Shopify, Ghost, Strapi, and Sanity CMS.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": ["blog", "taxonomy", "tags", "categories", "cms", "wordpress", "shopify"],
+      "category": "content",
+      "tags": ["blog", "taxonomy", "cms"]
+    },
+    {
+      "name": "blog-write",
+      "source": "./plugins/blog-write",
+      "description": "Write new blog articles from scratch optimized for Google rankings and AI citations. 7-phase workflow with template selection, research, charts, and quality checks.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": ["blog", "writing", "article", "seo-content", "ai-citations", "templates"],
+      "category": "content",
+      "tags": ["blog", "writing", "content"]
     }
   ]
 }

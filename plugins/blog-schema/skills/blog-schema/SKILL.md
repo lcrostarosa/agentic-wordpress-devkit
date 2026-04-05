@@ -6,6 +6,8 @@ description: >
   against Google requirements and warns about deprecated types. Use when user
   says "schema", "blog schema", "json-ld", "structured data", "schema markup",
   "generate schema".
+metadata:
+  version: 1.0.0
 ---
 
 # Blog Schema -- JSON-LD Structured Data Generation
@@ -280,3 +282,11 @@ Combine all schemas into a single `<script>` tag using the @graph pattern:
 
 Save the generated schema to the blog post file or to a separate schema file
 as the user prefers.
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize findings into clear, actionable prose.
+- Always output valid JSON-LD that passes Google's Rich Results Test — never produce schema with missing required properties or broken @id references.
+- Warn explicitly about any deprecated schema types and never include them in generated output.
+- Ground every recommendation in data from the analysis — no unsupported claims.
+- If data is unavailable or inconclusive, say so explicitly rather than guessing.

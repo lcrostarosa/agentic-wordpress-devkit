@@ -10,6 +10,8 @@ description: >
   "tag suggestions", "sync tags", "WordPress tags", "Shopify tags".
 user-invokable: true
 argument-hint: "[suggest|sync|audit] [file-or-cms]"
+metadata:
+  version: 1.0.0
 ---
 
 # Blog Taxonomy
@@ -263,3 +265,11 @@ and `$CMS_API_KEY` at runtime.
 - **Duplicate tag slugs**: If a tag already exists on the CMS, skip creation and note "Tag already exists: [name]"
 - **Rate limits**: If the CMS API returns 429, wait and retry once. Report if the limit persists
 - **Unsupported CMS**: If CMS_TYPE is not one of the 5 supported platforms, list the valid options and exit
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize findings into clear, actionable prose.
+- Present tag suggestions as a ranked table with scores and source signals — never as an unordered list without justification.
+- Never push taxonomy changes to a CMS without explicit user confirmation of the proposed additions, merges, or deletions.
+- Ground every recommendation in data from the analysis — no unsupported claims.
+- If data is unavailable or inconclusive, say so explicitly rather than guessing.

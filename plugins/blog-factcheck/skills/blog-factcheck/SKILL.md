@@ -10,6 +10,8 @@ description: >
   "factcheck", "source verification".
 user-invokable: true
 argument-hint: "[file]"
+metadata:
+  version: 1.0.0
 ---
 
 # Blog Fact-Check
@@ -133,3 +135,11 @@ Standalone usage: `/blog factcheck path/to/post.md`
 - **Rate limits**: Process no more than 10 URLs per run to avoid overwhelming
   source servers. If a post has more than 10 cited URLs, verify the first 10 and
   list the remainder as SKIPPED.
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize findings into clear, actionable prose.
+- Always include a verification score and status (VERIFIED/PARAPHRASE/WEAK/NOT FOUND/UNVERIFIED) for every claim.
+- For uncited claims, suggest a specific search query the user can run to find a source — never leave them without a next step.
+- Ground every recommendation in data from the analysis — no unsupported claims.
+- If data is unavailable or inconclusive, say so explicitly rather than guessing.

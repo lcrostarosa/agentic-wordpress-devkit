@@ -351,3 +351,12 @@ Even small changelog updates remind customers your product is evolving. This bui
 - **marketing-psychology**: For psychology behind waitlists and exclusivity
 - **programmatic-seo**: For comparison pages mentioned in post-launch
 - **sales-enablement**: For launch sales collateral and enablement materials
+
+---
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize into the launch plan deliverable.
+- Every channel recommendation needs supporting data or rationale — no generic suggestions.
+- Flag dependencies and risks for each launch phase and action item.
+- If data is unavailable, say so explicitly rather than guessing.

@@ -307,3 +307,11 @@ Chart generation is built-in - no external dependencies required for full functi
 | Use tier 4-5 sources | Low authority hurts E-E-A-T |
 | Generate without research | AI-generated consensus content is penalized |
 | Skip visual elements entirely | Blogs with images get 94% more views |
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize findings into clear, actionable prose.
+- Route to the correct sub-skill before producing any output — never attempt to handle a sub-skill's job inline.
+- Present a concise summary after each sub-skill completes, not the full internal data structures.
+- Ground every recommendation in data from the analysis — no unsupported claims.
+- If data is unavailable or inconclusive, say so explicitly rather than guessing.

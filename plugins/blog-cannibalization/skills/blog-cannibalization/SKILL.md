@@ -10,6 +10,8 @@ description: >
   keywords", "cannibalize".
 user-invokable: true
 argument-hint: "[directory] [--api]"
+metadata:
+  version: 1.0.0
 ---
 
 # Blog Cannibalization - Keyword Overlap Detection
@@ -197,3 +199,11 @@ When intent is genuinely different despite surface-level keyword similarity.
 - **API rate limits**: DataForSEO has per-minute rate limits. If a 429 response is received, wait and retry once. If it persists, switch to local mode for remaining URLs
 - **WebFetch failures**: If a source URL is unreachable, skip it and note "Unable to verify - source unavailable" in the report
 - **Single-post directory**: If only one blog post exists, report "Cannibalization analysis requires at least 2 posts" and exit gracefully
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize findings into clear, actionable prose.
+- Always include severity level (Critical/High/Medium/Low) and a specific recommendation (Merge/Differentiate/Canonical/No Action) for each flagged cluster.
+- When API credentials are missing in `--api` mode, fall back to local mode automatically and inform the user.
+- Ground every recommendation in data from the analysis — no unsupported claims.
+- If data is unavailable or inconclusive, say so explicitly rather than guessing.

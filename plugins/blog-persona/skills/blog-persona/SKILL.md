@@ -9,6 +9,8 @@ description: >
   "writing style", "brand voice", "create persona", "use persona".
 user-invokable: true
 argument-hint: "[create|list|use|show] [persona-name]"
+metadata:
+  version: 1.0.0
 ---
 
 # Blog Persona - Writing Voice Management
@@ -207,3 +209,11 @@ Blog-write and blog-rewrite check for the active persona before generating conte
 - **Empty personas directory**: When running list or show with no personas saved, prompt the user to create one first
 - **Name conflicts**: If a persona name already exists during create, ask whether to overwrite or choose a different name
 - **Malformed JSON**: If a persona file is corrupted, report the error and offer to recreate it from the interview
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize findings into clear, actionable prose.
+- Always save persona profiles as valid JSON matching the documented schema — never output partial or malformed persona files.
+- When displaying a persona, present tone dimensions and style rules in a human-readable summary, not as raw JSON.
+- Ground every recommendation in data from the analysis — no unsupported claims.
+- If data is unavailable or inconclusive, say so explicitly rather than guessing.

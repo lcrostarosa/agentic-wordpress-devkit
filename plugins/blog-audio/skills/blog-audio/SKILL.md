@@ -247,3 +247,11 @@ blog-write because audio generation is unavailable.
 
 Load on-demand -- do NOT load all at startup:
 - `references/voices.md` -- Full 30-voice catalog, recommendations by content type, dialogue pairings
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize findings into clear, actionable prose.
+- Always provide the file path, duration, and ready-to-paste embed code after generation.
+- When the API key is missing during an internal call (from blog-write), return silently — never block the writing workflow.
+- Ground every recommendation in data from the analysis — no unsupported claims.
+- If data is unavailable or inconclusive, say so explicitly rather than guessing.

@@ -1,0 +1,52 @@
+{
+  "agent_name": "blog-researcher",
+  "evals": [
+    {
+      "id": 1,
+      "description": "Statistics research — verifies sources and returns verified data table",
+      "input": {
+        "task": "find_statistics",
+        "topic": "WordPress market share 2025",
+        "count": 3
+      },
+      "assertions": [
+        "Output includes a Statistics Found table with Statistic, Source, URL, Date, and Verified columns",
+        "Each statistic has a source URL that was verified via WebFetch",
+        "Sources are Tier 1, Tier 2, or Tier 3 only (no content mills or affiliate sites)",
+        "Each row includes a Verified (Yes/No) status",
+        "Does not include statistics with no named source or link"
+      ]
+    },
+    {
+      "id": 2,
+      "description": "Image research — returns verified stock image URLs with alt text",
+      "input": {
+        "task": "find_images",
+        "topic": "website security lock",
+        "count": 3
+      },
+      "assertions": [
+        "Output includes an Images Found table with Platform, URL, Alt Text, and Topic Relevance columns",
+        "Image URLs are direct CDN URLs (not page URLs like pixabay.com/photos/...)",
+        "Each image has a Verified HTTP 200 status or is marked Unverified",
+        "No more than 1 Unverified image in the output",
+        "Alt text is a full descriptive sentence (10-125 characters)"
+      ]
+    },
+    {
+      "id": 3,
+      "description": "Competitive analysis — returns gap analysis for a keyword",
+      "input": {
+        "task": "competitive_analysis",
+        "keyword": "best WordPress security plugins",
+        "competitor_count": 3
+      },
+      "assertions": [
+        "Output includes a Competitive Analysis table with Competitor, Word Count, Images, Charts, Freshness, and Gap columns",
+        "Each competitor entry has an approximate word count",
+        "Gap column identifies specific uncovered topics or weaknesses",
+        "Output includes a Recommended Chart Data section with 2-4 data sets"
+      ]
+    }
+  ]
+}

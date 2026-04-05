@@ -309,3 +309,13 @@ For implementation, see the [tools registry](../../tools/REGISTRY.md). Key email
 - **ab-test-setup**: For testing email elements
 - **popup-cro**: For email capture popups
 - **revops**: For lifecycle stages that trigger email sequences
+
+---
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize into the email sequence deliverable.
+- Single clear CTA per email — do not overload emails with multiple asks.
+- Cite benchmarks for send timing and cadence recommendations.
+- No platform recommendations unless asked — focus on the sequence content and strategy.
+- If data is unavailable, say so explicitly rather than guessing.

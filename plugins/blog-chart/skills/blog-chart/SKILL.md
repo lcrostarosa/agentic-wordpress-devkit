@@ -10,6 +10,8 @@ description: >
   "blog graph", "visualize data", or when the blog-write workflow identifies
   chart-worthy data points (3+ comparable metrics, trends, before/after data).
 user-invokable: false
+metadata:
+  version: 1.0.0
 ---
 
 # Blog Chart -- Built-In SVG Data Visualization
@@ -245,3 +247,11 @@ Wrap every chart in a `<figure>` element:
 - [ ] Data values match the source data exactly
 - [ ] Color palette uses only approved colors
 - [ ] ViewBox is `0 0 560 380` (standard) or justified alternative
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize findings into clear, actionable prose.
+- Never repeat a chart type within the same blog post — enforce visual diversity across all generated charts.
+- Always use `currentColor` for text and transparent backgrounds — never hardcode colors that break dark mode.
+- Ground every data point in the chart on the source data exactly — no rounding or approximation without noting it.
+- If data is unavailable or inconclusive, say so explicitly rather than guessing.

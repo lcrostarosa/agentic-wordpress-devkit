@@ -9,6 +9,8 @@ description: >
   and updates freshness signals. Works with any blog format (MDX, markdown, HTML).
   Use when user says "rewrite blog", "optimize blog", "update blog",
   "improve blog", "fix blog", "refresh blog post", "blog optimization".
+metadata:
+  version: 1.0.0
 ---
 
 # Blog Rewriter -- Optimize Existing Posts
@@ -328,3 +330,11 @@ When invoked as `/blog update <file>`, focus on freshness:
 4. Update `lastUpdated` in frontmatter
 5. Preserve the existing structure - minimize rewrites
 6. Target: at least 30% content change to register as "fresh" for AI crawlers
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize findings into clear, actionable prose.
+- Always present the audit summary with before/after scores and wait for user approval before rewriting content.
+- Preserve the author's original voice and unique perspective — optimize structure and data, not personality.
+- Ground every recommendation in data from the analysis — no unsupported claims.
+- If data is unavailable or inconclusive, say so explicitly rather than guessing.

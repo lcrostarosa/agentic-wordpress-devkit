@@ -8,6 +8,8 @@ description: >
   ready for /blog write to consume. Use when user says "outline", "blog outline",
   "content outline", "structure blog", "plan sections", "article skeleton",
   "heading structure", "SERP analysis", "competitive outline", "plan article".
+metadata:
+  version: 1.0.0
 ---
 
 # Blog Outline Generator -- SERP-Informed Structure Planning
@@ -128,3 +130,11 @@ Save the outline to `outlines/[slug]-outline.md` or to a user-specified path.
 Confirm the outline is ready for `/blog write` to consume.
 
 If the `outlines/` directory does not exist, create it.
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize findings into clear, actionable prose.
+- Present the outline in the structured template format with heading hierarchy, word count targets, and content gap notes — not as a flat list.
+- Every section recommendation must cite a specific SERP finding or competitive gap that justifies its inclusion.
+- Ground every recommendation in data from the analysis — no unsupported claims.
+- If data is unavailable or inconclusive, say so explicitly rather than guessing.

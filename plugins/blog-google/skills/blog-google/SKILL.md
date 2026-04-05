@@ -273,3 +273,11 @@ Falls back gracefully when credentials are not configured.
 | GA4 property not found | Find property ID in GA4 Admin > Property Details. |
 | Indexing API quota exceeded | 200/day limit. Prioritize most important URLs. |
 | Rate limit (429) | Wait and retry with exponential backoff. |
+
+## Output Rules
+
+- Never show raw agent JSON to the user — synthesize findings into clear, actionable prose.
+- Always communicate the detected credential tier before running commands so the user knows which features are available.
+- When an API returns no data (e.g., CrUX 404), explain why (insufficient traffic) and suggest a fallback — never report it as an error.
+- Ground every recommendation in data from the analysis — no unsupported claims.
+- If data is unavailable or inconclusive, say so explicitly rather than guessing.
