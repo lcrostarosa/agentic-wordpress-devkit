@@ -129,13 +129,13 @@ API integration guides and zero-dependency Node.js CLIs under `tools/`.
 ### Install all skills (recommended)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/lcrostarosa/agentic-wordpress-devkit/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/lcrostarosa/agentic-wordpress-devkit/master/install.sh | bash
 ```
 
 Installs to `--scope project` by default (writes to `.claude/settings.json`). Pass `user` or `local` to change scope:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/lcrostarosa/agentic-wordpress-devkit/main/install.sh | bash -s user
+curl -fsSL https://raw.githubusercontent.com/lcrostarosa/agentic-wordpress-devkit/master/install.sh | bash -s user
 ```
 
 ### Install individual skills
@@ -197,7 +197,7 @@ Every skill that asks questions (marketing-copywriting, market-seo-audit, conten
 One-shot — copies the template into your project and opens it for editing:
 
 ```bash
-mkdir -p .agents && curl -sL https://raw.githubusercontent.com/lcrostarosa/agentic-wordpress-devkit/main/templates/product-marketing-context.md -o .agents/product-marketing-context.md
+mkdir -p .agents && curl -sL https://raw.githubusercontent.com/lcrostarosa/agentic-wordpress-devkit/master/templates/product-marketing-context.md -o .agents/product-marketing-context.md
 ```
 
 The template is also available at [`templates/product-marketing-context.md`](templates/product-marketing-context.md).
