@@ -29,7 +29,6 @@ install_plugin wordpress-issue-debug
 install_plugin market-seo-audit
 install_plugin local-business-site-audit
 install_plugin market-seo-schema-markup
-install_plugin content-blog-optimize
 install_plugin marketing-copywriting
 install_plugin content-refine
 install_plugin marketing-page-cro
@@ -39,7 +38,6 @@ install_plugin marketing-lead-magnets
 install_plugin marketing-launch-strategy
 install_plugin marketing-experimentation
 install_plugin content-strategy
-install_plugin content-blog-write
 install_plugin market-customer-research
 install_plugin market-competitor-research
 install_plugin chatbot-creator
