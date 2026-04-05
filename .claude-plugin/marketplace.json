@@ -1,7 +1,7 @@
 {
-  "name": "wordpress-design-skills",
+  "name": "agentic-wordpress-devkit",
   "owner": {
-    "name": "wordpress-design-skills"
+    "name": "lcrostarosa"
   },
   "metadata": {
     "description": "Claude Code skills for WordPress design, SEO, marketing, and local business consulting. Three-tier agent architecture: haiku for data collection, sonnet for analysis, opus for strategy.",

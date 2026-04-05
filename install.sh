@@ -1,9 +1,9 @@
 #!/bin/bash
 
-MARKETPLACE="wordpress-design-skills"
+MARKETPLACE="agentic-wordpress-devkit"
 SCOPE="${1:-project}"
 
-echo "Adding wordpress-design-skills marketplace..."
+echo "Adding agentic-wordpress-devkit marketplace..."
 claude plugin marketplace add lcrostarosa/agentic-wordpress-devkit
 
 echo "Installing shared agents..."

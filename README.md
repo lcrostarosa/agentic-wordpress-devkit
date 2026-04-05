@@ -145,10 +145,10 @@ curl -fsSL https://raw.githubusercontent.com/lcrostarosa/agentic-wordpress-devki
 /plugin marketplace add lcrostarosa/agentic-wordpress-devkit
 
 # Install shared agents (required for multi-agent skills)
-/plugin install agents@wordpress-design-skills
+/plugin install agents@agentic-wordpress-devkit
 
 # Install any skill by name
-/plugin install wordpress-design@wordpress-design-skills
+/plugin install wordpress-design@agentic-wordpress-devkit
 ```
 
 ### Manual install (copy skills directly)
