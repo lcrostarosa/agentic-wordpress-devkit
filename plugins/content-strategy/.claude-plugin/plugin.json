@@ -1,7 +1,7 @@
 {
   "name": "content-strategy",
   "description": "Plan content strategy with topic clusters, editorial calendars, buyer-stage keyword research, and content prioritization scoring.",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "license": "MIT",
   "keywords": ["content-strategy", "topic-clusters", "editorial-calendar", "content-marketing"]
 }

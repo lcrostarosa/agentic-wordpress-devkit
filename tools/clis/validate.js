@@ -184,8 +184,8 @@ if (!manifest || !Array.isArray(manifest.agents)) {
 
   // Paths in manifest that don't resolve to real files
   for (const p of manifestPaths) {
-    // Paths are relative to repo root, e.g. "./agents/market-site-analyzer.md"
-    const resolved = path.join(ROOT, p.replace(/^\.\//, ''));
+    // Paths are relative to agents/ directory, e.g. "./market-site-analyzer.md"
+    const resolved = path.join(AGENTS_DIR, p.replace(/^\.\//, ''));
     if (!fs.existsSync(resolved)) {
       manifestErrors.push(`agents/.claude-plugin/plugin.json: entry '${p}' does not exist on disk`);
     }

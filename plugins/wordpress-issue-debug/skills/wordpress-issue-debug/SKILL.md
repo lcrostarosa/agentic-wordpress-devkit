@@ -18,7 +18,7 @@ metadata:
 **Key references:**
 - [WP Error Codes](../../../../references/wordpress/wp-error-codes.md) — HTTP status codes, PHP error levels, WordPress-specific error constants
 - [PHP Error Patterns](../../../../references/wordpress/php-error-patterns.md) — reading stack traces, database errors, redirect loops, PHP version incompatibility
-- [Performance Thresholds](../../../../references/wordpress/performance-thresholds.md) — Core Web Vitals targets, TTFB benchmarks by hosting tier, caching hierarchy
+- [Performance](../../../../references/wordpress/performance.md) — Core Web Vitals targets, TTFB benchmarks by hosting tier, caching hierarchy, optimization techniques
 
 ---
 

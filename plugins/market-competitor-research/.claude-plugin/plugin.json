@@ -1,7 +1,7 @@
 {
   "name": "market-competitor-research",
   "description": "Multi-agent competitive research. Profiles competitors across site quality, SEO posture, and market positioning. Compares against your site and produces strategic recommendations.",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "license": "MIT",
   "keywords": ["market-competitor-research", "competitive-analysis", "market-research", "market-seo-comparison", "strategy"]
 }

@@ -143,7 +143,7 @@
     {
       "name": "content-strategy",
       "source": "./plugins/content-strategy",
-      "description": "Multi-agent content strategy. Parallel research: market-competitor-profiler, market-serp-researcher, market-review-miner. Optional market-strategic-synthesis for positioning. Produces pillar architecture, cluster plans, AI citation strategy, and 90-day roadmap. Absorbs blog-strategy.",
+      "description": "Multi-agent content strategy. Parallel research: market-competitor-profiler, market-serp-researcher, market-review-miner. Optional market-strategic-synthesis for positioning. Produces pillar architecture, cluster plans, AI citation strategy, and 90-day roadmap. Complements blog-strategy for general content roadmapping.",
       "version": "2.0.0",
       "license": "MIT",
       "keywords": [

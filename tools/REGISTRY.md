@@ -115,4 +115,4 @@ node clis/<tool>.js <command>            # Execute
 - JSON output for piping and parsing
 - Zero external dependencies
 
-**Available CLIs:** adobe-analytics, calendly, close, google-ads, google-search-console, linkedin-ads, outreach, paddle, segment, tiktok-ads, zapier
+**Available CLIs:** adobe-analytics, calendly, close, google-ads, google-search-console, linkedin-ads, outreach, paddle, segment, tiktok-ads, validate, zapier
